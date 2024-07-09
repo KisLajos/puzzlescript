@@ -1,0 +1,411 @@
+title Chalky & Cheesy
+author flummox3d
+homepage flummox3d.itch.io
+text_color gray
+norepeat_action
+
+========
+OBJECTS
+========
+
+Background .
+lightgreen green 
+11011
+01111
+11101
+11111
+10111
+
+ChalkyTarget ?
+darkblue #909090
+.....
+.000.
+.010.
+.000.
+.....
+
+CheesyTarget !
+darkblue #ff2
+.....
+.000.
+.010.
+.000.
+.....
+
+CrateTarget y
+darkblue orange
+.....
+.000.
+.010.
+.000.
+.....
+
+Wall #
+brown darkbrown
+00010
+11111
+01000
+11111
+00010
+
+Chalky P
+black orange #909090 blue
+.000.
+.111.
+22222
+.333.
+.3.3.
+
+ChalkyA
+black orange #909090 blue
+.000.
+.111.
+22222
+.333.
+.3.3.
+
+IChalky b
+black orange #909090 blue
+.000.
+.111.
+22222
+.333.
+.3.3.
+
+SChalky 1
+darkgray #909090
+.000.
+.000.
+00100
+.000.
+.0.0.
+
+Cheesy d
+white blue #ff2 orange
+.000.
+.111.
+22222
+.333.
+.3.3.
+
+CheesyA
+white blue #ff2 orange
+.000.
+.111.
+22222
+.333.
+.3.3.
+
+ICheesy Q
+white blue #ff2 orange
+.000.
+.111.
+22222
+.333.
+.3.3.
+
+SCheesy 2
+darkgray #ff2
+.000.
+.000.
+00100
+.000.
+.0.0.
+
+Crate *
+orange
+00000
+0...0
+0...0
+0...0
+00000
+
+Í
+transparent
+
+=======
+LEGEND
+=======
+
+Player = Chalky or Cheesy
+Inactive = IChalky or ICheesy
+Character = Player or Inactive
+Chalkies = Chalky or IChalky or ChalkyA
+Cheesies = Cheesy or ICheesy or CheesyA
+
+Statues = SChalky or SCheesy
+Pushable = Crate or Statues
+
+Targets = ChalkyTarget or CheesyTarget or CrateTarget
+
+ú = ChalkyTarget and Chalky
+ő = CrateTarget and Crate
+ű = ChalkyTarget and ChalkyA
+ó = CheesyTarget and CheesyA
+ö = ChalkyTarget and Crate
+ü = CheesyTarget and Crate
+
+=======
+SOUNDS
+=======
+
+Crate move 36772507
+Statues move 52901307
+
+Character cantmove 69976104
+
+StartGame 6996709
+endlevel 6276903
+endgame 75158503
+
+sfx0 76808103
+sfx1 37756102
+
+================
+COLLISIONLAYERS
+================
+
+Background
+Targets, Í
+Character, Chalkies, Cheesies, Wall, Pushable
+
+======
+RULES
+======
+
+(crate logic)
+horizontal [ > Chalky | Crate ] -> [ > Chalky | > Crate ] 
+vertical [ >  Cheesy | Crate ] -> [ > Cheesy | > Crate ] 
+
+(switching characters)
+[action Chalky ] [ICheesy] -> [IChalky ] [Cheesy] sfx0
+[action Cheesy ] [IChalky ] -> [ICheesy] [Chalky] sfx0
+
+(pushing characters)
+[ > character | statues ] -> [ > character | > statues ]
+
+(statues)
+horizontal [ > SChalky | Crate ] -> [ > SChalky | > Crate ] 
+vertical [ >  SCheesy | Crate ] -> [ > SCheesy | > Crate ]
+
+[Í] -> sfx1
+
+==============
+WINCONDITIONS
+==============
+
+all Chalkies on ChalkyTarget
+all Cheesies on CheesyTarget
+all Crate on CrateTarget
+
+=======
+LEVELS
+=======
+
+message Meet Chalky.
+message Chalky can only move crates horizontally.
+
+###########
+#p........#
+#...##.##.#
+#.*.y#.?#.#
+###########
+
+message Meet Cheesy.
+message Cheesy can only move crates vertically.
+
+#####
+#...#
+#.###
+#.#!#
+#...#
+#.###
+#.#y#
+#...#
+#..*#
+#d..#
+#####
+
+message Together they can do anything.
+message If there is enough space.
+message Press X to change between the two of them.
+
+(coop puzzle #1)
+..######...
+..#....#...
+###.##.####
+#p.q*.....#
+#...##*##.#
+#?..y..y#!#
+###########
+
+(coop puzzle #2)
+.......?#.
+.......y#.
+.###.#*##.
+.#d#b#.##.
+.#.*.*.##.
+.#y#!#y##.
+.########.
+..........
+
+(coop puzzle #3)
+...###....
+.###y####.
+.#p*.q.y#.
+.#*#.####.
+.#.#.#!#..
+.#.*.#.#..
+.#y#.?.#..
+.#######..
+
+(coop puzzle #4)
+############
+#?........y#
+#.#.####.#.#
+#.#.*..*.#.#
+#.#q#p.#y#.#
+#.#.######.#
+#y*.......!#
+############
+
+(coop puzzle #5)
+.#######..
+.#q..#.#..
+.#.ü.###..
+.#...#y#..
+.##ő##p##.
+.#......#.
+.#.ö#y..#.
+.#......#.
+.########.
+
+..........
+..........
+..ű....2..
+.......Í..
+..........
+
+message Oh no, Cheesy turned into stone!
+
+(cheesy statue puzzle #1)
+.#######.
+.#..p..#.
+.#..#..#.
+.#?.*2.#.
+.#.##..#.
+.#..y..#.
+.#######.
+
+(cheesy statue puzzle #2)
+#########
+#....p.y#
+#.#.#####
+#.#.#..y#
+#..*#2.*#
+##..?...#
+.#......#
+.########
+
+(cheesy statue puzzle #3)
+##########.
+#?#..p...##
+#........y#
+#.##2##..##
+#.ő.......#
+#...*.#.#.#
+#.....#...#
+#..########
+####.......
+
+..........
+..........
+..ó....1..
+.......Í..
+..........
+
+message Oh no, now Chalky turned into stone!
+
+(chalky statue puzzle #1)
+.#######.
+.#..d..#.
+.#.#...#.
+.#y#*#.#.
+.#..1..#.
+.#..!..#.
+.#######.
+
+(chalky statue puzzle #2)
+.#########
+.#y.d....#
+.#.#*#*#.#
+.#y....#.#
+.#.....*.#
+.#..1..#y#
+.##.!#####
+..####....
+
+(chalky statue puzzle #3)
+#######........
+#....#########.
+#...ü...#...y##
+#y............#
+##.###.####...#
+.#...*1..d#...#
+.#.###.####..##
+.#.....*.....##
+.#.....*.....y#
+.#y#..........#
+.##############
+
+message Oh no, now both of them turned into stone!
+
+..........
+..........
+..1....2..
+.......Í..
+..........
+
+message Just kidding :)
+
+(coop puzzle #6)
+b#y!ő.....?
+.#..#d.....
+.#..###ő###
+.#........#
+.#ő####...#
+.......#..#
+.*.....#..#
+..........#
+###########
+
+(coop puzzle #7)
+....#..........
+.###y####......
+#ypő....y#.....
+#..#.#.#####...
+#.*#.#ü.y..y##.
+##.*.#.##*##..#
+#q.#.ö.y......#
+#########.#.*.#
+........#.....#
+.........#####.
+
+message The End
+message Thank you for playing :)
+message Made for Thinky Puzzle Game Jam 3 by flummox3d
+message Hope you enjoyed it!
+
+(post-credits scene)
+#############
+#.p.#...#...#
+#...ő.y.ő.ö.#
+#...#...#...#
+##ő###.###.##
+#...#...#...#
+#...ő...y.ü.#
+#.q.#...#...#
+#############
+
+message (that was the post-credits scene)
+message Bye :)
