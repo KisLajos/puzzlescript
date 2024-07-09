@@ -1,0 +1,850 @@
+title Mye
+author flummox3d
+color_palette 9
+
+noundo
+
+text_color grey
+
+========
+OBJECTS
+========
+
+Background .
+black
+
+Circle C
+green
+.000.
+00000
+00000
+00000
+.000.
+
+CircleK P
+green
+.000.
+00000
+00000
+00000
+.000.
+
+Block B
+#FFC000
+
+SoftBlock S
+yellow lightbrown
+10101
+00000
+10001
+00000
+10101
+
+UpBlock U
+yellow red
+00000
+00100
+01010
+10001
+00000
+
+DownBlock D
+yellow red
+00000
+10001
+01010
+00100
+00000
+
+LeftBlock L
+yellow red
+00010
+00100
+01000
+00100
+00010
+
+RightBlock R
+yellow red
+01000
+00100
+00010
+00100
+01000
+
+Gate1 5
+white lightred
+.0.0.
+00000
+.010.
+00000
+.0.0.
+
+Gate2 6
+white blue
+.0.0.
+00000
+.010.
+00000
+.0.0.
+
+Gate3 7
+white green
+.0.0.
+00000
+.010.
+00000
+.0.0.
+
+Gate4 8
+white purple
+.0.0.
+00000
+.010.
+00000
+.0.0.
+
+KeyHole Y
+yellow
+00000
+00.00
+0...0
+00.00
+0...0
+
+Wall W
+grey lightgrey
+00000
+01010
+00000
+01010
+00000
+
+PushWall o
+grey lightgrey
+00000
+01010
+00000
+01010
+00000
+
+Gem G
+blue lightblue
+..0..
+.010.
+01110
+.010.
+..0..
+
+AltGem A
+blue lightblue
+..0..
+.010.
+01110
+.010.
+..0..
+
+Target1 1
+white lightred
+11111
+10001
+10101
+10001
+11111
+
+Target2 2
+white blue
+11111
+10001
+10101
+10001
+11111
+
+Target3 3
+white green
+11111
+10001
+10101
+10001
+11111
+
+Target4 4
+white purple
+11111
+10001
+10101
+10001
+11111
+
+Key K
+yellow
+.....
+...00
+00000
+0..00
+.....
+
+Times X
+white
+.....
+.0.0.
+..0..
+.0.0.
+.....
+
+HUDzero 0
+white
+.000.
+.0.0.
+.0.0.
+.0.0.
+.000.
+
+HUDnumb N
+white
+..0..
+.00..
+0.0..
+..0..
+00000
+
+Magnet M
+red yellow
+0...0
+01110
+01110
+01110
+0...0
+
+VerticalMagnet Z
+red yellow
+00000
+.111.
+.111.
+.111.
+00000
+
+Whitehole H
+white red blue
+00000
+0.2.0
+01..0
+0.120
+00000
+
+Enemy i
+purple red
+01010
+0....
+.000.
+..0..
+.0...
+
+Enemy2
+purple red
+01010
+....0
+.000.
+..0..
+...0.
+
+TeleportStart 9
+lightblue
+
+TeleportEnd E
+#fdd800
+
+BoomBlock T
+yellow red
+00100
+00100
+00100
+00000
+00100
+
+=======
+LEGEND
+=======
+
+Player = C or P
+Blocks = B or U or D or L or R or O
+Enemies = Enemy or Enemy2
+Magnetic = Blocks or T or M or Z or G
+Anything = Player or Blocks or M or Z or Enemy
+Targets = 1 or 2 or 3 or 4
+Gates = 5 or 6 or 7 or 8
+Boomable = Gates or Blocks or T or S
+
+=======
+SOUNDS
+=======
+
+SFX0 58711100
+SFX1 44399900
+SFX2 37432502
+SFX3 15168502
+SFX4 12366902
+SFX5 95625700
+
+================
+COLLISIONLAYERS
+================
+
+Background
+Targets, X, N, 0, 9, E
+C, P, Enemies, S, W, G, A, Blocks, Gates, K, Y, M, Z, H, T
+
+======
+RULES
+======
+(probably not optimal, but 'tis my first game, give me a break :D)
+
+(gem logic)
+[> Player | Gem ] -> [ | Player ] SFX0
+
+(altgem logic)
+[> Player | AltGem ] -> [ | Player ] SFX5
+
+(blocks logic)
+[> Player | S ] -> [ | Player ]
+[> Player | B ] -> [> Player | > B ]
+[> Player | o ] -> [> Player | > o ]
+UP [> Player | U ] -> [> Player | > U ]
+DOWN [> Player | D ] -> [> Player | > D ]
+LEFT [> Player | L ] -> [> Player | > L ]
+RIGHT [> Player | R ] -> [> Player | > R ]
+
+(target logic)
+late [Blocks 1][5] -> [Blocks 1][] SFX2
+late [Blocks 2][6] -> [Blocks 2][] SFX2
+late [Blocks 3][7] -> [Blocks 3][] SFX2
+late [Blocks 4][8] -> [Blocks 4][] SFX2
+
+(key logic)
+[> C | K ][0] -> [ | P ][N] SFX1
+[> P | Y ][N] -> [ | C ][0] SFX2
+
+(magnet logic)
+[> Player | M ] -> [> Player | > M ]
+LEFT [< Player | M ] -> [ < Player | < M ]
+RIGHT [< Player | M ] -> [ < Player | < M ]
+LEFT [< M | Magnetic] -> [< M | < Magnetic]
+RIGHT [< M | Magnetic] -> [< M | < Magnetic]
+
+(vertical magnet logic)
+[> Player | Z ] -> [> Player | > Z ]
+UP [< Player | Z ] -> [ < Player | < Z ]
+DOWN [< Player | Z ] -> [ < Player | < Z ]
+UP [< Z | Magnetic] -> [< Z | < Magnetic]
+DOWN [< Z | Magnetic] -> [< Z | < Magnetic]
+
+(white hole logic)
+[> Anything | H ] -> [ | H ] SFX3
+
+(teleport logic)
+late[Player 9][E] -> [][Player] SFX4
+
+(boomblock logic)
+[> Player | T ] -> [> Player | > T ]
+[> T | Boomable ] -> [ | ] SFX3
+
+(enemy logic)
+[ stationary Enemy] -> [randomDir Enemy2]
+[ stationary Enemy2 ] -> [randomDir Enemy]
+[Enemies | ... | Player] -> [> Enemies | ... | Player]
+[Player | Enemies] -> [ | Enemies]
+
+==============
+WINCONDITIONS
+==============
+
+No Gem
+
+=======
+LEVELS
+=======
+
+message Ready? Go!
+
+message Level 1 - Basics
+wwwwwww
+w..g..w
+w.sss.w
+wgscsgw
+w.sss.w
+w..g..w
+wwwwwww
+
+message Wait!
+message Before you go on...
+message I thought you'd like to know...
+message There's NO undo button.
+message I'm that evil, yeah.
+message So think before you act.
+message Or whatever the thing is that the nice people say.
+
+message Level 2 - Careful
+wwwwwww
+w..c..w
+w.bbb.w
+w.bgb.w
+w.b.b.w
+w..b..w
+wwwwwww
+
+message Level 3 - Now what?
+wwwwwwwww
+w.......w
+w..mbb..w
+w..bgb..w
+w...bb..w
+w...b...w
+w.......w
+w...b...w
+wc......w
+wwwwwwwww
+
+message Level 4 - Key
+WWWWWWWWWW
+W.S....YGW
+W.W....WWW
+WBW....M.W
+WKB......W
+WBW......W
+W.W......W
+W.W......W
+W.S.....CW
+WWWWWWWWWW
+.......KX0
+
+message Level 5 - Complex?
+
+wwwwwwwwww
+w1.....5gw
+wswww..www
+wsb......w
+wuw..wwwww
+wkw....lcw
+w.w..wwwww
+w........w
+w........w
+wwwwwwwwww
+.......kx0
+
+message Level 6 - Playaround
+wwwwwwwwww
+w.w.w.wg.w
+w.w.w.ww5w
+w..u.u...w
+w.u.u.u..w
+w.rur....w
+w1d..ddl.w
+w..d.l...w
+w.u.u.u.cw
+wwwwwwwwww
+
+message Level 7 - Flow
+wwwwwwwwwwwwww
+w.wwwwwwwwwwww
+w......Bwk.www
+wSwwwww.ww...w
+w.w......w.w.w
+w.w......w.w.w
+w.w..Z...w.w.w
+w.w......w.w.w
+w.w......wBw.w
+w.w......wgwgw
+wuww.wwwww5www
+w..1.....c.mbw
+w..wwwwwwwwwww
+wwwwwwwwwwwwww
+
+message That key?
+message It's just there.
+message Did you try to get it?
+message MWUHAHAH
+message I'm evil.
+
+message Level 8 - Learn
+wwwwwwww
+wg.tt..w
+wwwwww.w
+w..tb..w
+wcwwwwww
+w..ts..w
+wwwwww.w
+wg.5t..w
+wwwwwwww
+
+message Level 9 - Boom
+wwwwwwwwwwwww
+wgw.......wgw
+w.w.......w.w
+w.t..w....w5w
+wwwwwwww....w
+wgwtwzw.....w
+w.w.w.w.....w
+w.w.w.......w
+wtw...wsssssw
+w.....wssgmsw
+w.....wsssssw
+w.c.........w
+w...........w
+wwwwwwwwwwwww
+
+message No...
+message I will not explain...
+message ...how the boombox doesn't blow up the magnet.
+message It's magic.
+message I don't have to explain it.
+
+message Level 10 - Careful
+............www....
+...wwwwwwwwwwgwwwww
+...w......w.....wgw
+...w.w..w.w.w.w.w8w
+...w.w.bw.w...w.w.w
+...w.ww4w.w.wbw.w7w
+...wbgwcw.w.w2w.w.w
+...w.wwww.w.w.w.w6w
+...w.w....w.w.w.w.w
+wwww.w.wwwwww.w.w5w
+w....w1b........g.w
+w.ww.wwwwwwwwwwwwww
+w3...b......gw.....
+wwww.wwww.w.ww.....
+...wgw..w...w......
+...www..wwwww......
+
+message Intermission I - Relax
+wwwwwwwww
+w......cw
+w.www.w.w
+w.gag.w.w
+w.www.g.w
+w..w..w.w
+w..w..w.w
+wgggggggw
+wwwwwwwww
+
+message Level 11 - 101
+wwwwwwww
+wwwwwwww
+ww...cww
+ww.wwwww
+ww.wg.ww
+ww.ww.ww
+wwb...ww
+wwhwwwww
+wwwwwwww
+
+message Level 12 - The Dig
+wwwwwwwww
+ww.....gw
+w..www.ww
+w.wwgw.cw
+w..wzw.ww
+ww.w.w..w
+w..wrww.w
+w....hw.w
+w..wbww.w
+w.zw....w
+wwwwwwwww
+
+
+message Level 13 - Fcuking magnets...
+....wwwwwww
+....w.....w
+wwwww.www.w
+wc....wgw.w
+w..w.mb1m.w
+w.wwwwwgw.w
+w7777mb2m.w
+w5557wwgw.w
+w6657mb3m.w
+wg657.w.w.w
+wwwww..gw.w
+....wwwwwww
+
+message [that wasn't a typo by the way]
+message [Look up Time Fcuk...]
+message [If you haven't played it yet.]
+
+message Intermission II - Listen
+wwwwwwwwwwwwwwww
+wcg.a.g.a.g.a..w
+wwwwwwwwwwwwww.w
+w.ggaggaggagg..w
+w.wwwwwwwwwwwwww
+w..g.a.g.a.g.a.w
+wwwwwwwwwwwwww.w
+w.ggaggaggagg..w
+wwwwwwwwwwwwwwww
+
+message Weeeeeeeeeee :)
+message What?
+message Evil people can have fun too, you know.
+
+message Level 14 -  Introduction
+wwwwwwww
+w1...bcw
+wwwww.bw
+w......w
+wg...w.w
+ww5w.w.w
+w..w.w.w
+wi.wgwgw
+wwwwwwww
+
+message It's cute, isn't?
+message Too bad that its only goal...
+message ...is to murder you.
+
+message Level 15 - Stakes
+wwwwwwww
+wc.....w
+w.bbbbbw
+w.b....w
+w.b..giw
+w.b....w
+w.bbbbbw
+w......w
+wwwwwwww
+
+message Level 16 - RUN!
+wwwwwwwwwwwwwww
+wg............w
+w.w.w.w.w.wgw.w
+w..g...g......w
+w.w.w.w.w.w.w.w
+w........g...gw
+wwwwwwwwwwwww.w
+w..b...........
+w...wwwwwwwwwww
+ww.........b..w
+wwwwwwwwwww...w
+wi.c.........ww
+wwwwwwwwwwwwwww
+
+message Level 17 - What now?
+
+wwwwwwww
+w.....cw
+w.wwwwww
+w.....9w
+wwwwwwww
+we.....w
+wwwwww.w
+wg.....w
+wwwwwwww
+
+message Okay, now the next levels are...
+message Hard.
+message Hard like...
+message Egoraptor's dick about Megaman X.
+message I mean...
+message This is where not having an undo button...
+message ...will hurt the most.
+message So...
+message As that Disney song says:
+message BE PREPAREEEEEED
+
+message Level 18 - Pass
+wwwwwwwwwwwwwww
+w.........h...w
+w.w.w.w5w.w.w.w
+w16.bc....h...w
+w.w2w.w4w.w.w8w
+w.h.......h.8gw
+w.whw.whwhw.w8w
+w..3..........w
+w.w.w7w.w6w.w.w
+w....m..6g6...w
+w.w.w7w.w6w.w5w
+w...........5gw
+wwwwwwwwwwwwwww
+
+message Level 19 - Loop
+wwwwwwwwwwwwwwww..
+w..............w..
+w..............www
+w.w.w.wwww.www...w
+w.w.w.wc...wgw.w.w
+wm....wwwwwwbw...w
+w.w.w.wz.......www
+w.wmw.ww......ww..
+w........www..ww..
+wwwwwwwwwwwwwwww..
+
+message Level 20 - Clockwork
+wwwwwwwwwwwww
+wg5..w1w..6gw
+w55...r...66w
+w...r.l.l...w
+w..ru.r.dl..w
+ww....u....ww
+w3ud.lcrdud2w
+ww....d....ww
+w..ur.r.ul..w
+w...u.l.l...w
+w88...r...77w
+wg8...4...7gw
+wwwwwwwwwwwww
+
+message Say...
+message Can you imagine this...
+message ...being a scary game?
+message ...
+message ...
+message ...
+message BOO!
+message Yeah, couldn't work.
+message But maybe...
+message ...with a creepy and vague lore...
+message ...hmmm....
+
+message Level 21 - Fortress
+wwwwwwwwwww
+w9wgw..1.gw
+w.w.w..y..w
+w5wtw..ut.w
+w.......www
+w........mw
+w.........w
+w888888...w
+wbbbbbb...w
+wkbbbbb...w
+whhhhbb.c.w
+wg.ehzb...w
+wwwwwwwwwww
+........KX0
+
+message You're the soul of a dead child...
+message ...trying to escape purgatory.
+message Nah, just kidding.
+message You're actually dead.
+message And this is hell.
+
+message Level 22 - Choo-choo
+wwwwwwwwwwwwww
+wc...wgw.....w
+w..w.wmmmmm..w
+w.zwz..wwwww.w
+w.zwzw..mmmmmw
+w.zwzw.......w
+w.zwzwwwwwwwww
+w.zwzw...w..gw
+w.zwzw.wzw...w
+w.zwz..w.w...w
+w..w.www.w...w
+w........mmmmw
+wwwwwwwwwwwwww
+
+message Level 23 - Fear
+wwwwwwwwwwwwwww
+wc...........gw
+w.............w
+w......b......w
+w.............w
+w....i.b.i....w
+w.............w
+w..b.b.g.b.b..w
+w.............w
+w....i.b.i....w
+w.............w
+w......b......w
+w.............w
+wg...........gw
+wwwwwwwwwwwwwww
+
+message The upcoming clones?
+message Nothing to worry about.
+message Just ignore them.
+
+message Level 24 - Lock
+wwwwwwwwwwwwwww
+wpwwwpwpwwpw.ww
+wwwpwwwwwwww..w
+wwwwww.....w..w
+wpwwpw..ww.w..w
+wwwwwww.w..w..w
+w.......w..w..w
+w.wwww.ww.ww..w
+w......mm.....w
+w.w..wzwwzww..w
+w..w.wmwwzww..w
+w....wzwwmwww.w
+wwwwwwzwwzww..w
+wggmmc.......ww
+wwwwwwwwwwwwwww
+
+message Did I mention I'm evil?
+message Because I am.
+message Like, totally.
+
+message Level 25 - BWAHAHAHAHA
+wwwwwwwwwwwwwwwwwwwwwwwwwwwww
+w...........................w
+w...........................w
+w..wwowwwwwwwwwwwwwwwwwwww..w
+w..w.....................w..w
+w..w.....................w..w
+w..w..wwwwwwwwwwwwwwwww..w..w
+w..w..w..............gw..w..w
+w..w..w...............w..w..w
+w..w..w..wwwwwwwwwww..w..w..w
+w..w..w..wg........w..w..w..w
+w..w..w..w.........w..w..w..w
+w..w..w..w..wwwww..w..w..w..w
+w..w..w..w..o..cw..w..w..w..w
+w..w..w..w..w...w..w..w..w..w
+w..w..w..w..wg..w..w..w..w..w
+w..w..w..w..wwwww..w..w..w..w
+w..w..w..w.........w..w..w..w
+w..w..w..w.........o..w..w..w
+w..w..w..wwwwwwwwwww..w..w..w
+w..w..w...............w..w..w
+w..w..w...............w..w..w
+w..w..wwwwwwwowwwwwwwww..w..w
+w..w.....................w..w
+w..w....................gw..w
+w..wwwwwwwwwwwwwwwwwwwwwww..w
+w...........................w
+wg..........................w
+wwwwwwwwwwwwwwwwwwwwwwwwwwwww
+
+message Well done!
+
+message You managed to escape my secret evil prison full of darkness, which was built to make people suffer for all eternity.
+
+message It was based on my experience with Wolfenstein 3D, where you had to search every goddamn wall in the game to find a secret, because back then there was no Internet. :D
+
+message Credits:
+
+message Puzzlescript by Stephen Lavelle
+
+message Programming by flummox3d
+
+message Sprites by flummox3d
+
+message Level design by flummox3d
+
+message Beta testers:
+
+message Demeter Rusznak
+
+message Janos Hegyvari
+
+message Laszlo Progli
+
+message Miklos Janzso
+
+message Story by ...
+
+message Wait, there was no story. Whoops. Sorry. :)
+
+message Sorry by me.
+
+message I hope you liked my game. Thank you for playing :)
+
+message Replay?
