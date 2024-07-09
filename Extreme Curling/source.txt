@@ -1,0 +1,686 @@
+title EXTREME Curling
+author flummox3d
+homepage flummox3d.itch.io
+verbose_logging
+again_interval 0.1
+noaction
+
+========
+OBJECTS
+========
+
+Background
+#ccffff
+
+Unswept
+#ccffff grey
+00000
+01000
+00000
+00100
+00000
+
+House
+red blue
+.111.
+1...1
+1.0.1
+1...1
+.111.
+
+Wall
+brown darkbrown
+00010
+11111
+01000
+11111
+00010
+
+Player
+black orange red
+.000.
+.111.
+22222
+.000.
+.0.0.
+
+PlayerStill
+black orange white blue
+.000.
+.111.
+22222
+.333.
+.3.3.
+
+StoneU
+grey red
+.000.
+00000
+00100
+00100
+.000.
+
+StoneR
+grey red
+.000.
+00000
+01100
+00000
+.000.
+
+StoneD
+grey red
+.000.
+00100
+00100
+00000
+.000.
+
+StoneL
+grey red
+.000.
+00000
+00110
+00000
+.000.
+
+StoneClickedU
+grey red
+.000.
+00000
+00100
+00100
+.000.
+
+StoneClickedR
+grey red
+.000.
+00000
+01100
+00000
+.000.
+
+StoneClickedD
+grey red
+.000.
+00100
+00100
+00000
+.000.
+
+StoneClickedL
+grey red
+.000.
+00000
+00110
+00000
+.000.
+
+StoneStillU
+grey red
+.000.
+00000
+00100
+00100
+.000.
+
+StoneStillR
+grey red
+.000.
+00000
+01100
+00000
+.000.
+
+StoneStillD
+grey red
+.000.
+00100
+00100
+00000
+.000.
+
+StoneStillL
+grey red
+.000.
+00000
+00110
+00000
+.000.
+
+Ground
+lightgreen green
+11111
+01111
+11101
+11111
+10111
+
+BroomU
+black yellow
+.111.
+..0..
+..0..
+..0..
+..0..
+
+BroomR
+black yellow
+.....
+....1
+00001
+....1
+.....
+
+BroomD
+black yellow
+..0..
+..0..
+..0..
+..0..
+.111.
+
+BroomL
+black yellow
+.....
+1....
+10000
+1....
+.....
+
+Lava
+red orange
+11011
+01111
+11101
+11111
+10110
+
+Xice
+#bbffff blue
+10001
+01010
+00100
+01010
+10001
+
+=======
+LEGEND
+=======
+. = Background
+# = Wall
+P = Player
+R = Player and Ground
+O = House
+; = Unswept
+1 = BroomU
+b = BroomR
+3 = BroomD
+4 = BroomL
+5 = BroomU and Ground
+6 = BroomR and Ground
+7 = BroomD and Ground
+8 = BroomL and Ground
+S = StoneStillR
+- = Ground
+L = Lava
+X = Xice
+~ = Player and House
+
+Path = Background or House
+StoneClicked = StoneClickedU or StoneClickedR or StoneClickedD or StoneClickedL
+StoneStill = StoneStillU or StoneStillR or StoneStillD or StoneStillL
+Stones = StoneU or StoneR or StoneD or StoneL or StoneStill or StoneClicked
+Brooms = BroomU or BroomR or BroomD or BroomL
+MovableStone = StoneStill or StoneClicked
+Obstacle = Player or Brooms or Wall or Unswept or Ground or StoneClicked
+Players = Player or PlayerStill
+Vulnerable = Player or Brooms or Stones or Movablestone
+
+=======
+SOUNDS
+=======
+
+startgame 80874503
+Stones move 36772507
+sfx0 20351907 (cancelled move)
+sfx1 24666907 (sliding)
+sfx2 48820704 (stone hit stone)
+sfx3 56854702 (lava)
+sfx4 23734307 (sweeping)
+sfx5 59489500 (testing)
+endlevel 18007903
+
+================
+COLLISIONLAYERS
+================
+
+Background
+House, Unswept, Ground, Xice, Lava
+Players, Wall, Brooms, Stones, 
+
+======
+RULES
+======
+(---BROOM STUFF---)
+
+(Player moves brooms)
+[ > Player | Brooms ] -> [ > Player | > Brooms ]
+
+(Broom directions)
+up [ > Player | BroomR ] -> [ > Player | > BroomU ]
+up [ > Player | BroomD ] -> [ > Player | > BroomU ]
+up [ > Player | BroomL ] -> [ > Player | > BroomU ]
+
+right [ > Player | BroomU ] -> [ > Player | > BroomR ]
+right [ > Player | BroomD ] -> [ > Player | > BroomR ]
+right [ > Player | BroomL ] -> [ > Player | > BroomR ]
+
+down [ > Player | BroomU ] -> [ > Player | > BroomD ]
+down [ > Player | BroomR ] -> [ > Player | > BroomD ]
+down [ > Player | BroomL ] -> [ > Player | > BroomD ]
+
+left [ > Player | BroomU ] -> [ > Player | > BroomL ]
+left [ > Player | BroomD ] -> [ > Player | > BroomL ]
+left [ > Player | BroomR ] -> [ > Player | > BroomL ]
+
+(Brooms sweep unswept)
+late [ Brooms Unswept ] -> [ Brooms Background ] sfx4
+
+(---STONE STUFF---)
+
+(Stones only moves on swept)
+late [ MovableStone Ground ] -> [ MovableStone Ground ] cancel sfx0
+late [ MovableStone Unswept ] -> [ MovableStone Unswept ] cancel sfx0
+
+(Player stays, stone moves)
+up [ > Player | MovableStone ] -> [ > PlayerStill | > StoneU ]
+right [ > Player | MovableStone ] -> [ > PlayerStill | > StoneR ]
+down [ > Player | MovableStone ] -> [ > PlayerStill | > StoneD ]
+left [ > Player | MovableStone ] -> [ > PlayerStill | > StoneL ]
+
+(Stone glides on ice, weeee)
+random up [ StoneU | No Obstacle ] -> [ | StoneU ] sfx1 again
+random right [ StoneR | No Obstacle ] -> [ | StoneR ] sfx1 again
+random down [ StoneD | No Obstacle ] -> [ | StoneD ] sfx1 again
+random left [ StoneL | No Obstacle ] -> [ | StoneL ] sfx1 again
+
+random up [ StoneClickedU | No Obstacle ] -> [ | StoneClickedU ] sfx1 again
+random right [ StoneClickedR | No Obstacle ] -> [ | StoneClickedR ] sfx1 again
+random down [ StoneClickedD | No Obstacle ] -> [ | StoneClickedD ] sfx1 again
+random left [ StoneClickedL | No Obstacle ] -> [ | StoneClickedL ] sfx1 again
+
+(Stone collides with obstacle -> can be pushed again)
+up [ StoneU | Obstacle ] -> [ StoneClickedU | Obstacle ]
+right [ StoneR | Obstacle ] -> [ StoneClickedR | Obstacle ]
+down [ StoneD | Obstacle ] -> [ StoneClickedD | Obstacle ]
+left [ StoneL | Obstacle ] -> [ StoneClickedL | Obstacle ]
+
+up [ StoneClickedU | Obstacle ] -> [ StoneStillU | Obstacle ]
+right [ StoneClickedR | Obstacle ] -> [ StoneStillR | Obstacle ]
+down [ StoneClickedD | Obstacle ] -> [ StoneStillD | Obstacle ]
+left [ StoneClickedL | Obstacle ] -> [ StoneStillL | Obstacle ]
+
+(Stone collides with 2nd stone)
+up [ StoneU | StoneStill ] -> [ StoneStill | StoneClickedU ] sfx2
+right [ StoneR | StoneStill ] -> [ StoneStill | StoneClickedR ] sfx2
+down [ StoneD | StoneStill ] -> [ StoneStill | StoneClickedD ] sfx2
+left [ StoneL | StoneStill ] -> [ StoneStill | StoneClickedL ] sfx2
+
+(---PLAYER STUFF---)
+
+(Player moves after being still)
+late [ PlayerStill ] -> [ Player ]
+
+(Player can't move on x-ice)
+late [ Player Xice ] -> cancel sfx0
+
+(---LAVA STUFF---)
+
+(Lava destory vulnerable object)
+late [ Vulnerable Lava ] -> [ Lava ] sfx3
+
+(?Better handling of stone hitting stone)
+(startloop
+[ > Small_Ball | Small_Ball  ] -> [ Small_Ball | > Small_Ball ] sfx1
+[ > Small_Ball | Medium_Ball ] -> [ Small_Ball | Medium_Ball ] sfx2
+[ > Small_Ball | Large_Ball  ] -> [ Small_Ball | Large_Ball ] sfx2
+[ > Medium_Ball | Small_Ball  ] -> [ Medium_Ball | > Small_Ball ] sfx1
+[ > Medium_Ball | Medium_Ball ] -> [ Medium_Ball | > Medium_Ball ] sfx1
+[ > Medium_Ball | Large_Ball  ] -> [ Medium_Ball | Large_Ball ] sfx2
+[ > Large_Ball | Small_Ball  ] -> [ Large_Ball | > Small_Ball ] sfx1
+[ > Large_Ball | Medium_Ball ] -> [ Large_Ball | > Medium_Ball ] sfx1
+[ > Large_Ball | Large_Ball  ] -> [ Large_Ball | > Large_Ball ] sfx1
+endloop)
+
+(TODO: Iceblock to cancel out Lava?)
+(or earth block that covers lava)
+(TODO: omnibroom - scrubs EVERYTHING)
+
+==============
+WINCONDITIONS
+==============
+some Stones on House
+all stones on house
+all house on stones
+
+=======
+LEVELS
+=======
+
+message This is...
+message EXTREME
+message CURLING
+message All you need to know...
+message is that the stone slides on ice.
+message Aaand a few more things.
+message 1/25 - Witness the ice
+
+########
+#------#
+#-...o-#
+#-.----#
+#-.----#
+#-s--r-#
+#------#
+########
+
+message But you'll learn quickly.
+message 2/25 - Dirty dancing
+
+########
+#------#
+#-..;o-#
+#-....-#
+#-.;.;-#
+#-s;.p-#
+#------#
+########
+
+message 3/25 - Use the broom, Luke!
+
+########
+#------#
+#-p.;o-#
+#-..;;-#
+#-....-#
+#-s.;b-#
+#------#
+########
+
+message 4/25 - Broom Holder
+
+#########
+##------#
+##-b...-#
+##-s...-#
+#-----;-#
+#-....;-#
+#--o.r;-#
+#-------#
+#########
+
+message 5/25 - Keep in line
+
+#######--
+#-----###
+#rbs....#
+#----...#
+#-.;;...#
+#-.#----#
+#-.#----#
+#-.....o#
+##.######
+-####----
+
+message 6/25 - Round round, baby
+
+########
+#------#
+#-.#s.-#
+#-.#..-#
+#-;..b-#
+#-.#..-#
+#-o#..r#
+#------#
+########
+
+message 7/25 - Pure movement
+##############
+#----#--######
+#-...#......-#
+##.#.#..###.-#
+##.#o#..###.-#
+#-......##.p.#
+#------.##.s.#
+##########...#
+##############
+
+message 8/25 - Wrap around
+#########-
+#---.---#-
+#--#s#7-##
+#--..#---#
+#.......-#
+#-o#.#---#
+#--#.#--##
+#---p---#-
+#########-
+
+message 9/25 - Declutter
+
+####--#####
+#p.####...#
+#.....;.o.#
+#.....#...#
+#..##.#####
+#...#..#.#-
+##.1;;;s.#-
+-#..#....#-
+##########-
+
+message 10/25 - Sweep swoop
+
+####;;;;;;;;;
+#p;##########
+#;;;;;;;;;;;#
+#;b;;#;;;s;;#
+#;;;;;###;;;#
+#;;;;;#;;;;;#
+#;;;;o#;;;;;#
+#;;;;;;;;;;;#
+#############
+
+message Be careful not the burn stone...
+message ...with LAVA!
+message 11/25 - Shoutin' Lava Lava Lava
+
+----------
+-..--.-.--
+-..ll...--
+-.ol...s--
+-.....5---
+----r-----
+
+message Or burn it if you want...
+message ...we got a few more.
+message 12/25 - Disposable disposition
+
+#########
+#---.---#
+#--#s#--#
+#-...#.-#
+#......-#
+#-o#b#.-#
+#--.p.--#
+#--.s.--#
+####l####
+
+
+message 13/25 - Clickity clack
+
+-#####-
+-#-r-#-
+-#---#-
+-#-s-#-
+-##.##-
+-##.##-
+-#.o.#-
+-#.s.#-
+-#.o.#-
+-#####-
+
+message 14/25 - Make room
+##########-
+#.....p#.##
+#.####s#..#
+#.#o...#3.#
+#.###;....#
+#.s....##.#
+#.###ll#..#
+#...####.##
+###......#-
+--########-
+
+(introduce xice)
+
+message 15/25 - YOU can't touch this
+
+########
+##----##
+#.....o#
+#.#....#
+#psx...#
+#.#....#
+##----##
+########
+
+message 16/25 - Callback
+
+########
+#------#
+#-px;o-#
+#-..;;-#
+#-.xxx-#
+#-s.;b-#
+#------#
+########
+
+message So, the higher ups wanted to give you a partner...
+message "Curling is a team sport" or whatever...
+message Try to be nice, okay?
+
+message 17/25 - There's no team in I-work!
+
+#######
+#p...p#
+##.#.##
+##s#s##
+##.#.##
+#.o.o.#
+#######
+
+message Wait, I got it wrong.
+message 18/25 - There's I team in no work!
+
+#######
+#p....#
+##s#o##
+##.#.##
+##o#s##
+#....p#
+#######
+
+message 19/25 - Wait, I... No! There's work in team!
+
+#######
+#p.l.p#
+##s#.##
+##.#.##
+##.#.##
+#....o#
+#######
+
+message 20/25 - I... never mind.
+
+####o##
+#p.lp##
+##.#.##
+##.#s##
+##.#.##
+#..;..#
+#######
+
+message There's no team.
+message Anyway...
+
+message 21/25 - Throw of faith
+
+l#####l######
+l#...#l#...p#
+l#.#-###s...#
+l#.......#..#
+l#.#...#..4.#
+l#.#...#.##.#
+l#...#.;..#.#
+l#..o#-.....#
+l#lll#-...###
+l#####llll#ll
+
+message 22/25 - It's a hard knock life
+
+########ll
+#;;;.#p#ll
+#;s;.#.#ll
+#;;;...###
+#....#.##l
+###1.#.##l
+ll#..#.##l
+ll#xx#s##l
+ll#o....#l
+ll###.o.#l
+lll##lll#l
+
+message 23/25 - Crucial
+
+l###------######
+l#...;...-....p#
+l#...#........##
+l#.s.#......####
+l#...######x#ll#
+l#-#-#####-.####
+l#.#.......b...#
+l#..o....##.##.#
+l#######.......#
+lllllll#########
+
+message 24/25 - Broom broom broom
+
+lllllllll
+l#######l
+l#p...o#l
+l#.4-b.#l
+l#.4sb.#l
+l#.4.b.#l
+l#.....#l
+l#######l
+lllllllll
+
+message 25/25 - Marathon
+
+llll######lllll
+#####----######
+#..o-s..-#p...#
+#...#...o#.s..#
+#.s.#....-o...#
+#...####-#l#--#
+#-#-#...s#;..s#
+#o..-;;;;-;.4.-
+#..s-....#;...-
+#...-o...#o..#-
+###############
+lllllllllllllll
+
+message Made for Thinky Puzzle Games Jam #4
+message by Flummox3d
+message Thank you for playing!
