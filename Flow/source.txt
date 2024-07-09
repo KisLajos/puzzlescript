@@ -1,0 +1,356 @@
+title Flow
+author flummox3d
+color_palette 5
+text_color Blue
+
+========
+OBJECTS
+========
+
+Background 
+GREY  
+
+Target 
+#0bcdaf
+.....
+.000.
+.000.
+.000.
+.....
+
+Wall 
+#a80808 Black
+00010
+11111
+01000
+11111
+00010
+
+Player 
+Blue
+
+Crate 
+Orange
+
+Plus
+Blue
+.....
+..0..
+.000.
+.000.
+..0..
+
+Minus
+Black
+00000
+00000
+00000
+00000
+00000
+
+=======
+LEGEND
+=======
+
+. = Background
+# = Wall
+P = Player
+& = Player and Target
+C = Crate
+@ = Crate and Target
+O = Target
++ = Plus
+- = Minus
+
+
+=======
+SOUNDS
+=======
+player move 12914907
+sfx1 82001107
+sfx2 97001303
+sfx3 90910304
+sfx4 7593302
+restart 10379305
+endlevel 3487503
+startgame 51466909
+
+================
+COLLISIONLAYERS
+================
+
+Background
+Target
+Player, Wall, Crate, Plus, Minus
+
+======
+RULES     
+======     
+
+[ >  Player | Crate ] -> [  >  Player | > Crate  ] sfx1
+[ >  Player | Plus ] -> [  >  Player | > Player  ] sfx2
+[ >  Player | Minus ] -> [  | Minus ] sfx3
+[ >  Crate | Minus ] -> [  | Background ] sfx4
+
+
+==============
+WINCONDITIONS
+==============
+
+all target on player
+
+=======     
+LEVELS
+=======
+
+message Empty your mind.
+message Be formless. Shapeless.
+message Like water.
+message Now you put water into a cup, it becomes the cup.
+message You put water in a bottle, it becomes the bottle.
+message You put it in a teapot, it becomes the teapot.
+message Now water can flow or it can crash.
+message Be water, my friend. ~ Bruce Lee
+
+message Level 1 - 101
+
+############
+#..........#
+#.ppp..ooo.#
+#..........#
+############
+
+message Level 2 - Getting the hang of it
+
+############
+#..........#
+#..p.....o.#
+#.ppp..ooo.#
+#..p.....o.#
+#..........#
+############
+
+message Level 3 - Don't rush it
+
+############
+#..........#
+#..p#..o...#
+#.ppp..ooo.#
+#..p...o...#
+#..........#
+############
+
+message Level 4 - No introduction needed
+
+############
+#..........#
+#..p...o...#
+#.ppp..@oo.#
+#..p...o...#
+#..........#
+############
+
+message Level 5 - Re
+
+###########
+##........#
+##.p....oo#
+#.ppp..o..#
+##.p....oo#
+##........#
+###########
+
+message Level 6 - Be careful
+
+############
+#..........#
+#..........#
+#..p...@...#
+#.ppp..@@o.#
+#..p...@...#
+#..........#
+#..........#
+############
+
+message Level 7 - Shift
+
+############
+#ppppp.....#
+######.....#
+#..........#
+#..........#
+#o.........#
+#o.........#
+#ooo.......#
+############
+
+message Level 8 - Crash
+
+p.###p..p..p
+pp#.#.p..p..
+###.########
+#p#........#
+#p#........#
+#p#........#
+#p#.......o#
+#p#........#
+#........oo#
+#........oo#
+############
+
+message Level 9 - Remember
+
+############
+#ooooo.....#
+######.....#
+#..........#
+#..........#
+#p.........#
+#p.........#
+#ppp.......#
+############
+
+message Level 10 - Droplet
+
+############
+#..........#
+#..........#
+#..p...o...#
+#....+.o...#
+#..p...o...#
+#..........#
+#..........#
+############
+
+message Level 11 - Twist
+
+##########
+#........#
+#.....o..#
+#.p.+.oo.#
+#...+....#
+#.p.+.oo.#
+#........#
+#........#
+##########
+
+message Level 12 - Line
+
+##########
+#p.....+.#
+########.#
+#........#
+#..oooo..#
+#........#
+#.########
+#.+.....p#
+##########
+
+message Level 13 - Drain
+
+###########
+#.........#
+#..oo.oo..#
+#.........#
+#....-....#
+#.........#
+#..ppppp..#
+#.........#
+###########
+
+message Level 14 - Symmetry
+
+#############
+#....#.#....#
+#.o....#.-.p#
+#.o-.#...p..#
+#.o....#.-.p#
+#.o-.#...p..#
+#.o....#.-.p#
+#....#.#....#
+#############
+
+message Level 15 - Plug
+
+############
+#....-....##
+#....-.....#
+#....-....o#
+#pppc-....o#
+#....-....o#
+#....-.....#
+#....-....##
+############
+
+message Level 16 - Organize
+
+############
+#ooo.......#
+####+-..c..#
+#oo....c+c.#
+###+-...c..#
+#o....c....#
+##+-.c+c..##
+#p....c..###
+############
+
+message Level 17 - Complicate
+
+############
+#..........#
+#..........#
+#..p...@...#
+#.ppp..@o@.#
+#..p.....@.#
+#..........#
+#..........#
+############
+
+message Level 18 - Drip
+
+############
+#p#ppp#pppp#
+#ppp#ppp##p#
+#########..#
+#.........##
+#.##########
+#.##########
+#.##########
+#oooo#ooo#o#
+##o#ooo#ooo#
+############
+
+message Level 19 - Bit of a stretch
+
+###############################
+#pp...........................#
+#.c.........................c.#
+#.o............#............o.#
+#.............................#
+###############################
+
+message Level 20 - One
+
+###########
+#p.......p#
+#..p......#
+#.....p...#
+#...ooo...#
+#...&oo...#
+#...ooop..#
+#....p....#
+#.........#
+#p.......p#
+###########
+
+message Congratulations! You won!
+message Now...
+message Go do something rhythmic!
+message Dance!
+message Sing!
+message Play games!
+message If you don't know what I'm talking about...
+message ...go to youtube, and search \"pogo do something rhythmic\".
+message It's a remix using Alan Watts' voice.
+message Really good stuff.
+message Thank you for playing!"
