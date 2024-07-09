@@ -1,0 +1,272 @@
+title Day by Day
+author Flummox3d
+homepage flummox3d.itch.io
+color_palette 6
+
+========
+OBJECTS
+========
+
+Background 
+gray #88888e
+01010
+00000
+00000
+01010
+00100
+
+bg2 , 
+gray red
+00010
+00000
+00100
+00000
+00001
+
+bg3 / 
+gray red
+00010
+01000
+00000
+00000
+00001
+
+Victory 
+grey
+
+DummyTarget 
+DarkBlue Red
+10001
+01010
+00100
+01010
+10001
+
+DummyVictory 
+DarkBlue Red
+10001
+01010
+00100
+01010
+10001
+
+Wall 
+BROWN
+
+Player
+Black Orange White Blue
+.000.
+.111.
+22222
+.333.
+.3.3. 
+
+Crate 
+Orange 
+
+ConcreteCrate 
+Orange 
+
+MCrate
+Orange
+
+BigBlock
+Orange
+
+=======
+LEGEND
+=======
+
+. = Background
+# = Wall
+P = Player
+* = Crate
+M = MCrate
+C = ConcreteCrate
+Crates = M or Crate
+B = BigBlock
+D = DummyTarget
+X = Victory
+W = DummyVictory
+- = Crate and X
+Victories = X or W
+l = Crate and bg3
+
+=======
+SOUNDS
+=======
+
+================
+COLLISIONLAYERS
+================
+
+Background
+bg2, bg3
+D, X, W
+Player, Wall, C, Crate, M, B
+
+======
+RULES     
+======     
+
+[ >  Player | Crates ] -> [  >  Player | > Crates  ]     
+[ >  MCrate | MCrate ] -> [  >  MCrate | > MCrate  ]     
+
+down [ >  Player | BigBlock ] -> [ >  Player | > BigBlock  ]
+[ moving BigBlock | BigBlock ] -> [moving BigBlock|moving BigBlock]
+
+==============
+WINCONDITIONS
+==============
+
+All Player on Victories   
+
+=======     
+LEVELS
+=======
+
+message why do you keep coming back?
+
+#########
+#p..*.xd#
+#.cc##.##
+#.cc....#
+#c....###
+#d#..*xd#
+#########
+
+message is it becauSe you wanT tO escaPe?
+
+....###.....
+....#p#.....
+....#.#.....
+....#.#.....
+....#*#.....
+....#.#.....
+#####.#.....
+#....x#.....
+#####d#.....
+....###.....
+
+############
+#p.........#
+#.#....#####
+#.#........#
+###..##..#.#
+#....##.##.#
+#...#...#..#
+#..###.....#
+#........###
+#.......*xd#
+############
+
+message or you juST want tO Push blocks?
+
+#########
+#p..c.xd#
+#.cc##.##
+#.cc....#
+#-....###
+#d#..*xd#
+#########
+
+....###.....
+....#d#.....
+#####x#.....
+#.....#.....
+#####*#.....
+....#.#.....
+....#.#.....
+....#.#.....
+....#p#.....
+....###.....
+
+message it's pointless, you know
+
+############
+#p.........#
+#..........#
+#.#....#####
+#.#........#
+###..##..#.#
+#....##.##.#
+#...#...#..#
+#..###...###
+#.......*xd#
+############
+
+message getting the box to the target...
+
+#########
+#p..c.xd#
+#.bb##.##
+#.bb....#
+#c....###
+#d#..*xd#
+#########
+
+message ...means nothing
+
+....###.....
+....#p#.....
+....#.#.....
+....#.#.....
+....#l#.....
+....#.#.....
+#####.#.....
+#x....#.....
+#####d#.....
+....###.....
+
+message you could have won without doing it
+
+############
+#p........x#
+#..........#
+#....,.....#
+#......#####
+#.#........#
+#.#..##..#.#
+###..##.##.#
+#...#...####
+#..###..*xd#
+############
+
+message and yet, you STill wanted to cOmPlete a task
+
+#########
+#p..c.xd#
+#.cc##.##
+#.mm.,..#
+#c....###
+#d#,.*xd#
+#########
+
+message why?
+
+....###.....
+....#p#.....
+....#.#.....
+....#.#.....
+....#*#.....
+....#.#.....
+#####.#.....
+#W.,..#.....
+#####X#.....
+....###.....
+
+message why do you keep doing it?
+
+############
+#p*......#x#
+#........#,#
+#..........#
+#...../....#
+#..,.......#
+#......#####
+#.#......#.#
+#.#.#.####.#
+#########xd#
+############
+
+message why do you keep coming back?
