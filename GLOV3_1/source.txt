@@ -1,0 +1,532 @@
+title GLOV3.1
+author Flummox3d
+homepage flummox3d.newgrounds.com
+
+norepeat_action
+
+again_interval 0.2
+
+realtime_interval 0.2
+
+zoomscreen 10x10
+
+========
+OBJECTS
+========
+
+Background
+black
+
+Wall
+grey
+
+AltWall
+grey
+
+PlayerU
+green white yellow lightblue
+1...1
+0...0
+0...0
+03230
+02220
+
+PlayerD
+green white yellow lightblue
+02220
+03230
+0...0
+0...0
+1...1
+
+PlayerR
+green white yellow lightblue
+00001
+23...
+22...
+23...
+00001
+
+PlayerL
+green white yellow lightblue
+10000
+...32
+...22
+...32
+10000
+
+ShotU
+lightbrown yellow
+.....
+..0..
+.010.
+..0..
+.....
+
+ShotD
+lightbrown yellow
+.....
+..0..
+.010.
+..0..
+.....
+
+ShotL
+lightbrown yellow
+.....
+..0..
+.010.
+..0..
+.....
+
+ShotR
+lightbrown yellow
+.....
+..0..
+.010.
+..0..
+.....
+
+Block
+yellow
+
+GoldBlock
+lightbrown
+
+HardBlock
+yellow red
+11011
+10001
+00000
+10001
+11011
+
+NoBlock
+yellow red
+00000
+01010
+00100
+01010
+00000
+
+DisBlock
+yellow blue
+00000
+00000
+11111
+00000
+00000
+
+Target
+blue
+.000.
+0...0
+0...0
+0...0
+.000.
+
+Tilt
+lightred
+.0.0.
+00000
+.0.0.
+00000
+.0.0.
+
+GoldTarget
+lightbrown
+.000.
+0...0
+0...0
+0...0
+.000.
+
+PowerUp
+red lightred white
+..0..
+.010.
+01210
+.010.
+..0..
+
+Message1
+transparent
+
+Message2
+transparent
+
+Shade
+black
+
+Stars
+white
+.0...
+..0..
+0..0.
+..0..
+....0
+
+=======
+LEGEND
+=======
+
+. = Background
+# = Wall
+W = AltWall
+
+P = PlayerD
+Player = PlayerU or PlayerD or PlayerL or PlayerR
+
+B = Block
+H = HardBlock
+N = NoBlock
+D = DisBlock
+Blocks = Block or HardBlock
+
+G = Powerup
+
+? = Message1
+o = Target
+/ = Shade
+& = Shade and Block
+* = Stars
+
+- = Tilt
++ = Message2
+
+Y = PlayerD and Tilt
+" = Block and Tilt
+
+Q = GoldTarget
+X = GoldBlock
+
+Solid = Wall or HardBlock
+Shots = ShotU or ShotD or ShotL or ShotR
+
+=======
+SOUNDS
+=======
+
+sfx0 31169501 (magic)
+sfx1 25804503 (power-up)
+sfx2 29701303 (change)
+sfx3 68183702 (target vanish)
+sfx4 31064306
+startlevel 67410303
+endlevel 19187902
+startgame 79754509
+blocks move 20400307
+
+================
+COLLISIONLAYERS
+================
+
+Background
+Target, Q, Message1, Message2, Powerup, Stars, Tilt
+Player, Wall, AltWall, Blocks, NoBlock, DisBlock, X
+Shots
+Shade
+
+======
+RULES
+======
+
+[ action player tilt ] -> cancel
+
+(player)
+[ left Player ] -> [ left PlayerL ]
+[ right Player ] -> [ right PlayerR ]
+[ up Player ] -> [ up PlayerU ]
+[ down Player ] -> [ down PlayerD ]
+
+(shooting)
+[action PlayerD ] -> [PlayerD ShotD] sfx0
+random down [ ShotD | Wall ] -> [ | Wall]
+random down [ ShotD | HardBlock ] -> [ | HardBlock]
+random down [ ShotD | no Solid ] -> [ | ShotD ] again
+
+[action PlayerU ] -> [PlayerU ShotU] sfx0
+random up [ ShotU | Wall ] -> [ | Wall]
+random up [ ShotU | HardBlock ] -> [ | HardBlock]
+random up [ ShotU | no Solid ] -> [ | ShotU ] again
+
+[action PlayerL ] -> [PlayerL ShotL] sfx0
+random left [ ShotL | Wall ] -> [ | Wall]
+random left [ ShotL | HardBlock ] -> [ | HardBlock]
+random left [ ShotL | no Solid ] -> [ | ShotL ] again
+
+[action PlayerR ] -> [PlayerR ShotR] sfx0
+random right [ ShotR | Wall ] -> [ | Wall]
+random right [ ShotR | HardBlock ] -> [ | HardBlock]
+random right [ ShotR | no Solid ] -> [ | ShotR ] again
+
+[shots Block] -> [Target] sfx2
+[shots NoBlock] -> [Target] sfx2
+[shots DisBlock] -> [Target] sfx2
+[shots AltWall] -> [HardBlock] sfx2
+[shots Target] -> [] sfx3
+
+(blocks)
+[ > Player | Blocks ] -> [ > Player | > Blocks ]
+[ > Player | X ] -> [ > Player | > X ]
+[ > Player | DisBlock ] -> [ > Player | > DisBlock ]
+late [ Disblock | Disblock | Disblock ] -> [ | | ] win
+
+(powerup)
+late [Player Powerup] -> [Player] win
+
+(message)
+[ Player Message1 ] -> [ Player ] sfx4 message Press X to shoot
+[ Player Message2 ] -> [ Player ] sfx4 message Seems like you can only shoot from here.
+
+[ X  Q ] -> win
+
+==============
+WINCONDITIONS
+==============
+
+All target on blocks
+All blocks on target
+Some target
+
+=======
+LEVELS
+=======
+
+message Seems like we're in...
+message a different sokoban universe.
+message This one is a little bit off.
+
+message You need to create...
+message your own targets...
+message to push the blocks onto.
+
+............
+............
+............
+############
+###........#
+#p?.....bb.#
+###........#
+############
+
+message Seems like your gloves are still working.
+message Shoot at a target. See what happens.
+
+............
+............
+............
+############
+###........#
+#p.....obo.#
+###........#
+############
+
+message There always has to be...
+message at least one target...
+message with a block on it.
+
+........
+........
+########
+#....b.#
+#p..bbb#
+#....b.#
+########
+
+message But this universe is adapting to your presence.
+
+........
+........
+########
+###..b.#
+#ph..bb#
+###..b.#
+########
+
+message Carefully planning.
+
+........
+........
+########
+#......#
+#phbhbh#
+#bbhbhb#
+#......#
+########
+
+message Slowly figuring out your weaknesses.
+
+.......
+..#####
+..#...#
+###...#
+#pn.b.#
+###...#
+..#...#
+..#####
+
+message But it's still a puzzle universe.
+message Don't let it throw you for a loop.
+
+............
+............
+.....#######
+######.....#
+#.......d..#
+#p.....d.d.#
+#..........#
+############
+
+message This universe is unstable.
+
+##########
+#--------#
+#--"-----#
+#--------#
+#Y----+--#
+#--------#
+#--"-----#
+#--------#
+##########
+
+message Don't let it fool you.
+
+##########
+#--------#
+#--"--"--#
+#--------#
+#Y-"--B--#
+#--------#
+#--"--"--#
+#--------#
+##########
+
+#######..
+#-----#..
+#-----#..
+#-----###
+#y-"---b#
+#-----###
+#--b--#..
+#-----#..
+#######..
+
+message I think this universe...
+message is just screwing around with you.
+
+##########
+#------".#
+#------h"#
+###------#
+#y-----.-#
+###------#
+#------h"#
+#------".#
+##########
+
+##########
+#---##---#
+#"-----n-#
+###-##---#
+#y#n##---#
+#-#-##---#
+#-h----h-#
+#---##---#
+##########
+
+##########
+#o-------#
+####-###.#
+#--#-#"..#
+#y-#h-h.##
+#--#-#".#.
+#-##-####.
+#----#....
+######....
+
+##########
+#p.......#
+#.#b##b#.#
+#........#
+#.##hb##.#
+#........#
+#.#h##h#.#
+#........#
+##########
+
+message Okay, a big one's coming.
+message Be prepared.
+
+.#.#.#.#.#####
+##########...#
+#p#........h.#
+#.#.#.##.#...#
+#...#.#b.#.#.#
+#.#.#........#
+#..h..#.##.#.#
+#.#.#......#.#
+#..h...###.#.#
+#.#.#.#b.....#
+#..h..#bb....#
+#.#.#..#####.#
+#...#........#
+##############
+
+message Wait, what is that?
+
+.###.###.
+##.###.##
+#.......#
+####.####
+#p..g...#
+####.####
+#.......#
+##.###.##
+.###.###.
+
+message It seems it's...
+message some kind of power-up.
+message Escape this universe.
+message You now have the power.
+
+.......*..*......*................
+....................*.............
+..................................
+..................................
+..................................
+.....*............................
+.......................*..........
+..................................
+..................................
+..................................
+.....*............................
+.........................*........
+..................................
+..................................
+..................................
+#wwwwwwwwww#......................
+#w........w#......................
+#w........w#......................
+#w........w#...................*xq
+#wp.......w#......................
+#w........w#......................
+#w........w#......................
+#w........w#......................
+#wwwwwwwwww#......................
+############......................
+
+message The void.
+message It speaks.
+message The golden artifacts will teleport us somewhere else.
+message I hope it'll be better than this.
+message ...
+message CREDITS
+message PuzzleScript by Stephen Lavelle
+message Everything else by Flummox3d
+message Well, except for the multiverse.
+message ...
+message GLOV3.1
+message a game for Ludum Dare 32
+message Thank you very much for playing :)
+message Hope you liked it ^^
