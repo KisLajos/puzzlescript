@@ -1,0 +1,531 @@
+title Oh no, I made too many cakes
+author flummox3d
+homepage flummox3d.itch.io
+
+========
+OBJECTS
+========
+
+Background
+lightgreen green
+11111
+01111
+11101
+11111
+10111
+
+Wall
+grey darkgrey
+00010
+11111
+01000
+11111
+00010
+
+PickyCRS
+black orange red white
+.000.
+.111.
+22222
+.333.
+.3.3.
+
+PickyCHS
+black orange red brown
+.000.
+.111.
+22222
+.333.
+.3.3.
+
+PickyCRB
+black orange blue white
+.000.
+.111.
+22222
+.333.
+.3.3.
+
+PickyCHB
+black orange blue brown
+.000.
+.111.
+22222
+.333.
+.3.3.
+
+Player
+black orange white black
+.000.
+.111.
+22222
+.333.
+.3.3.
+
+CakeCRS o
+white red
+.000.
+01000
+00000
+00010
+.000.
+
+CakeCRB ó
+white blue
+.000.
+01000
+00000
+00000
+.000.
+
+CakeCRO x
+white
+.000.
+00000
+00000
+00000
+.000.
+
+CakeCHS ö
+brown red
+.000.
+01000
+00000
+00100
+.000.
+
+CakeCHB ő
+brown blue
+.000.
+00010
+00100
+00000
+.000.
+
+CakeCHO y
+brown
+.000.
+00000
+00000
+00000
+.000.
+
+CakeFP á
+white brown red blue
+.000.
+02001
+00311
+01121
+.111.
+
+Strawberry
+red yellow
+.000.
+00000
+01000
+.010.
+..0..
+
+Blueberry
+blue darkgreen
+..1..
+.000.
+00000
+00000
+.000.
+
+=======
+LEGEND
+=======
+
+. = Background
+# = Wall
+P = Player
+1 = PickyCRS
+2 = PickyCHS
+3 = PickyCRB
+4 = PickyCHB
+
+S = Strawberry
+B = Blueberry
+
+Pickies = PickyCRS or PickyCHS or PickyCRB or PickyCHB
+Cake = CakeCRS or CakeCHS or CakeCRB or CakeCHB or CakeCRO or CakeCHO or CakeFP
+CakeCH = CakeCHS or CakeCHB
+CakeCR = CakeCRS or CakeCRB
+Fruits = Strawberry or Blueberry
+Pushable = Cake or Pickies or Fruits
+
+=======
+SOUNDS
+=======
+
+Cake move 4497507
+Fruits move 4497507
+Pickies move 97126307
+sfx1 12810903 (gulp)
+sfx2 18043707 (blocked)
+sfx3 86220103 (add fruit)
+
+================
+COLLISIONLAYERS
+================
+
+Background
+
+Player, Wall, Pushable
+
+======
+RULES
+======
+
+(Pushing rules)
+[ > Player | Pushable ] -> [ > Player | > Pushable ]
+[ > Cake | Cake ] -> [ > Cake | > Cake ]
+[ > Fruits | Fruits ] -> [ > Fruits | > Fruits ]
+
+(Who eats what cake)
+[ > CakeCRS | PickyCRS ] -> [ | PickyCRS ] sfx1
+[ > CakeCHS | PickyCHS ] -> [ | PickyCHS ] sfx1
+[ > CakeCRB | PickyCRB ] -> [ | PickyCRB ] sfx1
+[ > CakeCHB | PickyCHB ] -> [ | PickyCHB ] sfx1
+
+[ > PickyCRS | CakeCRS ] -> [  | PickyCRS ] sfx1
+[ > PickyCHS | CakeCHS ] -> [  | PickyCHS ] sfx1
+[ > PickyCRB | CakeCRB ] -> [  | PickyCRB ] sfx1
+[ > PickyCHB | CakeCHB ] -> [  | PickyCHB ] sfx1
+
+[ > Player | CakeFP ] -> [  | Player ] sfx1
+
+(add stuff to cake)
+[ > Strawberry | CakeCRO ] -> [ | CakeCRS ] sfx3
+[ > Strawberry | CakeCHO ] -> [ | CakeCHS ] sfx3
+[ > Blueberry | CakeCRO ] -> [ | CakeCRB ] sfx3
+[ > Blueberry | CakeCHO ] -> [ | CakeCHB ] sfx3
+
+[ > CakeCRO | Strawberry ] -> [ | CakeCRS ] sfx3
+[ > CakeCHO | Strawberry ] -> [ | CakeCHS ] sfx3
+[ > CakeCRO | Blueberry ] -> [ | CakeCRB ] sfx3
+[ > CakeCHO | Blueberry ] -> [ | CakeCHB ] sfx3
+
+==============
+WINCONDITIONS
+==============
+
+No Cake
+
+=======
+LEVELS
+=======
+
+message Oh no!
+message My practice went out of control...
+message and I made too many cakes!
+message It's a good thing sharing is caring...
+message otherwise I would drown in cakes.
+
+message Level 1 / 24 - Share
+
+#########
+#.......#
+#.......#
+#.......#
+#.po..1.#
+#.......#
+#.......#
+#.......#
+#########
+
+message Level 2 / 24 - Lead
+
+#########
+#.......#
+#.......#
+#..##...#
+#.po#.1.#
+#..##...#
+#.......#
+#.......#
+#########
+
+message Level 3 / 24 - Match up
+
+#########
+#.......#
+#...3...#
+#.......#
+#.po..1.#
+#.......#
+#...ó...#
+#.......#
+#########
+
+message Level 4 / 24 - Circle
+
+#########
+#.......#
+#...3...#
+#..##...#
+#.po#.1.#
+#..###..#
+#...ó...#
+#.......#
+#########
+
+message Level 5 / 24 - Match again
+
+#########
+#.......#
+#...4...#
+#.......#
+#.p2.ö..#
+#.......#
+#...ő...#
+#.......#
+#########
+
+message Level 6 / 24 - Circle again
+
+#########
+#.......#
+#...4...#
+#..##...#
+#.p2#ö..#
+#..##...#
+#...ő...#
+#.......#
+#########
+
+message Level 7 / 24 - Minor Update
+
+#########
+#.......#
+#..#3...#
+#..##...#
+#.po#.1.#
+#..###..#
+#...ó...#
+#.......#
+#########
+
+message Level 8 / 24 - Share more
+
+##########
+##..#..###
+#.......##
+#...#....#
+#.po#.1..#
+#..####..#
+#...o...##
+##.....###
+##########
+
+message Level 9 / 24 - Corners
+
+############
+#......#####
+#.3ő...ó...#
+#..###.##.##
+#.p.....#.##
+######.4..##
+############
+
+message Level 10 / 24 - Very hungry
+
+############
+############
+####......##
+####.####.##
+#4pőőőő...##
+########..##
+############
+############
+############
+
+message Level 11 / 24 - Shuffle
+
+############
+############
+####.......#
+####3####ö.#
+#.p2.......#
+#...####..##
+#########ó##
+############
+############
+
+message Level 12 / 24 - Give me space
+
+#########
+#.ő.....#
+#.#.##.o#
+#.#..#..#
+#4pő.1..#
+#.#..#..#
+#.#ő.#.o#
+#....#..#
+#########
+
+message Level 13 / 24 - Cave in
+
+##########
+#...#...p#
+#....3...#
+######...#
+#...o#.1.#
+#...###..#
+#....ó...#
+##..###..#
+##########
+
+message Level 14 / 24 - Switch
+
+################
+###...#......p.#
+#.3...#o####ó1.#
+#.........o..ó.#
+############.###
+############.###
+################
+
+message Level 15 / 25 - Strawberry
+
+###########
+#######1###
+#######.###
+##ps..x...#
+#######.#.#
+#######...#
+###########
+###########
+
+message Level 16 / 25 - Strawberry Shakeup
+
+#######
+#.....#
+#.1..x#
+#....##
+#.ps.##
+#..####
+#######
+
+message Level 17 / 25 - Blueberry
+
+######
+#...##
+#.y..#
+#.#4.#
+#.pb.#
+#..###
+######
+
+message Level 18 / 25 - Fruits can remain
+
+#######
+#...###
+#.y..##
+#..4b##
+#.p#.##
+#.#s.##
+#######
+
+message Level 19 / 25 - Blockage
+
+#######
+##...3#
+##.b#p#
+##.bb.#
+#.ó...#
+#...###
+#######
+
+message Level 20 / 25 - Fumbling
+
+#########
+######..#
+######y.#
+###...1.#
+#4p.....#
+####..###
+#....bs.#
+#.x.....#
+#########
+
+message Level 21 / 25 - Distribute
+
+########
+###....#
+#......#
+#.1p#őő#
+#.34#oó#
+#......#
+#.######
+#......#
+########
+
+message Level 22 / 25 - Get out the way
+
+#########
+#######ő#
+###3p#..#
+###.ö#ó.#
+#...ö...#
+#.......#
+#.4######
+#......2#
+#########
+
+message Level 23 / 25 - Storage
+
+############
+############
+###...3#####
+#.2...ő...4#
+#.##.őó#.###
+#.1#öoó#.###
+#..#ööp#.###
+#..###.#.###
+#........###
+##.....#####
+############
+
+message Level 24 / 26 - All together now
+
+############
+############
+###...3#####
+#.2...y...4#
+#.##.yb#.###
+#.1#öys#.###
+#..#öob#.###
+#..#ööp#.###
+#..###...###
+#.......####
+##..########
+############
+
+message Level 25 / 26 - Dig
+
+#############
+####..p..####
+####12#43####
+###.......###
+#.....#.....#
+#.##őö#óo##.#
+#..#őö.oo#..#
+##.#öö#óo#.##
+##.#öö.óo#.##
+##.###.###.##
+##.........##
+#############
+
+message ...and the last cake for me!
+
+#######
+#p#...#
+#.1.4.#
+#.2.3.#
+#.3.2.#
+#.4.1.#
+#...#á#
+#######
