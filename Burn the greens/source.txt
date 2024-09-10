@@ -1,0 +1,479 @@
+title Burn the greens
+author flummox3d
+homepage flummox3d.itch.io
+again_interval 0.1
+
+========
+OBJECTS
+========
+
+Background .
+lightgray grey
+11111
+01111
+11101
+11111
+10111
+
+Charger O
+yellow
+.....
+.000.
+.0.0.
+.000.
+.....
+
+Wall #
+brown darkbrown
+00010
+11111
+01000
+11111
+00010
+
+Player P
+black orange white blue
+.000.
+.111.
+22222
+.333.
+.3.3.
+
+DeadPlayer1
+black orange white blue green lightgreen
+.000.
+.111.
+22222
+.334.
+.5.4.
+
+DeadPlayer2
+black orange white blue green lightgreen
+.000.
+.111.
+44222
+.444.
+.5.4.
+
+DeadPlayer3
+black orange white blue green lightgreen
+.000.
+.111.
+44454
+.444.
+.5.4.
+
+DeadPlayer4
+black orange white blue green lightgreen
+.400.
+.541.
+44454
+.444.
+.5.4.
+
+DeadPlayer d
+lightgreen green
+.111.
+.011.
+11101
+.111.
+.0.1.
+
+Tree T
+green brown lightgreen
+.200.
+00020
+.010.
+..1..
+..1..
+
+Bush B
+green brown lightgreen
+.200.
+00020
+00000
+02000
+00000
+
+IncineratorOn Í
+red
+00.00
+0...0
+.....
+0...0
+00.00
+
+IncineratorOn3
+red black
+00.11
+0...1
+.....
+0...0
+00.00
+
+IncineratorOn2 2
+red black
+11.11
+1...1
+.....
+0...0
+00.00
+
+IncineratorOn1 1
+red black
+11.11
+1...1
+.....
+0...1
+00.11
+
+IncineratorOff I
+black
+00.00
+0...0
+.....
+0...0
+00.00
+
+IncineratorOff0
+black
+00.00
+0...0
+.....
+0...0
+00.00
+
+IncineratorOff1
+black red
+00.00
+0...0
+.....
+1...0
+11.00
+
+IncineratorOff2
+black red
+00.00
+0...0
+.....
+1...1
+11.11
+
+IncineratorOff3
+black red
+11.00
+1...0
+.....
+1...1
+11.11
+
+Fire F
+red yellow orange
+..2..
+.212.
+21112
+21112
+.212.
+
+Fire2 
+red yellow orange
+.....
+..2..
+.212.
+21112
+.212.
+
+Fire3
+red yellow orange
+.....
+.....
+..2..
+.212.
+.212.
+
+Fire4
+red yellow orange
+.....
+.....
+.....
+..2..
+.212.
+
+Fire5
+red yellow orange
+.....
+.....
+.....
+.....
+..1..
+
+=======
+LEGEND
+=======
+
+Incinerator = IncineratorOn or IncineratorOn3 or IncineratorOn2 or IncineratorOn1 or IncineratorOff or IncineratorOff0 or IncineratorOff1 or IncineratorOff2 or IncineratorOff3
+Colliders = Player or Wall or Incinerator or DeadPlayer
+Green = Tree or Bush
+Fires = Fire or Fire2 or Fire3 or Fire4 or Fire5
+Deadplayers = DeadPlayer1 or DeadPlayer2 or DeadPlayer3 or DeadPlayer4
+
+=======
+SOUNDS
+=======
+
+startgame 16388108
+
+Incinerator move 36772507
+sfx0 80622702
+sfx1 62608308 (fire)
+sfx2 10607508 (infected)
+sfx3 13171503 (charging)
+
+endlevel 49589903
+
+================
+COLLISIONLAYERS
+================
+
+Background
+Charger
+Green, Fires, DeadPlayers
+Colliders
+
+======
+RULES
+======
+
+[ > Player | Incinerator ] -> [ > Player | > Incinerator ]
+[ action  Player | Incinerator ] -> [ < Player | < Incinerator ]  
+[ > Incinerator | DeadPlayer ] -> [ > Incinerator | > DeadPlayer ]
+[ > DeadPlayer | Green ] -> [ DeadPlayer | Green ]
+
+late [ IncineratorOn Green ] -> [ IncineratorOn3 Fire ] again sfx1
+late [ IncineratorOn3 Green ] -> [ IncineratorOn2 Fire ] again sfx1
+late [ IncineratorOn2 Green ] -> [ IncineratorOn1 Fire ] again sfx1
+late [ IncineratorOn1 Green ] -> [ IncineratorOff Fire ] again sfx1
+
+late [ Player | Green ] -> [ DeadPlayer1 | Green ] again sfx2
+late [ Player | DeadPlayer ] -> [ DeadPlayer1 | DeadPlayer ] again sfx2
+
+late [ Charger IncineratorOff ] -> [ Charger IncineratorOff0 ] again sfx3
+
+[Fire5] -> [ ]
+[Fire4] -> [Fire5] again
+[Fire3] -> [Fire4] again
+[Fire2] -> [Fire3] again
+[Fire] -> [Fire2] again
+
+[DeadPlayer4] -> [DeadPlayer] again
+[DeadPlayer3] -> [DeadPlayer4] again
+[DeadPlayer2] -> [DeadPlayer3] again
+[DeadPlayer1] -> [DeadPlayer2] again
+
+[IncineratorOff3] -> [IncineratorOn] again
+[IncineratorOff2] -> [IncineratorOff3] again
+[IncineratorOff1] -> [IncineratorOff2] again
+[IncineratorOff0] -> [IncineratorOff1] again
+
+==============
+WINCONDITIONS
+==============
+
+all Charger on Incinerator
+no Green
+
+=======
+LEVELS
+=======
+
+message An invasive alien species is now living in trees and bushes.
+message Be careful going near them.
+message Burn all the greens to save Earth!
+
+message Mission 1/15 - Incinerate
+
+######
+#....#
+#.b..#
+#....#
+#.íp.#
+#...o#
+######
+
+message You'll have to recharge your incinerator after each mission by returning it to the charger.
+
+message Mission 2/15 - Pair
+
+######
+#.o..#
+#.#p.#
+#..í.#
+#.tt.#
+#....#
+######
+
+message By the way, you can also pull your incinerator, just press X!
+message Mission 3/15 - Space
+
+#######
+#í....#
+#.#p..#
+#.b..##
+#.....#
+#...o.#
+#######
+
+message Mission 4/15 - Burn
+
+######
+#.t..#
+#o#p.#
+#b.í.#
+#....#
+#...b#
+######
+
+message Oh no, your incinerator has powered down!
+message Mission 5/15 - Charge
+
+######
+#.t..#
+#.#p.#
+#.oi.#
+#....#
+######
+
+
+message Mission 6/15 - Empty
+
+###########
+#p...#b...#
+#...###...#
+#b..í...t.#
+#...###...#
+#...b#o...#
+###########
+
+message Mission 7/15 - Path
+########
+#p.....#
+#.....í#
+#b#b#..#
+#.#.##.#
+#...t#o#
+########
+
+message Mission 8/15 - Recharge
+
+##########
+#p1..b####
+#..#######
+##..#....#
+#...t....#
+#..#....o#
+####b...##
+##########
+
+message Oh no, some people already got infected!
+message Mission 9/15 - Loop
+
+##########
+#p...b####
+#.í##.####
+##..#.#d.#
+#...t.#..#
+#..#o.#.d#
+#.....#..#
+##########
+
+message You can't burn the infected, because we believe there might be a cure.
+message Luckily for you, they can't move by themselves.
+message But they can still infect you, so look out!
+
+message Mission 10/15 - Avoid
+
+########
+#d######
+#......#
+#..#í#.#
+#p##.#.#
+###d...#
+#o###..#
+#b.....#
+#.##t..#
+#.....##
+########
+
+message Mission 11/15 - Learn
+
+########
+#...t..#
+#..###.#
+#.....o#
+###...##
+#p2d..b#
+###....#
+########
+
+message Aha, so the infected can be moved! Good to know.
+message Mission 12/15 - Tuck
+
+############
+####p###..##
+#o..í.....##
+#.##.###...#
+#b.....d...#
+###..#.#.#b#
+###..t.#.###
+########.###
+############
+
+message The situation is getting worse!
+message We are sending you more incinerators!
+message Mission 13/15 - Aside
+
+############
+#..........#
+#..######1.#
+#.......#..#
+#....d..#..#
+#..d.2.o...#
+#t#o#.#....#
+#####p#..bb#
+############
+
+message Mission 14/15 - Arrange
+
+##########
+#...##.11#
+#bb.p....#
+######...#
+#...##...#
+#...d...d#
+#o..d....#
+##o......#
+###...####
+##########
+
+message Mission 15/15 - Conundrum
+
+##########
+##o.######
+##.....t##
+##.....###
+#p..d..###
+#..ídí.###
+#..###...#
+##..o...b#
+##########
+
+message You burned the greens.
+message We are curing the infected.
+message The Earth is safe
+message ...for now.
+
+message Thank you for playing! :)
+
+
+
+

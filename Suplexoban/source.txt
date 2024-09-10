@@ -1,0 +1,375 @@
+title Suplexoban
+author flummox3d
+homepage flummox3d.itch.io
+text_color red
+
+========
+OBJECTS
+========
+
+Background .
+lightgreen green
+11111
+01111
+11101
+11111
+10111
+
+Target o
+darkblue
+.....
+.000.
+.0.0.
+.000.
+.....
+
+Wall #
+brown darkbrown
+00010
+11111
+01000
+11111
+00010
+
+PlayerNormal P
+black orange white red
+.000.
+.111.
+23232
+.333.
+.3.3.
+
+PlayerMidPutDown
+black orange white red
+.000.
+21112
+.323.
+.333.
+.3.3.
+
+PlayerLift L
+black orange white red
+20002
+.111.
+.323.
+.333.
+.3.3.
+
+Crate *
+orange
+00000
+0...0
+0...0
+0...0
+00000
+
+AboveHeadCrate ö
+orange
+00000
+0...0
+0...0
+0...0
+00000
+
+AboveHead Î
+transparent
+
+=======
+LEGEND
+=======
+
+@ = Crate and Target
+í = Wall and AboveHead
+
+Player = PlayerNormal or PlayerLift or PlayerMidPutDown
+Crates = Crate or AboveHeadCrate
+OverlapCheck = Wall or Crate
+
+=======
+SOUNDS
+=======
+
+Crate move 36772507
+EndLevel 50063903
+
+sfx0 59911904 (smash crates)
+sfx1 28011704 (can't lift)
+sfx2 67644503 (lift)
+
+
+
+================
+COLLISIONLAYERS
+================
+
+Background
+AboveHead
+Target
+Player, Wall, Crate, AboveHeadCrate
+
+======
+RULES
+======
+
+[ > Player | Crate ] -> [ > Player | > Crate ] 
+
+(Player sprite sticks together)
+[ > Player | AboveHead ] -> [ > Player | > AboveHead ]
+(Player pixels move together)
+[ > Player ] [ stationary AboveHead ] -> [ > Player] [ > AboveHead ]
+
+(if AboveHead is overlapping something, don't do anything)
+[ action PlayerNormal ] [ OverlapCheck AboveHead ] -> cancel sfx1
+
+(stop AboveHead from clipping through player)
+late [ AboveHead Player ] -> cancel
+(if stationary crate to left or right, stop AboveHead from misaligning)
+[ > Player | Wall ] -> cancel
+[ > Player | Crate | Crate ] -> cancel
+[ > Player | Crate | Wall ] -> cancel
+
+(if crate is to left or right, lift above head on action)
+horizontal [ action PlayerNormal | Crate ] -> [ PlayerNormal | ]
++ up [ stationary PlayerNormal | AboveHead ] -> [ stationary PlayerLift | AboveHeadCrate ] sfx2
+
+(now the crate is glued to head basically)
+[ > PlayerLift | AboveHeadCrate ] -> [ > PlayerLift | > AboveHeadCrate ]
+(Player and AboveHeadCrate move together)
+[ > PlayerLift ] [ stationary AboveHeadCrate ] -> [ > PlayerLift ] [ > AboveHeadCrate ]
+
+[ > AboveHeadCrate | Wall ] -> cancel
+[ > AboveHeadCrate | Crate ] -> cancel
+[ > AboveHeadCrate | Crate | Wall ] -> cancel
+
+(cancel out when lifting into something above player (wall or crate?))
+
+(if there's a crate to the right smash it on action)
+up [ action PlayerLift | AboveHeadCrate ] -> [ PlayerMidPutDown | AboveHead ]
++ right [ PlayerMidPutDown | Crate ] -> [ PlayerNormal | ] sfx0
+
+right [ PlayerMidPutDown | Wall ] -> cancel
+
+(if crate above head, put down to the right on action, if possible)
+up [ action PlayerLift | AboveHeadCrate ] -> [ PlayerMidPutDown | AboveHead ]
++ right [ PlayerMidPutDown | ] -> [ PlayerNormal | Crate ]
+
+
+==============
+WINCONDITIONS
+==============
+
+all Target on Crates
+all Crates on Target
+
+=======
+LEVELS
+=======
+
+(when there no target, destoy all crates)
+(when there is target, destroy crates until enough is left)
+
+message Press X to lift a crate.
+message Press it again to put it down on your right side.
+message ...or to SMASH another crate with it.
+
+message Level 1/17 - Lift
+
+####..
+#####.
+#.î.##
+#*p*.#
+#...##
+######
+####..
+
+message Level 2/17 - Smash
+
+######
+#..î.#
+#.#p.#
+#.*..#
+#..*.#
+#....#
+######
+
+message Level 3/17 - Try
+
+######
+#....#
+#.#.î#
+#.**p#
+#.####
+#....#
+######
+
+message Level 4/17 - Oldschool
+
+######
+#.#..#
+#...î#
+#.*.p#
+#.####
+#...o#
+#.####
+######
+
+message Level 5/17 - Break stuff
+
+######
+#....#
+#.*..#
+#.#.î#
+#.**p#
+#.####
+#...o#
+#.####
+######
+
+message Level 6/17 - Ceiling
+
+..###..
+.##.###
+##..*##
+##....#
+#oî..##
+##p####
+.######
+
+message Level 7/17 - Hold
+
+..###..
+.##o###
+##...##
+#.....#
+#.î...#
+##p*.##
+.######
+
+message Level 8/17 - Pairs
+
+#######
+#.....#
+#..**.#
+#.#####
+#..oo.#
+#.###.#
+#.....#
+#.î*..#
+#.p*..#
+#######
+
+message Level 9/17 - Both
+
+#####í#
+#...#p#
+#.#...#
+#.#####
+#...*.#
+#*.##.#
+#..o..#
+#.....#
+#.#o#.#
+#######
+
+message Level 10/17 - Snug
+
+#######
+#..o..#
+#.....#
+##.#í##
+#.@#p.#
+#.@#*.#
+#.....#
+#######
+#.....#
+#######
+
+message Level 11/17 - Too much
+
+#######
+#..o..#
+#..*#.#
+#.#*î.#
+#..*p.#
+#.###.#
+#..*..#
+#..*..#
+#.....#
+#######
+
+message Level 12/17 - Access
+
+#######
+#.....#
+#***..#
+#***î.#
+#***p.#
+#.#####
+#..##o#
+#..#..#
+#.....#
+#######
+
+message Level 13/17 - Sneaky
+
+#í#####.
+#p...o#.
+#*..**#.
+#..####.
+#..#....
+#..#####
+#..##.##
+#.*#*..#
+#.....##
+########
+
+message Level 14/17 - Maze
+
+.#########
+.##í..###.
+.##p...o#.
+.###..###.
+.#.#.#####
+##.*.#.#.#
+#*.#.*...#
+#..#.#.#.#
+##.*.#...#
+.#.#.#*..#
+.#########
+
+message Level 15/17 - Compact
+
+....###...
+..#í#o###.
+.##p..*o#.
+.#@..***#.
+.########.
+
+message Level 16/17 - Curveball
+
+##########....
+#...o##ö##....
+#.#.###l##....
+#.*.*##.##....
+#.#.##...##...
+#.#.#o.*.o#...
+#.#.##.####...
+#...*....#....
+##########....
+
+message Level 17/17 - Smash all the things
+
+############
+#o.........#
+#.********.#
+#.*......*.#
+#.*.****.*.#
+#.*.*î.*.*.#
+#.*.*p**.*.#
+#.*.****.*.#
+#.*......*.#
+#.********.#
+#..........#
+############
+
+message Thank you for playing! :)

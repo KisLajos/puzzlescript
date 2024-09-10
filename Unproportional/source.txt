@@ -1,0 +1,471 @@
+title Unproportional
+author flummox3d
+homepage flummox3d.itch.io
+
+========
+OBJECTS
+========
+
+Background .
+lightgreen green
+11111
+01111
+11101
+11111
+10111
+
+TargetSmall o
+darkblue
+.....
+.000.
+.0.0.
+.000.
+.....
+
+WallNormal #
+brown darkbrown
+00010
+11111
+01000
+11111
+00010
+
+WallInvisible x
+transparent
+
+PlayerSmall p
+black orange white blue
+.000.
+.111.
+22222
+.333.
+.3.3.
+
+Crate c
+orange
+00000
+0...0
+0...0
+0...0
+00000
+
+PlayerGPBK ő
+black
+
+PlayerGPO ú
+orange
+
+PlayerGPW á
+white
+
+PlayerGPBL ű
+blue
+
+CrateGPO ó
+orange
+
+TargetGPB é
+darkblue
+
+=======
+LEGEND
+
+
+* = Crate
+@ = Crate and TargetSmall
+; = PlayerGPW and TargetSmall
+, = PlayerGPBK and TargetSmall
+- = PlayerSmall and TargetSmall
+$ = TargetGPB and Crate
+
+Crates = Crate or CrateGPO
+Target = TargetSmall or TargetGPB
+PlayerGiant = PlayerGPBK or PlayerGPO or PlayerGPW or PlayerGPBL
+Player = PlayerGiant or PlayerSmall
+Wall = WallNormal or WallInvisible
+
+=======
+SOUNDS
+=======
+
+Crate move 36772507
+
+================
+COLLISIONLAYERS
+================
+
+Background
+Target
+Player, Wall, Crates
+
+======
+RULES
+======
+
+(player pushes crates)
+[ > Player | Crates ] -> [ > Player | > Crates ]
+
+[ > CrateGPO | Crate ] -> [ > CrateGPO | > Crate ]
+(every crate moves together)
+[ > CrateGPO ] [ stationary CrateGPO ] -> [ > CrateGPO ] [ > CrateGPO ]
+(giant crate drags small ones along)
+[ > CrateGPO | stationary Crate ] -> [ > CrateGPO | > Crate ]
+(if any part touches a wall, stop the whole thing)
+[ > CrateGPO | Wall ] -> cancel
+[ > CrateGPO | Crate | Wall ] -> cancel
+
+(PlayerGiant pixels stick together)
+[ > PlayerGiant | PlayerGiant ] -> [ > PlayerGiant | > PlayerGiant ]
+(PlayerGiant pixels move together)
+[ > PlayerGiant ] [ stationary PlayerGiant ] -> [ > PlayerGiant ] [ > PlayerGiant ]
+[ > PlayerGiant | Wall ] -> cancel
+[ > PlayerGiant | Crate | Wall ] -> cancel
+[ > PlayerGiant | Crate | Crate ] -> cancel
+
+==============
+WINCONDITIONS
+==============
+
+all Target on Crates
+
+=======
+LEVELS
+=======
+
+message Chapter 1/5 - Small
+
+message 1/4 - Genesis
+
+(small player, small crate)
+
+#######
+#.....#
+#p.c.o#
+#.....#
+#######
+
+message 2/4 - Surprise
+
+######
+#...-#
+#.c#.#
+#....#
+######
+
+message 3/4 - Loop
+
+.#.....
+.#####.
+##p..##
+#o@c.##
+##.#.##
+.#...##
+.#####.
+
+message 4/4 - Click
+
+######
+#....#
+#.@op#
+##cc.#
+#o..##
+#####.
+.#....
+
+(there should be one that teaches that blocks can't push each other, so no trains)
+
+message Chapter 2/5 - Giant
+
+(giant player, small crate)
+
+message 1/ - Steps
+
+#########
+#.......#
+#.......#
+#.őőő...#
+#.úúú.c.#
+#ááááá..#
+#.űűű...#
+#.ű.ű..o#
+#########
+
+message 2/ - Stick
+
+#########
+#.......#
+#oc.őőő.#
+#...úúú.#
+#.cááááá#
+#o..űűű.#
+#...ű#ű.#
+#########
+
+message 3/ - Inbetween
+
+###############
+#.............#
+#.............#
+#......őőő....#
+#......úúú.c..#
+#....cááááá...#
+#......űűű....#
+#......ű.ű....#
+#.o.######.o..#
+######...######
+
+message 4/ - 
+
+###############
+#.............#
+#o............#
+#......őőő....#
+##....cúúú....#
+#.....ááááác..#
+#o..c..űűű....#
+#......ű.ű....#
+##########.o..#
+.........######
+
+message 5/ - Fit
+
+#################
+##..............#
+#######.........#
+##..o.#.........#
+##..........őőő.#
+##...##.....úúú.#
+#o.....c...ááááá#
+#..........cűűű.#
+#...........ű#ű.#
+#...........#####
+#...........#...#
+#...............#
+#################
+
+(one, where the target is hidden by the giant body)
+message 6/ - What
+
+...############
+####.........##
+#..#..........#
+#.........##..#
+#......őőő.#..#
+#....c.úúú....#
+#.....á;ááá...#
+#......űűű....#
+#...#..ű.ű....#
+###############
+
+message 7/ - 
+
+..#############......
+###...ő,ő....########
+#....#úúú...........#
+#....ááááá##........#
+#.....űűű.o#........#
+#.....ű.űc...c......#
+#...................#
+#..................##
+#...###...........###
+########.........####
+.......##.......#####
+........#############
+
+message 8/ - 
+
+(valami ilyen vízszintes mozgás, hogy a lába között kell tartani,
+vagy úgy kell először mozogni, különben nem lehet megcsinálni a puzzlet)
+..#############
+###....o.....##
+#.............#
+#...őőő...##..#
+#...úúú....#..#
+#..ááááá......#
+#...űűű.......#
+#...űcűc...o..#
+#...#.........#
+###############
+
+(playground)
+..#############
+###...ő,ő....##
+#.....úúú.....#
+#....ááááá##..#
+#.....űűű..#..#
+#....cű.ű.....#
+#.............#
+#...c......o..#
+#...#.........#
+###############
+
+(new one, not a hiding one)
+..#############
+###...őőő....##
+#.....úúú.o...#
+#....ááááá##..#
+#.....űűű..#..#
+#....cű.ű.....#
+#.............#
+#...c......o..#
+#...#.........#
+###############
+
+###############
+#......o#######
+#.###...#######
+#.őőő...co#####
+#.úúú.c..######
+#ááááá....#####
+#.űűű....######
+#.ű.ű...c######
+#.........#.#.#
+#........o#.#.#
+#...#.....#.#.#
+###############
+
+message Chapter 3/ - Tremendous
+
+(small player, giant crate)
+
+message 1/ - Out
+#########
+#......p#
+#.óóóóó.#
+#.ó...ó.#
+#.ó...ó.#
+#.ó...ó.#
+#oóóóóó.#
+#########
+
+message 2/ - In
+#########
+#.......#
+#..óóóóó#
+#..ó...ó#
+#o.óp..ó#
+#..ó...ó#
+#..óóóóó#
+#########
+
+message 3/ - Clipped
+...#######...
+...#.....###.
+...#.......##
+####.....o.##
+#..#.......##
+#..óóóóó...##
+#..ó.p#ó...##
+#..ó...ó...##
+#..ó...ó...##
+#..óóóóó...##
+#############
+
+message Chapter 4/ - Monumental
+(small player, giant target)
+
+...#######...
+...#.....####
+...#.c...c..#
+####c..cc...#
+#.........c##
+#..$éééé...##
+#..$.c#éc.c##
+#..$p..é...##
+#..$#.céc..##
+#..$éééé...##
+#############
+
+.....##########
+.....#........#
+.....#.óóóóó#.#
+...###.ó...ó#.#
+...#...ó...ó#.#
+...#...ó...ó#.#
+####...óóóóó..#
+#...........#.#
+#..ééééé...##.#
+#..é...é...##.#
+#..ép..é...##.#
+#..é...é......#
+#..ééééé...##.#
+###############
+
+################
+################
+#.....#.óóóóó###
+#.#####.ó...ó###
+#.#.#...ó...ó###
+#.###...óp..ó###
+#####...óóóóó###
+#.....c......###
+##..ééé$é...####
+##..é...é...####
+##..é...é...####
+##..é...é.....##
+##..ééééé...####
+################
+
+message Chapter 5/ - Vast
+
+(giant player, giant crate)
+################
+#..............#
+#...őőő........#
+#.#.úúú........#
+#.cááááá.......#
+#.o.űűű........#
+#...ű.ű........#
+#..............#
+#..............#
+#..óóóóó.......#
+#..ó...ó.......#
+#..ó...ó.......#
+#..ó...ó.......#
+#..óóóóó.......#
+#..............#
+################
+
+(something where you have to move the giant box, de nem mindegy mikor hol van)
+
+(solve small and giant at the same time)
+################
+#..............#
+#...őőő........#
+#.#.úúú........#
+#.cááááá.......#
+#.o.űűű........#
+#...ű.ű........#
+#..............#
+#..............#
+#..óóóóó.......#
+#..ó...ó.......#
+#..ócpoó.......#
+#..ó...ó.......#
+#..óóóóó.......#
+#..............#
+################
+
+(introduce something that "breaks" the giant character/crates)
+
+(even bigger crate)
+
+(the whole level is a crate, ie level has to be moved around to match target)
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+x.....óóóóóóóóóóóóóóó...........x
+x.....ó.............ó...........x
+x.....ó.............ó...őőő.....x
+x.....ó.............ó...úúú.....x
+x.....ó.............ó..ááááá....x
+x.....ó.............ó...űűű.....x
+x.....ó.............ó...ű.ű.....x
+x.....ó...........c.ó...........x
+x.....ó.......o.....ó...........x
+x.....ó.............ó...........x
+x.....ó.............ó...........x
+x.....ó.............ó...........x
+x.....ó.............ó...........x
+x.....ó.............ó...........x
+x.....óóóóóóóóóóóóóóó...........x
+x...............................x
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
