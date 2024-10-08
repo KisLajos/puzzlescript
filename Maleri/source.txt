@@ -1,0 +1,377 @@
+title Maleri
+author flummox3d
+homepage flummox3d.itch.io
+
+========
+OBJECTS
+========
+
+Background .
+lightgreen green
+11111
+01111
+11101
+11111
+10111
+
+Wall #
+brown darkbrown
+00010
+11111
+01000
+11111
+00010
+
+Player P
+black orange white blue
+.000.
+.111.
+22222
+.333.
+.3.3.
+
+PixelWhite *
+white
+
+TargetWhite o
+transparent
+
+PixelBrown b
+darkbrown
+
+TargetBrown {
+transparent
+
+PixelOrange r
+orange
+
+TargetOrange }
+transparent
+
+PixelYellow y
+yellow
+
+TargetYellow ↔
+transparent
+
+PixelRed e
+red
+
+TargetRed °
+transparent
+
+PixelGreen g
+green
+
+PixelPink n
+lightred
+
+TargetPink §
+transparent
+
+PixelBlue u
+blue
+
+TargetBlue ß
+transparent
+
+Separator /
+grey
+
+FrameCornerUL ╔
+brown lightbrown
+00000
+01111
+01000
+01011
+01010
+
+FrameCornerUR ╗
+brown lightbrown
+00000
+11110
+00010
+11010
+01010
+
+FrameCornerDL ╚
+brown lightbrown
+01010
+01011
+01000
+01111
+00000
+
+FrameCornerDR ╝
+brown lightbrown
+01010
+11010
+00010
+11110
+00000
+
+FrameWallH ═
+brown lightbrown
+00000
+11111
+00000
+11111
+00000
+
+FrameWallV ║
+brown lightbrown
+01010
+01010
+01010
+01010
+01010
+
+PictureFirst 1
+white green
+11011
+11011
+11011
+11011
+11011
+
+PictureSecond 2
+yellow green
+11111
+11100
+00000
+01100
+11111
+
+PictureThird 3
+darkbrown orange green
+22202
+22200
+01102
+00002
+02202
+
+
+PictureFourth 4
+white green red
+10101
+00000
+10201
+00000
+10101
+
+PictureFifth 5
+red darkbrown lightred green
+33133
+30003
+00020
+00000
+30003
+
+PictureSixth 6
+white green
+10001
+00000
+01010
+00000
+10101
+
+PictureSeventh 7
+red orange darkbrown blue
+..000
+.0000
+.2221
+21211
+21221
+
+PictureEight 8
+red orange darkbrown blue
+00...
+00000
+121..
+12111
+11211
+
+PictureNinth 9
+red orange darkbrown blue
+22111
+..111
+.0030
+00030
+00033
+
+PictureAth A
+red orange darkbrown blue
+12222
+1111.
+00...
+03000
+33000
+
+=======
+LEGEND
+=======
+
+@ = PixelWhite and TargetWhite
+- = PixelYellow and TargetYellow
+ó = PixelBrown and TargetBrown
+ö = PixelOrange and TargetBrown
+ő = PixelBrown and TargetOrange
+% = PixelRed and TargetRed
++ = PixelPink and TargetBrown
+€ = PixelOrange and TargetOrange
+ł = PixelBlue and TargetBlue
+Đ = PixelOrange and TargetWhite
+ä = PixelOrange and TargetWhite
+í = PixelWhite and TargetBlue
+, = PixelBlue and TargetWhite
+
+ű = Player and TargetRed
+
+Pictures = PictureFirst or PictureSecond or PictureThird or PictureFourth or PictureFifth or PictureSixth or PictureSeventh or PictureEight or PictureNinth or PictureAth
+Pixels = PixelWhite or PixelBrown or PixelOrange or PixelYellow or PixelRed or PixelGreen or PixelPink or PixelBlue
+Frames = FrameCornerUL or FrameCornerUR or FrameCornerDL or FrameCornerDR or FrameWallH or FrameWallV
+Targets = TargetWhite or TargetYellow or TargetBrown or TargetOrange or TargetRed or TargetPink or TargetBlue
+
+=======
+SOUNDS
+=======
+
+Pixels move 18690107
+Pixels CantMove 41234
+StartGame 36411109
+EndLevel 89724703
+
+================
+COLLISIONLAYERS
+================
+
+Background
+Targets, Separator, Frames, Pictures
+Player, Wall, Pixels
+
+======
+RULES
+======
+
+(player moves pixels)
+[ > Player | Pixels ] -> [ > Player | > Pixels ]
+
+(pixels can't come out of frame)
+[ > Pixels | Frames ] -> [ Pixels | Frames ]
+
+(player/pixels can't move through separator)
+[ > Player | Separator ] -> [ Player | Separator ]
+[ > Pixels | Separator ] -> [ Pixels | Separator ]
+
+(late [ > Pixels ColorChanger ] -> [ PixelRed ColorChanger ])
+
+==============
+WINCONDITIONS
+==============
+
+all PixelWhite on TargetWhite
+all PixelYellow on TargetYellow
+all PixelOrange on TargetOrange
+all PixelBrown on TargetBrown
+all PixelRed on TargetRed
+all PixelPink on TargetPink
+
+
+=======
+LEVELS
+=======
+
+message Paint the left side to match the right side.
+
+message 1/8 - One
+
+..╔═════╗./.....
+..║..o.*║./.....
+p.║*.o..║./.╔═╗.
+..║↔↔o↔*║./.║1║.
+..║↔*o↔.║./.╚═╝.
+..║..o*.║./.....
+..╚═════╝./.....
+
+message 2/8 - Key
+
+....╔═════╗/.....
+....║yyyyy║/.....
+..p.║...↔↔║/.╔═╗.
+....║↔↔↔↔↔║/.║2║.
+....║↔..↔↔║/.╚═╝.
+....║yyyyy║/.....
+....╚═════╝/.....
+
+message 3/8 - Horse
+
+╔═════╗..p/.....
+║bbb{{║.../.....
+║..rö{║.../.╔═╗.
+║óő}{b║.../.║3║.
+║ó{{{b║.../.╚═╝.
+║{bb{b║.../.....
+╚═════╝.../.....
+
+message 4/8 - Hash
+
+╔═════╗.../.....
+║*o*@*║.../.....
+║@@o@o║.../.╔═╗.
+║*oűo*..e./.║4║.
+║o@o@@║.../.╚═╝.
+║*@*o*║.../.....
+╚═════╝.../.....
+
+message 5/8 - Fruit
+
+........../.....
+..╔═════╗./.....
+..║.e+ee║./.....
+.e║b°°°e║./.╔═╗.
+.e.%%%§ű║./.║5║.
+.e║°°°°°║./.╚═╝.
+..║e%%%e║./.....
+..╚═════╝./.....
+........../.....
+
+message 6/8 - Skull
+
+╔═════╗.../.....
+║.@@o.║*../.....
+║@@@oo║**./.╔═╗.
+║@p@.o..*./.║6║.
+║@@@oo║**./.╚═╝.
+║.@.o.║*../.....
+╚═════╝.../.....
+
+message 7/8 - Self-portrait
+
+╔═════╗........
+║b{óó*║../.....
+║.€}€.║../.╔═╗.
+║đo@@,║../.║p║.
+║.íłß.║../.╚═╝.
+║*ßułu║../.....
+╚═════╝../.....
+
+message 8/8 - Iconic
+
+╔══════════╗/......
+║..%%%%%....p......
+║.%%%%%%%%%║/...bb.
+║.óó{}}{}..║/......
+║ó€ó€€€ó€€€║/.╔══╗.
+║ó€óó€€€ó€€║/.║78║.
+║{ó€€€€óóóó║/.║9a║.
+║b.€€€€€€€.║/.╚══╝.
+║.%%ł%%%...║/......
+║%%%ł%%ł%%%║/.rrr..
+║%%%łłłł%%%║/......
+╚══════════╝/......
+
+message Thank you for playing!
+message Made by flummox3d for Mini Jam 165
+
+
+

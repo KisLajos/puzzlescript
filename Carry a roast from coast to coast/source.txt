@@ -1,0 +1,664 @@
+title Carry a roast from coast to coast
+author flummox3d
+homepage flummox3d.itch.io
+text_color brown
+
+========
+OBJECTS
+========
+
+Background .
+#ffaa33 yellow
+11111
+01111
+11101
+11111
+10111
+
+Water ~
+blue
+
+Target o
+darkblue
+.....
+.000.
+.0.0.
+.000.
+.....
+
+PlayerCupless p
+black orange red blue
+.000.
+.111.
+22222
+.333.
+.3.3.
+
+PlayerBetweenCups d
+black orange red blue white
+.000.
+.111.
+22222
+.333.
+.3.3.
+
+PlayerWithCupR q
+black orange red blue white
+.000.
+4111.
+22222
+4333.
+.3.3.
+
+PlayerWithCupL b
+black orange red blue white
+.000.
+.1114
+22222
+.3334
+.3.3.
+
+PlayerBothCups
+black orange red blue white
+.000.
+41114
+22222
+43334
+.3.3.
+
+HandleL C
+white
+.....
+....0
+...0.
+....0
+.....
+
+CupL Ù
+white brown
+.....
+01110
+00000
+00000
+.000.
+
+CupLFloat
+white brown
+.....
+01110
+00000
+00000
+.000.
+
+CupR Ú
+white brown
+.....
+01110
+00000
+00000
+.000.
+
+CupRFloat
+white brown
+.....
+01110
+00000
+00000
+.000.
+
+HandleR Ɔ
+white
+.....
+0....
+.0...
+0....
+.....
+
+Wall #
+brown darkbrown
+00010
+11111
+01000
+11111
+00010
+
+PermaCupL Ű
+white brown black
+.....
+01110
+00000
+00000
+.222.
+
+PermaCupR Ü
+white brown black
+.....
+01110
+00000
+00000
+.222.
+
+PermaCupLFloat
+white brown black
+.....
+01110
+00000
+00000
+.222.
+
+PermaCupRFloat
+white brown black
+.....
+01110
+00000
+00000
+.222.
+
+PlayerDrown1
+black orange red blue
+.000.
+.111.
+22222
+.333.
+.3.3.
+
+PlayerDrown2
+black orange red blue
+.....
+.000.
+.111.
+22222
+.333.
+
+PlayerDrown3
+black orange red blue
+.....
+.....
+.000.
+.111.
+.....
+
+PlayerDrown4
+black
+.....
+.....
+.....
+.000.
+.....
+
+PlayerDrown5
+transparent
+
+CupLDrown1
+white brown
+.....
+01110
+00000
+00000
+.000.
+
+CupRDrown1
+white brown
+.....
+01110
+00000
+00000
+.000.
+
+CupDrown2
+white brown
+.....
+01110
+00000
+00000
+.....
+
+CupDrown3
+white brown
+.....
+.....
+01110
+00000
+.....
+
+CupDrown4
+white brown blue
+.....
+.....
+.....
+02220
+.....
+
+CupDrown5
+transparent
+
+=======
+LEGEND
+=======
+
+Player = PlayerCupless or PlayerWithCupL or PlayerWithCupR or PlayerBothCups or PlayerBetweenCups
+Animations = PlayerDrown5 or PlayerDrown4 or PlayerDrown3 or PlayerDrown2 or PlayerDrown1 or CupLDrown1 or CupRDrown1 or CupDrown2 or CupDrown3 or CupDrown4 or CupDrown5
+PlayerWithCup = PlayerWithCupL or PlayerWithCupR
+Handle = HandleL or HandleR
+Cup = CupL or CupR or CupLFloat or CupRFloat or PermaCupL or PermaCupR or PermaCupLFloat or PermaCupRFloat
+
+Ő = HandleR and Water
+Ö = HandleL and Water
+X = PlayerCupless and Target
+χ = HandleL and HandleR
+
+=======
+SOUNDS
+=======
+
+Cup move 36772507
+EndLevel 8835303
+StartGame 24225903
+
+sfx0 97062508 (cup drown)
+sfx1 25423308 (player drown)
+sfx2 60148703 (grab cup)
+sfx3 30872101 (release cup)
+
+================
+COLLISIONLAYERS
+================
+
+Background
+Water
+Animations
+Target
+HandleL
+HandleR
+Player, Wall, Cup
+
+======
+RULES
+======
+
+(Move cup around)
+[ > PlayerCupless | Cup ] -> [ > PlayerCupless | > Cup ] 
+[ > PlayerWithCup | Cup ] -> [ > PlayerWithCup | > Cup ]
+[ > PlayerBetweenCups | Cup ] -> [ > PlayerBetweenCups | > Cup ]
+
+(Handle moves with cup)
+[ > CupL ] [ stationary HandleL ] -> [ > CupL ] [ > HandleL ]
+[ > CupR ] [ stationary HandleR ] -> [ > CupR ] [ > HandleR ]
+[ > PermaCupL ] [ stationary HandleL ] -> [ > PermaCupL ] [ > HandleL ]
+[ > PermaCupR ] [ stationary HandleR ] -> [ > PermaCupR ] [ > HandleR ]
+
+(Handle doesn't detach)
+[ > Handle | Wall ] -> cancel
+[ > Handle | Cup | Wall ] -> cancel
+
+(Handle can't overlap cup)
+late [ CupL HandleR ] -> cancel
+late [ CupR HandleL ] -> cancel
+late [ PermaCupL HandleR ] -> cancel
+late [ PermaCupR HandleL ] -> cancel
+
+(Cup drowns in water)
+late [ CupL Water ] -> [ CupLDrown1 Water ] again sfx0
+late [ CupR Water ] -> [ CupRDrown1 Water ] again sfx0
+late [ PermaCupL Water ] -> [ CupLDrown1 Water ] again sfx0
+late [ PermaCupR Water ] -> [ CupRDrown1 Water ] again sfx0
+
+(Handle drowns too)
+[ CupLDrown1 | HandleL ] -> [ CupLDrown1 | ]
+[ CupRDrown1 | HandleR ] -> [ CupRDrown1 | ]
+
+(Player drowns in water)
+late [ Player Water ] -> [ PlayerDrown1 Water ] again sfx1
+
+(Player drowning animation)
+[PlayerDrown5] -> [ ]
+[PlayerDrown4] -> [PlayerDrown5] again
+[PlayerDrown3] -> [PlayerDrown4] again
+[PlayerDrown2] -> [PlayerDrown3] again
+[PlayerDrown1] -> [PlayerDrown2] again
+
+(CupL drowning animation)
+[CupDrown5] -> [ ]
+[CupDrown4] -> [CupDrown5] again
+[CupDrown3] -> [CupDrown4] again
+[CupDrown2] -> [CupDrown3] again
+[CupLDrown1] -> [CupDrown2] again
+
+(CupR drowning animation)
+[CupDrown5] -> [ ]
+[CupDrown4] -> [CupDrown5] again
+[CupDrown3] -> [CupDrown4] again
+[CupDrown2] -> [CupDrown3] again
+[CupRDrown1] -> [CupDrown2] again
+
+(Grab cup)
+[ action PlayerCupless HandleL | CupL ] -> [ PlayerWithCupL | CupLFloat ] sfx2
+[ action PlayerCupless HandleR | CupR ] -> [ PlayerWithCupR | CupRFloat ] sfx2
+[ action PlayerCupless HandleL | PermaCupL ] -> [ PlayerWithCupL | PermaCupLFloat ] sfx2
+[ action PlayerCupless HandleR | PermaCupR ] -> [ PlayerWithCupR | PermaCupRFloat ] sfx2
+
+(Grab cup over water)
+[ action PlayerCupless | Water HandleL | CupL ] -> [ PlayerWithCupL | Water CupLFloat |  ] sfx2
+[ action PlayerCupless | Water HandleR | CupR ] -> [ PlayerWithCupR | Water CupRFloat |  ] sfx2
+[ action PlayerCupless | Water HandleL | PermaCupL ] -> [ PlayerWithCupL | Water PermaCupLFloat |  ] sfx2
+[ action PlayerCupless | Water HandleR | PermaCupR ] -> [ PlayerWithCupR | Water PermaCupRFloat |  ] sfx2
+
+(Cup moves with player when grabbed)
+[ > PlayerWithCupL ] [ stationary CupLFloat ] -> [ > PlayerWithCupL ] [ > CupLFloat ]
+[ > PlayerWithCupR ] [ stationary CupRFloat ] -> [ > PlayerWithCupR ] [ > CupRFloat ]
+[ > PlayerWithCupL ] [ stationary PermaCupLFloat ] -> [ > PlayerWithCupL ] [ > PermaCupLFloat ]
+[ > PlayerWithCupR ] [ stationary PermaCupRFloat ] -> [ > PlayerWithCupR ] [ > PermaCupRFloat ]
+
+(Cups don't detach when grabbed)
+[ > PlayerWithCup | Wall ] -> cancel
+[ > PlayerBothCups | Wall ] -> cancel
+
+(Release cup)
+[ action PlayerWithCupL | CupLFloat ] -> [ PlayerCupless HandleL | CupL ] sfx3
+[ action PlayerWithCupR | CupRFloat ] -> [ PlayerCupless HandleR | CupR ] sfx3
+
+(Handle cups colliding)
+[ > Handle | Cup | Cup ] -> cancel
+[ > Cup | Cup ] -> cancel
+
+(Handle grabbing two cups at the same time)
+late [ PlayerCupless HandleR HandleL ] -> [ PlayerBetweenCups HandleR HandleL ]
+
+(PlayerBetweenCups turns into PlayerBothCups)
+[ CupR | action PlayerBetweenCups HandleR HandleL | CupL ] -> [ CupRFloat | PlayerBothCups | CupLFloat ] sfx2
+
+(Grabbed cups move with PlayerBothCups)
+[ stationary CupRFloat ] [> PlayerBothCups] [ stationary CupLFloat ] -> [ > CupRFloat ] [ > PlayerBothCups ] [ > CupLFloat ]
+
+(BothCups turns back into BetweenCups)
+[ CupRFloat | action PlayerBothCups | CupLFloat ] -> [ CupR | PlayerBetWeenCups HandleR HandleL | CupL ] sfx3
+
+(BetweenCups turns back into Cupless when moving out from between cups)
+late down [ PlayerBetweenCups | HandleR HandleL ] -> [ PlayerCupless | HandleR HandleL ]
+late up [ PlayerBetweenCups | HandleR HandleL ] -> [ PlayerCupless | HandleR HandleL ]
+
+(BetweenCup pushes cups left and right)
+[ > PlayerBetweenCups HandleL | CupL ] -> [ > PlayerCupless HandleL | CupL ]
+[ > PlayerBetweenCups HandleR | CupR ] -> [ > PlayerCupless HandleR | CupR ]
+
+(Player doesn't detach when grabbing cups)
+[ > Cup | Wall ] -> cancel
+
+==============
+WINCONDITIONS
+==============
+
+all Cup on Target
+all Target on Cup
+
+=======
+LEVELS
+=======
+
+message Get your coffee to the perfect spot.
+
+message Level 1 - Left
+########
+#####.o#
+#.p.#..#
+#cù.#..#
+#......#
+#...#..#
+########
+
+message Level 2 - Right
+#########
+#####o..#
+#.p.#...#
+#.úɔ#...#
+#.......#
+#...#..##
+#########
+
+message Level 3 - Why not both?
+#########
+#.p.#.o.#
+#.úɔ#...#
+#....cù.#
+#.o.#...#
+#########
+
+
+message Level 4 - Squeeze
+##########
+#o......##
+#####.o.##
+#.p.#....#
+#.úɔ#cù..#
+#........#
+#...#...##
+##########
+
+message By the way, you can press X to carry a coffee by the handle.
+
+message Level 5 - Carry
+########
+#####o.#
+#.p.#..#
+#.úɔ#..#
+#......#
+#...#..#
+########
+
+message Level 6 - Fit
+########
+##.....#
+#p..#o.#
+#...####
+##.....#
+####...#
+#úɔ....#
+########
+
+message Level 7 - Room
+########
+##...cù#
+#p..#o.#
+#...####
+##.....#
+####...#
+#úɔo...#
+########
+
+message Level 8 - Route
+##########
+#.o......#
+#.#####..#
+#...cùúɔ.#
+#######..#
+#........#
+#p.o.#####
+##########
+
+message Level 9 - Squeeze again
+#########
+#o......#
+#####.o.#
+#.p.#..##
+#.úɔ#cù##
+#......##
+#...#..##
+#########
+
+message Level 10 - Park
+##########
+#...úɔ...#
+#p..#.#..#
+#.o##cù..#
+#####...##
+#......###
+#o...#####
+##########
+
+message And now there's water.
+message Not good.
+message You can reach across it...
+message But you can't swim.
+
+message Level 11 - Grab
+######
+#..öù#
+#p.~##
+#..~##
+#.o~##
+######
+
+message The same goes for your coffee too.
+message So don't push it in the water.
+message You can carry it above though!
+
+message Level 12 - Handle
+########
+#x.....#
+#~.~~..#
+##..~~.#
+#úɔ.~~.#
+#.~~~..#
+#......#
+########
+
+message Level 13 - Extend
+######
+#..cù#
+#p~~##
+#.~~##
+#.o~##
+######
+
+message Level 14 - Lift
+#########
+#...o#p.#
+#.~.##..#
+#.~.##..#
+#....cù.#
+#########
+
+message Level 15 - Over
+########
+#x..cù.#
+#~~~~..#
+#..o~~.#
+#úɔ.~~.#
+#.~~~..#
+#......#
+#..#####
+########
+
+message Level 16 - Isle
+##########
+#.o~~úőcù#
+#.~~~~~..#
+#.~~~~~~.#
+#..~~##p.#
+#........#
+#o.#.....#
+##########
+
+message Level 17 - Cross
+##############
+#.......~ocù.#
+#...####~##..#
+##..~~~~~##.##
+##..####~##.##
+##.p........##
+#####úɔ#...o##
+##############
+
+message Level 18 - Double Espresso
+#############
+#....o.o....#
+##.~##.##~.##
+##.~~úχù~~.##
+#..~~~p~~~..#
+##..~~.~~..##
+###.......###
+###..#.#..###
+#############
+
+message Introducing the PermaCup!
+message Once you pick it up...
+message ...you can't let go!
+
+message Level 19 - Sticky
+##########
+#p.....~~#
+#..#...~.#
+#....#.öű#
+###..#.~.#
+###.o##~~#
+##########
+
+message Level 20 - Reach
+###########
+#........##
+#..##.#p.##
+#..úɔ.~..##
+#####.öű..#
+##....~...#
+##.o#.~~o~#
+###########
+
+message Level 21 - Cave
+############
+#..###.#####
+#....#...p##
+##o.cű.....#
+#######.#..#
+##...o#....#
+#..üɔ.....##
+##....#...##
+############
+
+message Level 22 - Pass
+##############
+#..###########
+#.........#o.#
+#..~.~###....#
+#..~.~###.~~.#
+#..~.cù.üɔ#~.#
+#.~~..#####~.#
+#.~~.......~.#
+#...o###.p...#
+##############
+
+message Level 23 - Stairs
+#############
+#po#####o.###
+#....###~.###
+#.~~.......##
+#.~~~..#cű###
+#..~~~....###
+##..~~##úő###
+###..~##.~###
+####.....~###
+#############
+
+message Level 24 - Order
+#############
+##op....#####
+##.o###....##
+##....#.~...#
+##.#..#.~~.~#
+##.#..#..öű~#
+##.#.....~.~#
+##.##...#..~#
+#...#####..~#
+#..úɔ......##
+#..##########
+#############
+
+(smallest possible level?)
+(#####
+#po##
+#.öù#
+#####)
+
+message You found the perfect spot!
+message Enjoy your coffees :)
+
+message Thank you for playing!

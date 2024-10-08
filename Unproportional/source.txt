@@ -89,6 +89,7 @@ SOUNDS
 =======
 
 Crate move 36772507
+(71004508 sfx for something giant happening)
 
 ================
 COLLISIONLAYERS
@@ -127,6 +128,8 @@ WINCONDITIONS
 ==============
 
 all Target on Crates
+(all Crate on Target
+all Target on Crate)
 
 =======
 LEVELS
@@ -134,7 +137,7 @@ LEVELS
 
 message Chapter 1/5 - Small
 
-message 1/4 - Genesis
+message 1/5 - Genesis
 
 (small player, small crate)
 
@@ -144,7 +147,7 @@ message 1/4 - Genesis
 #.....#
 #######
 
-message 2/4 - Surprise
+message 2/5 - Surprise
 
 ######
 #...-#
@@ -152,7 +155,7 @@ message 2/4 - Surprise
 #....#
 ######
 
-message 3/4 - Loop
+message 3/5 - Loop
 
 .#.....
 .#####.
@@ -162,7 +165,7 @@ message 3/4 - Loop
 .#...##
 .#####.
 
-message 4/4 - Click
+message 4/5 - Click
 
 ######
 #....#
@@ -172,7 +175,15 @@ message 4/4 - Click
 #####.
 .#....
 
-(there should be one that teaches that blocks can't push each other, so no trains)
+message 5/5 - Block
+
+######
+#...##
+#.#.##
+#pcco#
+###.##
+###o##
+######
 
 message Chapter 2/5 - Giant
 
@@ -257,35 +268,37 @@ message 6/ - What
 #...#..ű.ű....#
 ###############
 
-message 7/ - 
+message 7/ Attention 
 
-..#############......
-###...ő,ő....########
-#....#úúú...........#
-#....ááááá##........#
-#.....űűű.o#........#
-#.....ű.űc...c......#
-#...................#
-#..................##
-#...###...........###
-########.........####
-.......##.......#####
-........#############
+############
+#....c...o##
+#o..őőő..o##
+#..cúúú..c##
+#..ááááá..##
+#...űűű...##
+#...űcű.o###
+############
 
 message 8/ - 
 
-(valami ilyen vízszintes mozgás, hogy a lába között kell tartani,
-vagy úgy kell először mozogni, különben nem lehet megcsinálni a puzzlet)
-..#############
-###....o.....##
-#.............#
-#...őőő...##..#
-#...úúú....#..#
-#..ááááá......#
-#...űűű.......#
-#...űcűc...o..#
-#...#.........#
-###############
+#################
+####o.....o######
+####.......######
+####.őőő....#####
+####.úúúc...#####
+###.ááááá...#####
+####.űűű....#####
+####.űcű.....####
+####.@@........##
+########.......##
+##o#............#
+##.........c....#
+##.............##
+#..............##
+#..............##
+##.............##
+##...........####
+#################
 
 (playground)
 ..#############
@@ -356,6 +369,19 @@ message 3/ - Clipped
 #..#.......##
 #..óóóóó...##
 #..ó.p#ó...##
+#..ó...ó...##
+#..ó...ó...##
+#..óóóóó...##
+#############
+
+message 4/ - Fractal
+...#######...
+...#.....###.
+...#.......##
+####.....o.##
+#..#....o..##
+#..óóóóó...##
+#..ó.pcó...##
 #..ó...ó...##
 #..ó...ó...##
 #..óóóóó...##
@@ -469,3 +495,12 @@ x.....ó.............ó...........x
 x.....óóóóóóóóóóóóóóó...........x
 x...............................x
 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+
+(then an ending sequence
+where it's a country first that you have to push into a place)
+(then it's a continent)
+(then it's earth)
+(then it's solar system/galaxy?)
+(then it's just you)
+(then it warps back to the simple sokoban)
+(because the real sokoban was inside you all along)
