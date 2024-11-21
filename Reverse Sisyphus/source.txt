@@ -1,0 +1,338 @@
+title Reverse Sisyphus
+author flummox3d
+homepage flummox3d.itch.io
+again_interval 0.07
+
+========
+OBJECTS
+========
+
+Background .
+lightgreen green
+11111
+01111
+11101
+11111
+10111
+
+Target o
+darkblue
+.....
+.000.
+.0.0.
+.000.
+.....
+
+Wall #
+grey lightgray #e0e0e0
+.112.
+01112
+01112
+01111
+.000.
+
+PlayerBase p
+black orange white blue
+.000.
+.111.
+22222
+.333.
+.3.3.
+
+PlayerFall
+black orange white blue
+.000.
+.111.
+22222
+.333.
+.3.3.
+
+PlayerJumpStart
+black orange white blue
+.000.
+.111.
+22222
+.333.
+.3.3.
+
+PlayerJump
+black orange white blue
+.000.
+.111.
+22222
+.333.
+.3.3.
+
+Boulder *
+darkbrown brown orange
+.112.
+01112
+01112
+01111
+.000.
+
+BoulderFall
+darkbrown brown orange
+.112.
+01112
+01112
+01111
+.000.
+
+Flag F
+red brown
+.100.
+.1000
+.100.
+.1...
+.1...
+
+Ground G
+brown
+
+
+=======
+LEGEND
+=======
+
+@ = Boulder and Target
+Obstacle = Boulder or Wall or BoulderFall or Ground
+Player = PlayerBase or PlayerFall or PlayerJumpStart or PlayerJump
+
+=======
+SOUNDS
+=======
+
+Boulder move 65148707
+sfx0 15672902 (player crushed)
+sfx1 14459302 (boulder meets obstacle)
+sfx2 61507905 (jump)
+startgame 78599903
+endlevel 61422503
+
+================
+COLLISIONLAYERS
+================
+
+Background
+Target, Flag
+Player, Wall, Boulder, BoulderFall, Ground
+
+======
+RULES
+======
+
+(---Boulder logic---)
+
+(player pushes Boulder)
+(but doesn't during jump)
+horizontal [ > PlayerBase | Boulder ] -> [ > PlayerBase | > Boulder ] 
+
+(player pulls Boulder)
+horizontal [ action PlayerBase | Boulder ] -> [ < PlayerBase | < Boulder ]
+
+(---Gravity logic---)
+
+(If player is in the way, BoulderFall crushes them)
+random down[ BoulderFall | PlayerBase ] -> [ | BoulderFall ] again sfx0
+(Otherwise BoulderFall falls...)
+random down[ BoulderFall | No Obstacle ] -> [ | BoulderFall ] again
+(...until it hits something, then it becomes Boulder again)
+random down [ BoulderFall | Obstacle ] -> [ Boulder | Obstacle ] sfx1
+(Boulder turns into BoulderFall when nothing is below it)
+late down [ Boulder | No Obstacle ] -> [ BoulderFall | ] again
+
+(PlayerFall falls...)
+random down[ PlayerFall | No Obstacle ] -> [ | PlayerFall ] again
+(...until it hits something, then it becomes Player again)
+random down [ PlayerFall | Obstacle ] -> [ PlayerBase | Obstacle ]
+(Player turns into PlayerFall when nothing is below it)
+late down [ PlayerBase | No Obstacle ] -> [ PlayerFall | ] again
+
+(---Jumping logic---)
+horizontal [> PlayerJump | No Obstacle] -> [ | PlayerBase]
+
+random up [ Up PlayerBase | No Obstacle ] -> [  | PlayerJump ] again sfx2
+[vertical PlayerJump ] -> [PlayerBase]
+
+==============
+WINCONDITIONS
+==============
+
+all Target on Boulder
+
+=======
+LEVELS
+=======
+
+message Level 1 - Peak
+f......
+#p.....
+##.*...
+#####..
+#####o#
+#######
+#######
+
+message Level 2 - Jump
+.......
+#......
+##.*p..
+#####..
+#####o#
+#######
+#######
+
+message Level 3 - Pull
+message (Press X to pull on a boulder)
+.......
+#......
+##*.p..
+#####.#
+#####o#
+#######
+#######
+
+message Level 4 - Fill
+..*.....
+..*.....
+..*p..o.
+######.#
+######.#
+########
+########
+
+message Level 5 - Juggle
+............
+p...........
+##..........
+###*........
+#####**oo@o.
+###########.
+############
+
+message Level 6 - Support
+........
+..*.....
+..*p..o.
+#.####..
+#*......
+########
+########
+
+message Level 7 - Gather
+..........
+p.........
+#........*
+##......*#
+##..@oo*##
+#####o####
+##########
+
+message Level 8 - Tunnel
+...............
+...............
+....p..........
+#...#*.........
+##.###.*....*.#
+##.#######.####
+##..###...o####
+###.o......####
+###############
+
+message Level 9 - Cave
+...........
+...........
+..*..p.....
+#.######...
+#..*.#.....
+#o......o.*
+#.####*..##
+###########
+
+message Level 10 - No return
+#......p.......
+###....*.*.....
+####.#####.....
+###....#.......
+##....##..o...*
+##..###..####o#
+#.......#######
+#o......#######
+###############
+
+
+message Level 11 - Cling
+..................
+#p.*..............
+####..............
+####...*.*........
+##....####........
+##o...####...##...
+########....**#...
+#####o......**...o
+##################
+
+message Level 12 - Rearrange
+........*...............
+........*...............
+#*.....**...*...........
+#*o........**........*..
+#**#oo.p.###@ooo.....*..
+####o###########.....*..
+####o###########ooo..*#.
+#################o######
+########################
+
+message Level 13 - Move
+................
+p#..............
+####.*..........
+#######.*....###
+######..*.*...##
+#####...####...#
+#####..ooo.....#
+#####.##########
+################
+
+message Level 14 - Platform
+...................
+......*.#.*........
+.....#######.......
+........*..p.......
+..######*######....
+........*........##
+#ooo..#####.....###
+##############oo###
+###################
+###################
+
+message Level 15 - Getting over it
+..............
+......*.......
+.....***......
+p....***......
+#....***.##...
+##...***#####o
+##############
+##############
+##############
+
+message Level 16 - Get down, get down
+p.................
+#.................
+###...............
+#*###.............
+*#*####...........
+#*#*#*###.*.......
+*#*#*#*####.......
+#*#*#*#*###.......
+##*#*#*#*##......o
+gggggggggggggggggg
+
+
+message Well done!
+message You made it!
+message Now back to the peak with you!
+message Byeee :)
+(restarts)

@@ -1,0 +1,458 @@
+title Quantum Catfeeding
+author flummox3d
+homepage flummox3d.itch.io
+verbose_logging
+
+(Superposition Phase Entangled Quantum Shift State Collapse Boxed Unseen)
+
+(the box is both pushable and unpushable)
+(it switches around on each push)
+(so for example it starts as l-r pushable u-d unpushable)
+(then changes to l-r unpushable and u-d pushable)
+(on leaving contact it changes state? you "observed" it, now it changes)
+(or should be used by an activator)
+
+(mutant giant cat that you have to feed entangled food which is inside the boxes)
+(you have to put a V and H on the cat, so it can collapse into catfood and feed it)
+
+========
+OBJECTS
+========
+
+Background .
+lightgreen green
+11111
+01111
+11101
+11111
+10111
+
+CatFront d
+black white
+.0.0.
+01010
+00000
+..000
+..0..
+
+CatBack b
+black white
+.000.
+...00
+00000
+00000
+0...0
+
+Wall #
+grey lightgray #e0e0e0
+11122
+01112
+01112
+01111
+00000
+
+Player p
+black orange white blue
+.222.
+.232.
+22222
+.222.
+.2.2.
+
+BoxH h
+orange lightgray
+.111.
+0...0
+0...0
+0...0
+.111.
+
+SuperBoxH 1
+orange lightgray
+.111.
+0...0
+0...0
+0...0
+.111.
+
+BoxHState
+orange lightgray
+.111.
+0...0
+0...0
+0...0
+.111.
+
+BoxV u
+orange lightgray
+.000.
+1...1
+1...1
+1...1
+.000.
+
+SuperBoxV 2
+orange lightgray
+.000.
+1...1
+1...1
+1...1
+.000.
+
+BoxVState
+orange lightgray
+.000.
+1...1
+1...1
+1...1
+.000.
+
+SuperBox
+orange lightgray
+.000.
+0...0
+0...0
+0...0
+.000.
+
+
+=======
+LEGEND
+=======
+
+Box = BoxH or BoxV or SuperBox or SuperBoxH or SuperBoxV
+Cat = CatFront or CatBack
+States = BoxHState or BoxVState
+Phasable = Player or Box
+
+=======
+SOUNDS
+=======
+
+Box move 65148707
+cancel 45501704
+sfx0 4083703 (phasing)
+sfx1 25200903 (state shift)
+sfx2 98287503 (feeding)
+sfx3 23322108 (death)
+startgame 17231109
+endlevel 30822903
+
+================
+COLLISIONLAYERS
+================
+
+Background
+Cat, States
+Player, Wall, Box
+
+======
+RULES
+======
+
+(---Box logic---)
+
+(player pushes boxes)
+horizontal [ > Player | BoxH ] -> [ > Player | > BoxH ]
+vertical [ > Player | BoxV ] -> [ > Player | > BoxV ] 
+
+horizontal [ > Player | SuperBoxH ] -> [ > Player | > SuperBoxH ]
+vertical [ > Player | SuperBoxV ] -> [ > Player | > SuperBoxV ] 
+
+(when player is moving away from box, shift state)
+horizontal [ < Player | BoxH ] -> [ < Player | BoxV ] sfx1
+vertical [ < Player | BoxV ] -> [ < Player | BoxH ] sfx1
+
+(when inside the BoxV, can only move horizontal)
+vertical [ BoxVState > Player ] -> cancel
+(when inside the BoxH, can only move vertical)
+horizontal [ BoxHState > Player ] -> cancel
+
+(phase through BoxH)
+vertical [ > Player | BoxH ] -> [ | BoxHState Player ]
+late vertical [ BoxHState no Player ] -> [ BoxH ] sfx0
+
+(phase through BoxV)
+horizontal [ > Player | BoxV ] -> [ | BoxVState Player ]
+late [ BoxVState no Player ] -> [ BoxV ] sfx0
+
+(creating superbox)
+[ > BoxV | BoxH ] -> [ | SuperBox ]
+[ > BoxH | BoxV ] -> [ | SuperBox ]
+
+(trying to stop superbox pushing when it shouldn't make sense)
+horizontal [ > SuperBox | BoxH ] -> cancel
+vertical [ > SuperBox | BoxV ] -> cancel
+
+(Superbox doesn't separate near walls)
+[ > Player | SuperBox | Wall ] -> [ Player | SuperBox | Wall ]
+
+(when player pushes superbox, it separates)
+horizontal [ > Player | SuperBox | No Box  ] -> [ | BoxVState Player | BoxH ] sfx0
+vertical [ > Player | SuperBox | No Box  ] -> [ | BoxHState Player | BoxV ] sfx0
+(after separation, the boxpart can be pushed through multiple others)
+horizontal [ > Player | SuperBox | BoxV ] -> [ | BoxVState Player | SuperBox ] sfx0
+vertical [ > Player | SuperBox | BoxH ] -> [ | BoxHState Player | SuperBox ] sfx0
+
+(cat eats player)
+late [ Player CatFront ] -> [ CatFront ] sfx3
+late [ Player CatBack ] -> [ CatBack ] sfx3
+
+((superbox parts also create superboxes)
+[ > SuperBoxV | BoxH ] -> [ | SuperBox ]
+[ > SuperBoxH | BoxV ] -> [ | SuperBox ]
+
+(superbox parts shouldn't exist pushable pieces)
+late [ SuperBoxH ] -> [ BoxH ]
+late [ SuperBoxV ] -> [ BoxV ])
+
+==============
+WINCONDITIONS
+==============
+
+all Cat on Box
+
+=======
+LEVELS
+=======
+
+message Hello, and again, welcome to QAT.
+message (Quantum Aperture Technologies)
+message You've chosen or been chosen
+message to help us [REDACTED] this [REDACTED].
+
+message Your task is to collapse.
+message Not yourself, but cat food.
+message It's a bit confusing, we know.
+message You'll get the hang of it.
+message Because if you don't, you'll [REDACTED].
+
+message Okay, so, please don't be afraid,
+message but we had a little incident with the [REDACTED].
+message Nothing too major, but our office cat...
+message Well, don't worry, she's fine, she's just...
+message (calculating)
+message 1.97482 times your size.
+message But everything is under control.
+message IF you follow procedure.
+message (muffled speech in the background)
+message Right.
+message (slightly irritated muffled speech)
+message Yes, yes, I know, I won't tell about [REDACTED].
+message So, what you need to do is feed her.
+message You'll see some boxes around.
+message Most of them have cat food in it.
+message But due to the [REDACTED], the boxes are acting weird.
+
+message You'll see what I mean.
+message Please push the boxes to the cat.
+message She'll take care of the rest.
+
+message And word of advice...
+message don't get too close to her, okay?
+
+message Level 1/12 - Test
+
+########
+###db1.#
+###2##.#
+###.##.#
+#p.....#
+#......#
+########
+
+message Interesting. I'll add that to my notes.
+message As you have no doubt noticed...
+message those boxes look interesting.
+message The thing is, according to QAT expert [REDACTED]
+message they are in superposition.
+message Both solid and intagible.
+message Completely insane if you ask me.
+message But yeah, pay attention to the sides of the boxes.
+
+message Level 2/12 - State
+
+##########
+####db1..#
+####.###.#
+####...#.#
+#p..u....#
+####.....#
+##########
+
+message You may or may not have noticed...
+message but you can change the state of the boxes.
+message They don't shift when you pass by...
+message but if you move AWAY from them perpendicularly
+message that's when they shift state.
+message It's very peculiar.
+message We can't really explain it as of yet...
+message but according to [REDACTED] we are getting close.
+
+message Level 3/12 - Phase
+
+##########
+####db.###
+####...###
+####....##
+#p.hu...##
+####...###
+##########
+
+message You seem to getting the hang of it.
+message Here at QAT we like to take notes.
+message As you can see boxes can pass through each other too.
+message Very important.
+message By the way, the cat's name is Schrödinger.
+message We're very creative, I know.
+
+message Level 4/12 - Entanglement
+
+##########
+####db.###
+##.....###
+##.u#u..##
+#p......##
+####...###
+##########
+
+message Momentarily you can create a superbox...
+message when you push to opposite state boxes together.
+message It will always separate back into two halves though due to [REDACTED].
+message [REDACTED] says [REDACTED] and [REDACTED] could be [REDACTED] to mitigate this...
+message but we aren't sure about that.
+
+message Level 5/12 - Switch
+
+##########
+###....###
+##.h.u####
+##.##.db##
+#p.#....##
+##......##
+##########
+
+message Hey, you're pretty good at this.
+message So far Schrödinger is pleased.
+message I would go so far as to say...
+message she likes you.
+message But still, don't go too close, okay?
+
+message Level 6/12 - Quantum
+
+##########
+#p......##
+##.......#
+#...#h...#
+#...#u#..#
+#db.#....#
+##########
+
+message Even though Schrödinger became a giant...
+message two boxes should be enough.
+message We don't want her to become fat too.
+message Also, when you are inside a box...
+message you should be safe from Schrödinger.
+message Just so you know.
+message Could be handy.
+
+message Level 7/12 - More
+
+############
+#...##.....#
+#p.uuuuu...#
+###.###....#
+##.db.....##
+##.##...####
+##.....#####
+############
+############
+
+message See? It WAS good to know.
+message Here at QAT, we like information.
+message Helps with knowing stuff, you know?
+
+message Level 8/12 - Gates
+
+###########
+####....###
+#.......###
+#....#h####
+#.#.#.....#
+#.#h##db..#
+###u.###..#
+###p.hu...#
+########..#
+###########
+
+message Hmm... that's good to know.
+message Moving on the next test.
+message Wait, what?!
+
+message Level 9/12 - Surprise
+
+###########
+####......#
+#db.....h.#
+#.#u.#h##.#
+#.#..#..#.#
+#.#..#db#.#
+#..u.h....#
+#p...#....#
+########..#
+###########
+
+message It's a ... a...
+message a DupliCAT.
+message (muffled laughing in the background)
+message Thanks, why yes, I'm very funny.
+message Anyway, we have no [REDACTED] clue...
+message as to why Schrödinger duplicated.
+message But hey, the more, the merrier, right?
+
+message Level 10/12 - Symmetry
+
+############
+#db........#
+##.#.......#
+#...#......#
+#....hu....#
+#....uh....#
+#......#...#
+#.......#.##
+#p.......db#
+############
+
+message Level 11/12 - Feedback
+
+###########
+#...#.....#
+#...#.#...#
+#...h.h...#
+##db#..#h.#
+##db#..#u.#
+######h#..#
+##p.u.....#
+##........#
+###########
+
+message We're nearing the end now.
+message We'd love to hear feedback once we're finished.
+
+message Level 12/12 - Tour
+
+############
+#####....###
+#.uuu....###
+#..#.......#
+#..#.db##..#
+#..####db..#
+#.p...#....#
+#...uuuu...#
+#########..#
+############
+
+message Thank you for your time and help.
+message You'll be getting your settlement by [REDACTED]...
+message and as soon as we have [REDACTED] the [REDACTED].
+message Have a [REDACTED] day!
