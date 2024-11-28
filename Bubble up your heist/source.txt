@@ -1,0 +1,594 @@
+title Bubble up your heist
+author flummox3d
+homepage flummox3d.itch.io
+again_interval 0.08
+
+(Your underwater heist went wrong. You tried rob the fish bank, and during the getaway you lost all the goods inside an underwater cave. Now you have to venture deep and retrieve it all. Pressing X releases a bubble and you have to eat a bubble to regain it. Always start on big fish.
+So you can play with
+size of the fish (4 tiles / 1 tile)
+placement of gems (blow a bubble on it to make it float up a "corridor")
+placement of treasure chest
+the bubble itself (how to release it, it floats up, and then you have to recatch it to use it somewhere else to float a gem up)
+
+maybe: currents so bubbles/objects can move down
+
+so descent part 1 - and then come back up, so it's the same levels, that you have to push the chest around this time
+)
+
+========
+OBJECTS
+========
+
+Background .
+green darkgreen
+11111
+01111
+11101
+11111
+10111
+
+Wall #
+darkgrey grey #e0e0e0
+.112.
+01112
+01112
+01111
+.000.
+
+PlayerRight p
+orange white
+.....
+0.00.
+.0000
+0.00.
+.....
+
+PlayerLeft
+orange white
+.....
+.00.0
+0000.
+.00.0
+.....
+
+GemFall
+red lightred darkred
+.000.
+00000
+00000
+.000.
+..0..
+
+(GemFallStart
+red lightred darkred
+.000.
+00000
+00000
+.000.
+..0..)
+
+GemStuck
+red lightred darkred
+.000.
+00000
+00000
+.000.
+..0..
+
+Gem g 
+red lightred darkred
+.000.
+00000
+00000
+.000.
+..0..
+
+BubbleStart
+blue lightblue
+.000.
+00100
+00010
+00000
+.000.
+
+BubbleStartWithGem
+blue lightblue
+.000.
+00100
+00010
+00000
+.000.
+
+Bubble
+blue lightblue
+.000.
+00100
+00010
+00000
+.000.
+
+BubbleWithGem
+blue lightblue
+.000.
+00100
+00010
+00000
+.000.
+
+ChestTarget t
+brown yellow lightbrown
+00000
+11111
+00200
+00000
+00000
+
+Chest c
+brown yellow lightbrown
+00000
+11111
+00200
+00000
+00000
+
+Seaweed w
+lightgreen
+..0..
+.0...
+0.00.
+..0.0
+.0..0
+
+BubblePop1
+blue lightblue
+.000.
+00100
+00.10
+00.00
+.000.
+
+BubblePop2
+blue lightblue
+.000.
+00.00
+0...0
+0...0
+.000.
+
+BubblePop3
+blue lightblue
+.0.0.
+0...0
+0...0
+0....
+.....
+
+BubblePop4
+blue lightblue
+.0.0.
+0....
+.....
+.....
+.....
+
+GemPop1
+blue lightblue red
+.000.
+00100
+00210
+00200
+.000.
+
+GemPop2
+blue lightblue red
+.000.
+00200
+02220
+02220
+.000.
+
+GemPop3
+blue lightblue red
+.020.
+02220
+02220
+0222.
+..2..
+
+GemPop4
+blue lightblue red
+.020.
+02222
+22222
+.222.
+..2..
+
+=======
+LEGEND
+=======
+
+& = GemStuck and Seaweed
+Player = PlayerRight or PlayerLeft
+Pushable = Gem or GemStuck or Chest
+Target = ChestTarget
+Obstacle = Wall or Gem or Player or GemStuck
+Gems = Gem or GemFall or GemStuck or BubbleStartWithGem or BubbleWithGem or GemPop1 or GemPop2 or GemPop3 or GemPop4
+Animations = BubblePop1 or BubblePop2 or BubblePop3 or BubblePop4 or GemPop1 or GemPop2 or GemPop3 or GemPop4
+
+=======
+SOUNDS
+=======
+
+Gem move 97648907
+GemStuck move 7331907
+cancel 45501704
+sfx0 22796702 (pop)
+sfx1 59548903 (blub)
+sfx2 9551500 (+1 gem)
+
+startgame 16149103
+endlevel 18345703
+
+================
+COLLISIONLAYERS
+================
+
+Background
+BubbleStart, BubbleStartWithGem, Bubble, BubbleWithGem
+Player, Wall, Pushable, GemFall
+Target,
+Animations
+Seaweed
+
+======
+RULES
+======
+
+(--Movement--)
+[ left PlayerRight ] -> [ PlayerLeft ]
+[ right PlayerLeft ] -> [ PlayerRight ]
+
+(player pushes gems)
+horizontal [ > Player | Gem ] -> [ > Player | > Gem ]
+(if gem is inside seaweed, it can be pushed any direction while in there)
+[ > Player | GemStuck ] -> [ > Player | > GemStuck ]
+
+(--Bubbles--)
+
+(player can't create bubbles when facing walls)
+right [ action PlayerRight | Wall ] -> cancel
+left [ action PlayerLeft | Wall ] -> cancel
+
+(bubbles can envelop gems)
+right [ action PlayerRight | Gem ] -> [ PlayerRight | BubbleStartWithGem ] sfx1
+left [ action PlayerLeft | Gem ] -> [ PlayerLeft | BubbleStartWithGem ] sfx1
+right [ action PlayerRight | GemStuck Seaweed ] -> [ PlayerRight | BubbleStartWithGem Seaweed ] sfx1
+left [ action PlayerLeft | GemStuck Seaweed ] -> [ PlayerLeft | BubbleStartWithGem Seaweed ] sfx1
+
+(player creates bubbles when nothing is in front)
+right [ action PlayerRight | ] -> [ PlayerRight | BubbleStart ] sfx1
+left [ action PlayerLeft | ] -> [ PlayerLeft | BubbleStart ] sfx1
+
+(bubbles can't form close to the ceiling)
+up [ BubbleStart | Wall ] -> cancel
+(bubbles can't from immediately under a gemstuck
+it would pop anyway)
+up [ BubbleStart | GemStuck ] -> cancel
+up [ BubbleStart | Gem ] -> cancel
+(bubbles can't form on the bottom gem when gems are stacked)
+(you always have to start from the top with a tower of gems)
+up [ BubbleStartWithGem | Gem ] -> cancel
+
+(bubbles can't form inside seaweed?)
+([ BubbleStart Seaweed ] -> cancel
+[ BubbleStartWithGem Seaweed ] -> cancel )
+
+(bubble moves upward)
+late [ BubbleStart ] -> [ Bubble ] again
+late [ BubbleStartWithGem ] -> [ BubbleWithGem ] again
+[ stationary Bubble ] -> [ up Bubble ] again
+[ stationary BubbleWithGem ] -> [ up BubbleWithGem ] again
+
+(bubble pops on ceiling and on gemstuck)
+up [ Bubble | Wall ] -> [ BubblePop1 | Wall ] sfx0
+up [ BubbleWithGem | Wall ] -> [ GemPop1 | Wall ] sfx0
+up [ Bubble | GemStuck ] -> [ | GemStuck ] sfx0
+up [ BubbleWithGem | GemStuck ] -> [ GemPop1 | GemStuck ] sfx0
+
+
+(--Gems--)
+
+(can't push gem through gemstuck)
+[ > Gem | GemStuck Seaweed ] -> [ Gem | GemStuck Seaweed ]
+
+(pushing a gem into seaweed makes it stuck)
+[ > Gem | Seaweed ] -> [ | GemStuck Seaweed ]
+
+(gem goes into chest)
+late [ Gem ChestTarget ] -> [ ChestTarget ] sfx2
+
+(gem falls down when nothing is under)
+late down [ Gem | No Obstacle ] -> [ | GemFall ] again
+
+(seaweed keeps gems from falling)
+[ Gem Seaweed ] -> [ GemStuck Seaweed ]
+(but if a gem leaves seaweed, it starts to fall)
+late [ GemStuck No Seaweed ] -> [ Gem ] again
+late [ GemFall ] -> [ Gem ] again
+
+(gem has downwards gravity)
+down [ GemFall | Gem ] -> [ Gem | Gem ]
+late down [ GemFall | Wall ] -> [ Gem | Wall ]
+[ stationary GemFall ] -> [ down GemFall ] again
+
+(--Animations--)
+
+[BubblePop4] -> [] again
+[BubblePop3] -> [BubblePop4] again
+[BubblePop2] -> [BubblePop3] again
+[BubblePop1] -> [BubblePop2] again
+
+[GemPop4 Seaweed] -> [GemStuck Seaweed] again
+[GemPop4] -> [Gem] again
+[GemPop3] -> [GemPop4] again
+[GemPop2] -> [GemPop3] again
+[GemPop1] -> [GemPop2] again
+
+
+==============
+WINCONDITIONS
+==============
+
+No Gems
+
+=======
+LEVELS
+=======
+
+message Your underwater heist went wrong. 
+message You tried robbing the fish bank...
+message and during the getaway you lost all the goods...
+message inside an underwater cave. 
+message Now you have to descend and retrieve it all.
+
+message Level 1/20 - Basics
+
+#######
+#p....#
+#..g..#
+####..#
+##....#
+##...t#
+#######
+
+message Level 2/20 - Seaweed
+
+#######
+#p.www#
+#.gwww#
+####ww#
+#.....#
+##t...#
+#######
+
+message Press X to create a bubble.
+message Try encapsulating the gem with it!
+
+message Level 3/20 - Upwards
+
+#######
+#p....#
+#..g..#
+####..#
+#..w..#
+#.....#
+#t..###
+#######
+#######
+
+message Level 4/20 - Cove
+
+############
+#####www.###
+#####www.###
+######.....#
+#.###..##..#
+#..#...#...#
+#......#...#
+#p.#..g#t..#
+############
+############
+
+message Level 5/20 - More
+
+############
+#...wwww.###
+#.g..www.###
+####.....###
+#www.....###
+#.ww...#..##
+#........t##
+#pg#...#####
+############
+############
+
+message Level 6/20 - Pressure
+
+##########
+#####...##
+###......#
+###..ww.t#
+####www###
+#........#
+#.pg.....#
+##########
+##########
+
+message Level 7/20 - Careful
+
+##########
+#..&..w..#
+#...##...#
+#.p.##...#
+#...wg..t#
+##..##.###
+##..##.###
+##########
+
+message Level 8/20 - Ditch
+
+#############
+###.wwwww&w##
+#.w.....www.#
+#t..........#
+##...###g.###
+##....p######
+##...########
+##...########
+#############
+#############
+
+message Level 9/20 - Layer
+
+#############
+#ww...w.#####
+#..##...#####
+#.gp#.......#
+#####....w.t#
+#.....wwww###
+#....g....###
+######....###
+#############
+#############
+
+message Level 10/20 - Path
+
+#############
+##ww..ww....#
+#...##.###..#
+#...g..gp#.##
+##########.##
+#######ww#.##
+##..wwwww#..#
+##..##......#
+##..t#......#
+#############
+
+message Level 11/20 - Minimal
+
+#######
+#...&.#
+#..&..#
+#p##..#
+###...#
+##..#t#
+#######
+
+message Level 12/20 - Claustrophobic
+
+#######
+#pww&.#
+#www..#
+#.##..#
+#...g&#
+##..#t#
+#######
+
+message Level 13/20 - Guide
+
+#######
+#wwwww#
+#wwwww#
+#wwpww#
+#www&w#
+#wwwww#
+#.g.#t#
+#######
+
+message Level 14/20 - Fly
+
+#########
+##ww...##
+##ww##.##
+###ww#.##
+#t#ww#.##
+#.#&p#.##
+#.####..#
+#.......#
+#########
+
+message Level 15/20 - Loop
+
+##############
+##.wwwwwwwwww#
+##.#####..##.#
+##.www###.##.#
+##.w&w#t#.##.#
+##.www#.#gp#.#
+#..####.####.#
+#............#
+##############
+
+message Level 16/20 - Layers
+
+############
+##.w..######
+##..#..#####
+##pg#...####
+#####....###
+#..w.wwww###
+#.gw.w...###
+#.gw.wwww###
+###w.w..w.t#
+###w.wwww###
+##.......###
+##.......###
+############
+
+message Level 17/20 - Tower
+
+#######
+##.w.t#
+##.gw.#
+###g..#
+###g.##
+#p.g.##
+#######
+
+message Level 18/20 - Conundrum
+
+#########
+#.wt.####
+#..#.####
+##.w&&.##
+##g....##
+###.....#
+#p##..g.#
+#.....###
+#########
+
+message Level 19/20 - Trickery
+
+#########
+#.g..w&w#
+#.##w##.#
+#w#.w.#.#
+#w#.www.#
+#w#.g.#.#
+#.#####t#
+#..wwwp##
+#########
+
+message Level 20/20 - Clockwork
+
+#########
+##.w&ww.#
+#.g.##..#
+#.#.##&w#
+#.wgtw..#
+####p.g##
+#########
+
+message Congratulations!
+message You collected all goods!
+message Now get out, before the fishcops get you!
