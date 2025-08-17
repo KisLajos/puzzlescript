@@ -1,0 +1,802 @@
+title TapeLoop
+author flummox3d
+homepage flummox3d.itch.io
+
+run_rules_on_level_start
+
+realtime_interval 0.25
+
+(TODO
+[x] - indicate which way the tape goes
+[x] - Tape can be automatic
+
+mechanics
+
+[x] - Tape can be used as a means of transport
+[x] - Player can also travel tape, but leaves dust
+[x] - Magnet range is 2 blocks
+	[x] - When Magnet-Wall-Magnet, then Magnet farther becomes LockedMagnet
+[x] - CLeaner cleans DustOnTape
+	[x] - Layerwise: tape, dust, Cleaner - as dust is travelling, if it gets overlapped by cleaner, remove it
+[x] - DataOnTape can be erased
+	[x] - Layerwise: tape, data, Magnet - as data is travelling, if it gets overlapped by lockedmagnet, remove it
+[ ] - 
+[ ] - 
+[ ] - Tape can be controlled ( <<, >, [] )
+	[x] - Active with stuff
+	[ ] - Rewind changes direction
+	[ ] - Play moves tape in indicated default direction (for example when the tape is stopped by default)
+	[x] - Stop stops the tape
+    
+[ ] - Data could be specific, as in "connected" to some blocks in the game
+	[ ] - So when deleted, the object gets deleted from the world too
+)
+
+========
+OBJECTS
+========
+
+Background .
+lightblue
+
+Target ö
+darkblue
+.....
+.000.
+.0.0.
+.000.
+.....
+
+Wall #
+brown darkbrown
+00010
+11111
+01000
+11111
+00010
+
+PlayerD P
+black orange white blue grey
+.000.
+01110
+22222
+.3330
+.3.3.
+
+PlayerL
+black orange white blue grey
+.000.
+.1100
+22220
+.3330
+.3.3.
+
+PlayerR
+black orange white blue grey
+.000.
+0011.
+02222
+0333.
+.3.3.
+
+PlayerU
+black orange white blue grey
+.000.
+00000
+20002
+.303.
+.3.3.
+
+TapePushUp ↑
+black darkgray
+10001
+10001
+10001
+10001
+10001
+
+TapePushDown ↓
+black darkgray
+10001
+10001
+10001
+10001
+10001
+
+TapePushLeft «
+black darkgray
+11111
+00000
+00000
+00000
+11111
+
+TapePushRight »
+black darkgray
+11111
+00000
+00000
+00000
+11111
+
+TapeCornerPushRightDown ╗
+black darkgray
+11111
+00001
+00001
+00001
+10001
+
+TapeCornerPushRightDownStop
+black darkgray
+11111
+00001
+00001
+00001
+10001
+
+TapeCornerPushRightDownStopTemp
+black darkgray
+11111
+00001
+00001
+00001
+10001
+
+TapeCornerPushUpLeft
+black darkgray
+11111
+00001
+00001
+00001
+10001
+
+TapeTempCornerPushRightDown 
+black darkgray
+11111
+00001
+00001
+00001
+10001
+
+TapeCornerPushDownLeft ╝
+black darkgray
+10001
+00001
+00001
+00001
+11111
+
+TapeCornerPushDownLeftStop
+black darkgray
+10001
+00001
+00001
+00001
+11111
+
+TapeCornerPushDownLeftStopTemp
+black darkgray
+10001
+00001
+00001
+00001
+11111
+
+TapeCornerPushRightUp
+black darkgray
+10001
+00001
+00001
+00001
+11111
+
+TapeTempCornerPushDownLeft
+black darkgray
+10001
+00001
+00001
+00001
+11111
+
+TapeCornerPushLeftUp ╚
+black darkgray
+10001
+10000
+10000
+10000
+11111
+
+TapeCornerPushLeftUpStop
+black darkgray
+10001
+10000
+10000
+10000
+11111
+
+TapeCornerPushLeftUpStopTemp
+black darkgray
+10001
+10000
+10000
+10000
+11111
+
+TapeCornerPushDownRight
+black darkgray
+10001
+10000
+10000
+10000
+11111
+
+TapeTempCornerPushLeftUp
+black darkgray
+10001
+10000
+10000
+10000
+11111
+
+TapeCornerPushUpRight ╔ 
+black darkgray
+11111
+10000
+10000
+10000
+10001
+
+TapeCornerPushUpRightStop
+black darkgray
+11111
+10000
+10000
+10000
+10001
+
+TapeCornerPushUpRightStopTemp
+black darkgray
+11111
+10000
+10000
+10000
+10001
+
+TapeTempCornerPushUpRight
+black darkgray
+11111
+10000
+10000
+10000
+10001
+
+TapeCornerPushLeftDown
+black darkgray
+11111
+10000
+10000
+10000
+10001
+
+TapeTempLeft
+black darkgray
+11111
+00000
+00000
+00000
+11111
+
+TapeTempRight
+black darkgray
+11111
+00000
+00000
+00000
+11111
+
+TapeTempUp
+black darkgray
+10001
+10001
+10001
+10001
+10001
+
+TapeTempDown
+black darkgray
+10001
+10001
+10001
+10001
+10001
+
+TapePushUpStop
+black grey
+00000
+00100
+01010
+00000
+00000
+
+TapePushDownStop
+black grey
+00000
+00000
+01010
+00100
+00000
+
+TapePushLeftStop
+black grey
+00000
+00100
+01000
+00100
+00000
+
+TapePushRightStop
+black grey
+00000
+00100
+00010
+00100
+00000
+
+TapePushUpStopTemp
+black grey
+00000
+00100
+01010
+00000
+00000
+
+TapePushDownStopTemp
+black grey
+00000
+00000
+01010
+00100
+00000
+
+TapePushLeftStopTemp
+black grey
+00000
+00100
+01000
+00100
+00000
+
+TapePushRightStopTemp
+black grey
+00000
+00100
+00010
+00100
+00000
+
+Cleaner *
+orange
+00000
+0...0
+0...0
+0...0
+00000
+
+Magnet M
+grey
+00000
+0...0
+0...0
+0...0
+00000
+
+LockedMagnet
+grey
+00000
+0...0
+0...0
+0...0
+00000
+
+RandomDataOnTape
+white
+.....
+.000.
+.000.
+.000.
+.....
+
+DustOnTape
+yellow
+.....
+.00..
+.....
+..00.
+.....
+
+PlayerOnTape
+black orange white blue
+.....
+..1..
+.222.
+.3.3.
+.....
+
+CleanerOnTape
+orange
+.....
+.000.
+.0.0.
+.000.
+.....
+
+IndicatorUp
+black grey darkgray
+.....
+..1..
+.1.1.
+.....
+.....
+IndicatorDown
+black grey darkgray
+.....
+.....
+.1.1.
+..1..
+.....
+
+IndicatorLeft
+black grey darkgray
+.....
+..1..
+.1...
+..1..
+.....
+
+IndicatorRight Ś
+black grey darkgray
+.....
+..1..
+...1.
+..1..
+.....
+
+RewindButton 1
+lightbrown
+.....
+.0..0
+0..0.
+.0..0
+.....
+
+ActiveRewindButton
+lightbrown
+.....
+.0..0
+0..0.
+.0..0
+.....
+
+PlayButton 2
+lightbrown
+.....
+..0..
+...0.
+..0..
+.....
+
+StopButton 3
+lightbrown
+.....
+.000.
+.000.
+.000.
+.....
+
+Wheel o
+white
+.000.
+0.0.0
+0...0
+0.0.0
+.000.
+
+Wheel1
+white
+.000.
+0.0.0
+0...0
+0.0.0
+.000.
+
+Wheel2
+white
+.000.
+0..00
+0...0
+00..0
+.000.
+
+Wheel3
+white
+.000.
+0...0
+00.00
+0...0
+.000.
+
+Wheel4
+white
+.000.
+00..0
+0...0
+0..00
+.000.
+
+Wheel5
+white
+.000.
+0.0.0
+0...0
+0.0.0
+.000.
+
+=======
+LEGEND
+=======
+
+@ = Cleaner and Target
+Ř = Cleaner and TapePushRight
+$ = IndicatorRight and TapePushRight
+; = RandomDataOnTape and TapePushUp
+{ = PlayerOnTape and TapePushDown
+} = CleanerOnTape and TapePushLeft
+
+TapeStraight = TapePushUp or TapePushDown or TapePushLeft or TapePushRight
+TapeCorners = TapeCornerPushRightDown or TapeCornerPushDownLeft or TapeCornerPushLeftUp or TapeCornerPushUpRight or TapeCornerPushUpLeft or TapeCornerPushRightUp or TapeCornerPushDownRight or TapeCornerPushLeftDown
+TapeTempStraight = TapeTempLeft or TapeTempRight or TapeTempUp or TapeTempDown
+TapeTempCorners = TapeTempCornerPushRightDown or TapeTempCornerPushDownLeft or TapeTempCornerPushLeftUp or TapeTempCornerPushUpRight
+TapeNoMoves = TapePushUpStop or TapePushDownStop or TapePushRightStop or TapePushLeftStop or TapePushUpStopTemp or TapePushDownStopTemp or TapePushLeftStopTemp or TapePushRightStopTemp or TapeCornerPushRightDownStop or TapeCornerPushRightDownStopTemp or TapeCornerPushDownLeftStop or TapeCornerPushDownLeftStopTemp or TapeCornerPushLeftUpStop or TapeCornerPushLeftUpStopTemp or TapeCornerPushUpRightStop or TapeCornerPushUpRightStopTemp
+
+Tapes = TapeStraight or TapeCorners or TapeNoMoves or TapeTempStraight or TapeTempCorners
+
+TapeTravelPossible = Cleaner or Magnet or RandomDataOnTape or PlayerOnTape or CleanerOnTape
+
+Indicators = IndicatorUp or IndicatorDown or IndicatorLeft or IndicatorRight
+
+StuffOnTape = RandomDataOnTape or CleanerOnTape or PlayerOnTape
+
+Pushable = Magnet or Cleaner or LockedMagnet
+
+Player = PlayerU or PlayerL or PlayerR or PlayerD
+
+Obstacle = Player or Wall or Cleaner or Pushable
+
+Magnets = LockedMagnet or Magnet
+
+Buttons = RewindButton or PlayButton or StopButton or ActiveRewindButton
+
+Wheels = Wheel or Wheel1 or Wheel2 or Wheel3 or Wheel4 or Wheel5
+
+=======
+SOUNDS
+=======
+
+(Cleaner move 36772507)
+
+================
+COLLISIONLAYERS
+================
+
+Background
+Target, Tapes
+Indicators
+StuffOnTape
+DustOnTape
+Buttons, Wheels
+Player, Wall, Pushable
+
+======
+RULES
+======
+
+[ stationary Wall ] [ Wheel4 ] -> [ stationary Wall ] [ Wheel5 ]
+[ stationary Wall ] [ Wheel3 ] -> [ stationary Wall ] [ Wheel4 ]
+[ stationary Wall ] [ Wheel2 ] -> [ stationary Wall ] [ Wheel3 ]
+[ stationary Wall ] [ Wheel1 ] -> [ stationary Wall ] [ Wheel2 ]
+[ stationary Wall ] [ Wheel ] -> [ stationary Wall ] [ Wheel1 ]
+[ stationary Wall ] [ Wheel5 ] -> [ stationary Wall ] [ Wheel ]
+
+up [ > PlayerU ] -> [ > PlayerU ]
+down [ > PlayerU ] -> [ > PlayerD ]
+left [ > PlayerU ] -> [ > PlayerL ]
+right [ > PlayerU ] -> [ > PlayerR ]
+
+up [ > PlayerD ] -> [ > PlayerU ]
+down [ > PlayerD ] -> [ > PlayerD ]
+left [ > PlayerD ] -> [ > PlayerL ]
+right [ > PlayerD ] -> [ > PlayerR ]
+
+up [ > PlayerL ] -> [ > PlayerU ]
+down [ > PlayerL ] -> [ > PlayerD ]
+left [ > PlayerL ] -> [ > PlayerL ]
+right [ > PlayerL ] -> [ > PlayerR ]
+
+up [ > PlayerR ] -> [ > PlayerU ]
+down [ > PlayerR ] -> [ > PlayerD ]
+left [ > PlayerR ] -> [ > PlayerL ]
+right [ > PlayerR ] -> [ > PlayerR ]
+
+(Push stuff)
+[ > Player | Pushable ] -> [ > Player | > Pushable ] 
+
+(Tape is moving)
+(straight paths)
+up [ stationary Player ] [ TapeTravelPossible TapePushUp ] -> [ Player ] [ > TapeTravelPossible TapePushUp ]
+down [ stationary Player ] [ TapeTravelPossible TapePushDown ] -> [ Player ] [ > TapeTravelPossible TapePushDown ]
+left [ stationary Player ] [ TapeTravelPossible TapePushLeft ] -> [ Player ] [ > TapeTravelPossible TapePushLeft ]
+right [ stationary Player ] [ TapeTravelPossible TapePushRight ] -> [ Player ] [ > TapeTravelPossible TapePushRight ]
+
+(corners)
+down [ stationary Player ] [ TapeTravelPossible TapeCornerPushRightDown ] -> [ Player ] [ > TapeTravelPossible TapeCornerPushRightDown ]
+left [ stationary Player ] [ TapeTravelPossible TapeCornerPushDownLeft ] -> [ Player ] [ > TapeTravelPossible TapeCornerPushDownLeft ]
+up [ stationary Player ] [ TapeTravelPossible TapeCornerPushLeftUp ] -> [ Player ] [ > TapeTravelPossible TapeCornerPushLeftUp ]
+right [ stationary Player ] [ TapeTravelPossible TapeCornerPushUpRight ] -> [ Player ] [ > TapeTravelPossible TapeCornerPushUpRight ]
+
+(Indicator moving)
+up [ stationary Player ] [ IndicatorUp TapePushUp ] -> [ Player ] [ > IndicatorUp TapePushUp ]
+down [ stationary Player ] [ IndicatorDown TapePushDown ] -> [ Player ] [ > IndicatorDown TapePushDown ]
+left [ stationary Player ] [ IndicatorLeft TapePushLeft ] -> [ Player ] [ > IndicatorLeft TapePushLeft ]
+right [ stationary Player ] [ IndicatorRight TapePushRight ] -> [ Player ] [ > IndicatorRight TapePushRight ]
+
+down [ stationary Player ] [ IndicatorRight TapeCornerPushRightDown ] -> [ Player ] [ > IndicatorDown TapeCornerPushRightDown ]
+left [ stationary Player ] [ IndicatorDown TapeCornerPushDownLeft ] -> [ Player ] [ > IndicatorLeft TapeCornerPushDownLeft ]
+up [ stationary Player ] [ IndicatorLeft TapeCornerPushLeftUp ] -> [ Player ] [ > IndicatorUp TapeCornerPushLeftUp ]
+right [ stationary Player ] [ IndicatorUp TapeCornerPushUpRight ] -> [ Player ] [ > IndicatorRight TapeCornerPushUpRight ]
+
+late [ IndicatorRight TapePushDown ] -> [ IndicatorDown TapePushDown ]
+late [ IndicatorDown TapePushLeft ] -> [ IndicatorLeft TapePushLeft ]
+late [ IndicatorLeft TapePushUp ] -> [ IndicatorUp TapePushUp ]
+late [ IndicatorUp TapePushRight ] -> [ IndicatorRight TapePushRight ]
+
+(Player leaves dust on tape)
+[ > Player Tapes ] -> [ > Player DustOnTape Tapes ]
+
+(Magnets have max range 2)
+(when next to each other)
+late [ Magnet | Magnet ] -> [ LockedMagnet | LockedMagnet ]
+(when one empty space apart)
+late [ Magnet | | Magnet ] -> [ LockedMagnet | | LockedMagnet ]
+(when separated by an obstacle)
+late [ Magnet | Obstacle  | Magnet ] -> [ LockedMagnet | Obstacle | LockedMagnet ]
+(if there's no Obstacle, click together)
+late [ LockedMagnet | No Obstacle | LockedMagnet ] -> [ LockedMagnet | LockedMagnet |  ]
+(LockedMagnets move together)
+[ > LockedMagnet ] [ stationary LockedMagnet ] -> [ > LockedMagnet ] [ > LockedMagnet ]
+(LockedMagnets don't separate upon wall contact)
+[ > LockedMagnet | Wall ] -> cancel
+
+(Cleaner cleans dust)
+late [ Cleaner DustOnTape ] -> [ Cleaner ]
+
+(Magnet clears data)
+[ > RandomDataOnTape Magnets ] -> [ Magnets ]
+[ > PlayerOnTape Magnets ] [ Player ] -> [ Magnets ] [ ]
+(no playerontape means no player)
+[ > CleanerOnTape Magnets ] [ Cleaner ] -> [ Magnets ] [ ]
+
+
+(Buttons)
+(Stop button)
+late [ Pushable StopButton ] [ TapePushRight ] -> [ Pushable StopButton ] [ TapePushRightStopTemp ]
+late [ StopButton no Pushable ] [ TapePushRightStop ] -> [ StopButton ] [ TapePushRight ]
+late [ StopButton no Pushable ] [ TapePushRightStopTemp ] -> [ StopButton ] [ TapePushRight ]
+late [ TapePushRightStopTemp ] -> [ TapePushRightStop ]
+
+late [ Pushable StopButton ] [ TapePushLeft ] -> [ Pushable StopButton ] [ TapePushLeftStopTemp ]
+late [ StopButton no Pushable ] [ TapePushLeftStop ] -> [ StopButton ] [ TapePushLeft ]
+late [ StopButton no Pushable ] [ TapePushLeftStopTemp ] -> [ StopButton ] [ TapePushLeft ]
+late [ TapePushLeftStopTemp ] -> [ TapePushLeftStop ]
+
+late [ Pushable StopButton ] [ TapePushUp ] -> [ Pushable StopButton ] [ TapePushUpStopTemp ]
+late [ StopButton no Pushable ] [ TapePushUpStop ] -> [ StopButton ] [ TapePushUp ]
+late [ StopButton no Pushable ] [ TapePushUpStopTemp ] -> [ StopButton ] [ TapePushUp ]
+late [ TapePushUpStopTemp ] -> [ TapePushUpStop ]
+
+late [ Pushable StopButton ] [ TapePushDown ] -> [ Pushable StopButton ] [ TapePushDownStopTemp ]
+late [ StopButton no Pushable ] [ TapePushDownStop ] -> [ StopButton ] [ TapePushDown ]
+late [ StopButton no Pushable ] [ TapePushDownStopTemp ] -> [ StopButton ] [ TapePushDown ]
+late [ TapePushDownStopTemp ] -> [ TapePushDownStop ]
+
+late [ Pushable StopButton ] [ TapeCornerPushRightDown ] -> [ Pushable StopButton ] [ TapeCornerPushRightDownStopTemp ]
+late [ StopButton no Pushable ] [ TapeCornerPushRightDownStop ] -> [ StopButton ] [ TapeCornerPushRightDown ]
+late [ StopButton no Pushable ] [ TapeCornerPushRightDownStopTemp ] -> [ StopButton ] [ TapeCornerPushRightDown ]
+late [ TapeCornerPushRightDownStopTemp ] -> [ TapeCornerPushRightDownStop ]
+
+late [ Pushable StopButton ] [ TapeCornerPushDownLeft ] -> [ Pushable StopButton ] [ TapeCornerPushDownLeftStopTemp ]
+late [ StopButton no Pushable ] [ TapeCornerPushDownLeftStop ] -> [ StopButton ] [ TapeCornerPushDownLeft ]
+late [ StopButton no Pushable ] [ TapeCornerPushDownLeftStopTemp ] -> [ StopButton ] [ TapeCornerPushDownLeft ]
+late [ TapeCornerPushDownLeftStopTemp ] -> [ TapeCornerPushDownLeftStop ]
+
+late [ Pushable StopButton ] [ TapeCornerPushLeftUp ] -> [ Pushable StopButton ] [ TapeCornerPushLeftUpStopTemp ]
+late [ StopButton no Pushable ] [ TapeCornerPushLeftUpStop ] -> [ StopButton ] [ TapeCornerPushLeftUp ]
+late [ StopButton no Pushable ] [ TapeCornerPushLeftUpStopTemp ] -> [ StopButton ] [ TapeCornerPushLeftUp ]
+late [ TapeCornerPushLeftUpStopTemp ] -> [ TapeCornerPushLeftUpStop ]
+
+late [ Pushable StopButton ] [ TapeCornerPushUpRight ] -> [ Pushable StopButton ] [ TapeCornerPushUpRightStopTemp ]
+late [ StopButton no Pushable ] [ TapeCornerPushUpRightStop ] -> [ StopButton ] [ TapeCornerPushUpRight ]
+late [ StopButton no Pushable ] [ TapeCornerPushUpRightStopTemp ] -> [ StopButton ] [ TapeCornerPushUpRight ]
+late [ TapeCornerPushUpRightStopTemp ] -> [ TapeCornerPushUpRightStop ]
+
+(TODO: for rewind should be separate state instead of switching between pushleft and pushright - it should be fx pushleft -> pushreversed -> pushright, so that ps can correctly keep track of states instead of switching everything around immediately)
+ 
+
+([ Player RewindButton ] [ TapePushUp ] -> [ Player RewindButton ] [ TapePushDown ]
+
+[ Player RewindButton ] [ TapePushLeft ] -> [ Player RewindButton ] [ TapePushRight ]
+
+[ Player RewindButton ] [ TapeCornerPushUpRight ] -> [ Player RewindButton ] [ TapeCornerPushLeftDown ]
+
+[ Player RewindButton ] [ TapeCornerPushLeftUp ] -> [ Player RewindButton ] [ TapeCornerPushDownRight ])
+
+(late [ CanPushButton Button ] [ ExitClosed ] -> [ CanPushButton Button ] [ ExitWaiting ]
+late [ Button no CanPushButton ] [ ExitOpened ] -> [ Button ] [ ExitClosed ] sfx2
+late [ Button no CanPushButton ] [ ExitWaiting ] -> [ Button ] [ ExitClosed ]
+late [ ExitWaiting ] -> [ ExitOpened ] sfx3)
+
+==============
+WINCONDITIONS
+==============
+
+all Target on Cleaner
+
+=======
+LEVELS
+=======
+
+(tape)
+╔ř»»»╗
+↑.ö#.↓
+↑..##↓
+↑@p..↓
+↑..*.↓
+↑..##↓
+╚««««╝
+
+(TODO: not enought corners, what if tape direction is reversed by default?)
+╔««»«╗
+↓.o..↑
+↓..##↑
+↓@p..↑
+↓..*.↑
+↓..##↑
+╚$»»»╝
+
+(magnet)
+╔$»»»╗
+↑.o#.↓
+↑..##↓
+↑mp..↓
+↑..m.↓
+↑..##↓
+╚««««╝
+
+(buttons)
+╔$ř»»╗
+↑.o#.↓
+↑..##↓
+↑@p..↓
+↑.1*.↓
+↑..##↓
+╚««««╝
+
+(removing data from tape)
+╔»ř»$╗
+↑.ö#.↓
+↓.p##{
+↑m.*.↓
+↑..m.↓
+↑..##↓
+╚«}««╝
+

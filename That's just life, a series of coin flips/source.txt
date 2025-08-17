@@ -1,0 +1,1108 @@
+title That's just life, a series of coin flips
+author flummox3d
+homepage flummox3d.itch.io
+again_interval 0.08
+
+========
+OBJECTS
+========
+
+Background .
+lightgreen #35654d
+11111
+11111
+11111
+11111
+11111
+
+TargetH o
+darkblue
+.....
+.0.0.
+.000.
+.0.0.
+.....
+
+TargetT x
+darkblue
+.....
+.000.
+..0..
+..0..
+.....
+
+Wall #
+brown darkbrown
+11111
+00000
+00000
+00000
+11111
+
+WallV ö
+brown darkbrown
+10001
+10001
+10001
+10001
+10001
+
+WallCornerUL ü
+brown darkbrown
+11111
+10000
+10000
+10000
+10001
+
+WallCornerUR ó
+brown darkbrown
+11111
+00001
+00001
+00001
+10001
+
+WallCornerDL ő
+brown darkbrown
+10001
+10000
+10000
+10000
+11111
+
+WallCornerDR ú
+brown darkbrown
+10001
+00001
+00001
+00001
+11111
+
+WallCornerULNPX â
+brown darkbrown
+11111
+10000
+10000
+10000
+10000
+
+WallCornerURNPX ä
+brown darkbrown
+11111
+00001
+00001
+00001
+00001
+
+WallCornerDLNPX ů
+brown darkbrown
+10000
+10000
+10000
+10000
+11111
+
+WallCornerDRNPX ć
+brown darkbrown
+00001
+00001
+00001
+00001
+11111
+
+WallTPieceR é
+brown darkbrown
+10001
+10000
+10000
+10000
+10001
+
+WallTPieceL á
+brown darkbrown
+10001
+00001
+00001
+00001
+10001
+
+WallTPieceU ű
+brown darkbrown
+10001
+00000
+00000
+00000
+11111
+
+WallTPieceD í
+brown darkbrown
+11111
+00000
+00000
+00000
+10001
+
+WallClosedR 3
+brown darkbrown
+11111
+00001
+00001
+00001
+11111
+
+WallClosedL 4
+brown darkbrown
+11111
+10000
+10000
+10000
+11111
+
+WallClosedU 5
+brown darkbrown
+10001
+10001
+10001
+10001
+11111
+
+WallClosedD 6
+brown darkbrown
+11111
+10001
+10001
+10001
+10001
+
+WallOnlyL 7
+brown darkbrown
+10000
+10000
+10000
+10000
+10000
+
+WallOnlyR 8
+brown darkbrown
+00001
+00001
+00001
+00001
+00001
+
+WallOnlyU 9
+brown darkbrown
+11111
+00000
+00000
+00000
+00000
+
+WallOnlyD 0
+brown darkbrown
+00000
+00000
+00000
+00000
+11111
+
+WallEmpty ,
+brown darkbrown
+00000
+00000
+00000
+00000
+00000
+
+WallEnclosed Ť
+brown darkbrown
+11111
+10001
+10001
+10001
+11111
+
+WallOnlyLCPXU {
+brown darkbrown
+10001
+10000
+10000
+10000
+10000
+
+WallOnlyLCPXD }
+brown darkbrown
+10000
+10000
+10000
+10000
+10001
+
+WallOnlyRCPXU î
+brown darkbrown
+10001
+00001
+00001
+00001
+00001
+
+WallOnlyRCPXD Ź
+brown darkbrown
+00001
+00001
+00001
+00001
+10001
+
+WallOnlyDCPXL Ď
+brown darkbrown
+10000
+00000
+00000
+00000
+11111
+
+WallOnlyDCPXR ~
+brown darkbrown
+00001
+00000
+00000
+00000
+11111
+
+WallOnlyUCPXL ⌂
+brown darkbrown
+11111
+00000
+00000
+00000
+10000
+
+WallOnlyUCPXR Ç
+brown darkbrown
+11111
+00000
+00000
+00000
+00001
+
+WallOnlyCPXUR Ĺ
+brown darkbrown
+00001
+00000
+00000
+00000
+00000
+
+WallOnlyCPXUL ô
+brown darkbrown
+10000
+00000
+00000
+00000
+00000
+
+WallOnlyCPXDL ľ
+brown darkbrown
+00000
+00000
+00000
+00000
+10000
+
+WallOnlyCPXDR Ś
+brown darkbrown
+00000
+00000
+00000
+00000
+00001
+
+Player p
+black orange white
+.000.
+.111.
+20202
+.000.
+.0.0.
+
+CoinH H
+lightbrown yellow
+.000.
+01010
+01110
+01010
+.000.
+
+CoinHStart
+lightbrown yellow
+.000.
+01010
+01110
+01010
+.000.
+
+CoinHEnd
+lightbrown yellow
+.000.
+01010
+01110
+01010
+.000.
+
+CoinH2
+lightbrown yellow white
+.200.
+21010
+01110
+01010
+.000.
+
+CoinH3
+lightbrown yellow white
+.020.
+02010
+21110
+01010
+.000.
+
+CoinH4
+lightbrown yellow white
+.002.
+01210
+02110
+21010
+.000.
+
+CoinH5
+lightbrown yellow white
+.000.
+01020
+01210
+02010
+.000.
+
+CoinH6
+lightbrown yellow white
+.000.
+01012
+01120
+01210
+.200.
+
+CoinH7
+lightbrown yellow white
+.000.
+01010
+01112
+01020
+.020.
+
+CoinH8
+lightbrown yellow white
+.000.
+01010
+01110
+01012
+.002.
+
+CoinT T
+lightbrown yellow
+.000.
+01110
+00100
+00100
+.000.
+
+CoinTB 
+lightbrown yellow
+.000.
+01110
+00100
+00100
+.000.
+
+CoinTStart
+lightbrown yellow
+.000.
+01110
+00100
+00100
+.000.
+
+CoinTEnd
+lightbrown yellow
+.000.
+01110
+00100
+00100
+.000.
+
+CoinT2
+lightbrown yellow white
+.200.
+21110
+00100
+00100
+.000.
+
+CoinT3
+lightbrown yellow white
+.020.
+02110
+20100
+00100
+.000.
+
+CoinT4
+lightbrown yellow white
+.002.
+01210
+02100
+20100
+.000.
+
+CoinT5
+lightbrown yellow white
+.000.
+01120
+00200
+02100
+.000.
+
+CoinT6
+lightbrown yellow white
+.000.
+01112
+00120
+00200
+.200.
+
+CoinT7
+lightbrown yellow white
+.000.
+01110
+00102
+00120
+.020.
+
+CoinT8
+lightbrown yellow white
+.000.
+01110
+00100
+00102
+.002.
+
+(CoinMidFlipT2
+lightbrown
+..0..
+..0..
+..0..
+..0..
+..0..
+
+CoinMidHFlipH2
+lightbrown
+..0..
+..0..
+..0..
+..0..
+..0..)
+
+CoinMidFlipTL
+lightbrown
+..0..
+..0..
+..0..
+..0..
+..0..
+
+CoinMidFlipTR
+lightbrown
+..0..
+..0..
+..0..
+..0..
+..0..
+
+CoinMidFlipTU
+lightbrown
+.....
+.....
+00000
+.....
+.....
+
+CoinMidFlipTD
+lightbrown
+.....
+.....
+00000
+.....
+.....
+
+CoinMidFlipTL2
+lightbrown
+..0..
+..0..
+..0..
+..0..
+..0..
+
+CoinMidFlipTR2
+lightbrown
+..0..
+..0..
+..0..
+..0..
+..0..
+
+CoinMidFlipTU2 2
+lightbrown
+.....
+.....
+00000
+.....
+.....
+
+CoinMidFlipTD2
+lightbrown
+.....
+.....
+00000
+.....
+.....
+
+CoinMidFlipHL
+lightbrown
+..0..
+..0..
+..0..
+..0..
+..0..
+
+CoinMidFlipHR
+lightbrown
+..0..
+..0..
+..0..
+..0..
+..0..
+
+CoinMidFlipHU
+lightbrown
+.....
+.....
+00000
+.....
+.....
+
+CoinMidFlipHD
+lightbrown
+.....
+.....
+00000
+.....
+.....
+
+CoinMidFlipHL2
+lightbrown
+..0..
+..0..
+..0..
+..0..
+..0..
+
+CoinMidFlipHR2 1
+lightbrown
+..0..
+..0..
+..0..
+..0..
+..0..
+
+CoinMidFlipHU2
+lightbrown
+.....
+.....
+00000
+.....
+.....
+
+CoinMidFlipHD2
+lightbrown
+.....
+.....
+00000
+.....
+.....
+
+VSlot I
+grey
+00.00
+00.00
+00.00
+00.00
+00.00
+
+VSlotWithCoin
+grey lightbrown
+00100
+00100
+00100
+00100
+00100
+
+VSlotWithCoin2
+grey lightbrown
+00100
+00100
+00.00
+00100
+00100
+
+VSlotWithCoin3
+grey lightbrown
+00100
+00.00
+0...0
+00.00
+00100
+
+VSlotWithCoin4
+grey
+00.00
+0...0
+.....
+0...0
+00.00
+
+VSlotWithCoin5
+grey
+0...0
+.....
+.....
+.....
+0...0
+
+HSlot -
+grey
+00000
+00000
+.....
+00000
+00000
+
+HSlotWithCoin
+grey lightbrown
+00000
+00000
+11111
+00000
+00000
+
+HSlotWithCoin2
+grey lightbrown
+00000
+00000
+11.11
+00000
+00000
+
+HSlotWithCoin3
+grey lightbrown
+00000
+00.00
+1...1
+00.00
+00000
+
+HSlotWithCoin4
+grey lightbrown
+00.00
+0...0
+.....
+0...0
+00.00
+
+HSlotWithCoin5
+grey
+0...0
+.....
+.....
+.....
+0...0
+
+FlipWall F
+brown darkbrown grey
+00000
+00100
+01010
+10001
+00000
+
+=======
+LEGEND
+=======
+
+@ = Player and TargetH
+
+CoinsMidFlipH = CoinMidFlipHL or CoinMidFlipHR or CoinMidFlipHU or CoinMidFlipHD
+CoinsMidFlipT = CoinMidFlipTL or CoinMidFlipTR or CoinMidFlipTU or CoinMidFlipTD
+CoinsTransition = CoinsMidFlipH or CoinsMidFlipT
+
+CoinsMidFlipH2 = CoinMidFlipHL2 or CoinMidFlipHR2 or CoinMidFlipHU2 or CoinMidFlipHD2
+CoinsMidFlipT2 = CoinMidFlipTL2 or CoinMidFlipTR2 or CoinMidFlipTU2 or CoinMidFlipTD2
+
+CoinsOnEdgeV = CoinMidFlipHL2 or CoinMidFlipHR2 or CoinMidFlipTL2 or CoinMidFlipTR2
+CoinsOnEdgeH = CoinMidFlipHU2 or CoinMidFlipHD2 or CoinMidFlipTU2 or CoinMidFlipTD2
+CoinsOnEdge = CoinsOnEdgeV or CoinsOnEdgeH
+
+Coins = CoinH or CoinT or CoinTB or CoinsTransition or CoinsOnEdge or CoinHEnd or CoinTEnd
+
+Targets = TargetH or TargetT
+
+Slots = HSlot or HSlotWithCoin or VSlot or VSlotWithCoin
+
+Walls = Wall or WallV or WallCornerUL or WallCornerUR or WallCornerDL or WallCornerDR or WallTPieceR or WallTPieceL or WallTPieceU or WallTPieceD or WallClosedR or WallClosedL or WallClosedU or WallClosedD or WallOnlyL or WallOnlyR or WallOnlyU or WallOnlyD or WallEmpty or WallEnclosed or WallOnlyLCPXU or WallOnlyRCPXD or WallOnlyUCPXL or WallOnlyUCPXR or WallOnlyDCPXL or WallOnlyDCPXR or WallCornerULNPX or WallCornerURNPX or WallCornerDLNPX or WallCornerDRNPX or WallOnlyLCPXD or WallOnlyRCPXU or WallOnlyCPXUR or WallOnlyCPXUL or WallOnlyCPXDL or WallOnlyCPXDR
+
+Anim = VSlotWithCoin2 or VSlotWithCoin3 or VSlotWithCoin4 or VSlotWithCoin5 or HSlotWithCoin2 or HSlotWithCoin3 or HSlotWithCoin4 or HSlotWithCoin5 or CoinH2 or CoinH3 or CoinH4 or CoinH5 or CoinH6 or CoinH7 or CoinH8 or CoinHStart or CoinT2 or CoinT3 or CoinT4 or CoinT5 or CoinT6 or CoinT7 or CoinT8 or CoinTStart
+
+=======
+SOUNDS
+=======
+
+Coins move 36772507
+sfx0 86526100 ( 34577900 (coin shing))
+startgame 78144108
+
+================
+COLLISIONLAYERS
+================
+
+Background
+Targets
+Anim
+Player, Walls, Coins, Slots, FlipWall
+
+======
+RULES
+======
+
+
+(I feel like this could be solved easier :D)
+left [ > Player | CoinH ] -> [ > Player | > CoinMidFlipHL ] 
+right [ > Player | CoinH ] -> [ > Player | > CoinMidFlipHR ]
+up [ > Player | CoinH ] -> [ > Player | > CoinMidFlipHU ]
+down [ > Player | CoinH ] -> [ > Player | > CoinMidFlipHD ]
+
+late [ CoinMidFlipHL ] -> [ CoinMidFlipHL2 ]
+late [ CoinMidFlipHR ] -> [ CoinMidFlipHR2 ]
+late [ CoinMidFlipHU ] -> [ CoinMidFlipHU2 ]
+late [ CoinMidFlipHD ] -> [ CoinMidFlipHD2 ]
+
+left [ > Player | CoinMidFlipHL2 ] -> [ > Player | > CoinTB ]
+right [ > Player | CoinMidFlipHR2 ] -> [ > Player | > CoinTB ]
+up [ > Player | CoinMidFlipHU2 ] -> [ > Player | > CoinTB ]
+down [ > Player | CoinMidFlipHD2 ] -> [ > Player | > CoinTB ]
+
+late [ CoinTB ] -> [ CoinT ]
+late [ CoinTB ] -> [ CoinT ]
+late [ CoinTB ] -> [ CoinT ]
+late [ CoinTB ] -> [ CoinT ]
+
+left [ > Player | CoinT ] -> [ > Player | > CoinMidFlipTL ] 
+right [ > Player | CoinT ] -> [ > Player | > CoinMidFlipTR ]
+up [ > Player | CoinT ] -> [ > Player | > CoinMidFlipTU ]
+down [ > Player | CoinT ] -> [ > Player | > CoinMidFlipTD ]
+
+late [ CoinMidFlipTL ] -> [ CoinMidFlipTL2 ]
+late [ CoinMidFlipTR ] -> [ CoinMidFlipTR2 ]
+late [ CoinMidFlipTU ] -> [ CoinMidFlipTU2 ]
+late [ CoinMidFlipTD ] -> [ CoinMidFlipTD2 ]
+
+left [ > Player | CoinMidFlipTL2 ] -> [ > Player | > CoinH ]
+right [ > Player | CoinMidFlipTR2 ] -> [ > Player | > CoinH ]
+up [ > Player | CoinMidFlipTU2 ] -> [ > Player | > CoinH ]
+down [ > Player | CoinMidFlipTD2 ] -> [ > Player | > CoinH ]
+
+vertical [> Player | CoinMidFlipHL2 ] -> [ > Player | > CoinMidFlipHL2 ]
+vertical [> Player | CoinMidFlipHR2 ] -> [ > Player | > CoinMidFlipHR2 ]
+vertical [> Player | CoinMidFlipTL2 ] -> [ > Player | > CoinMidFlipTL2 ]
+vertical [> Player | CoinMidFlipTR2 ] -> [ > Player | > CoinMidFlipTR2 ]
+
+horizontal [> Player | CoinMidFlipHU2 ] -> [ > Player | > CoinMidFlipHU2 ]
+horizontal [> Player | CoinMidFlipHD2 ] -> [ > Player | > CoinMidFlipHD2 ]
+horizontal [> Player | CoinMidFlipTU2 ] -> [ > Player | > CoinMidFlipTU2 ]
+horizontal [> Player | CoinMidFlipTD2 ] -> [ > Player | > CoinMidFlipTD2 ]
+
+right [ > Player | CoinMidFlipTL2 ] -> [ > Player | > CoinT ]
+left [ > Player | CoinMidFlipTR2 ] -> [ > Player | > CoinT ]
+down [ > Player | CoinMidFlipTU2 ] -> [ > Player | > CoinT ]
+up [ > Player | CoinMidFlipTD2 ] -> [ > Player | > CoinT ]
+
+right [ > Player | CoinMidFlipHL2 ] -> [ > Player | > CoinH ]
+left [ > Player | CoinMidFlipHR2 ] -> [ > Player | > CoinH ]
+down [ > Player | CoinMidFlipHU2 ] -> [ > Player | > CoinH ]
+up [ > Player | CoinMidFlipHD2 ] -> [ > Player | > CoinH ]
+
+[ > Player | > Coins | Walls ] -> cancel
+[ > Player | > Coins | Coins ] -> cancel
+[ > Player | > CoinH | Slots ] -> cancel
+([ > Player | > CoinH | VSlot ] -> cancel)
+[ > Player | > CoinT | Slots ] -> cancel
+[ > Player | > CoinTB | Slots ] -> cancel
+[ > Player | > CoinsOnEdgeH | VSlot ] -> cancel
+[ > Player | > CoinsOnEdgeV | HSlot ] -> cancel
+([ > Player | > CoinsMidFlipH | VSlot ] -> cancel
+[ > Player | > CoinsMidFlipT | HSlot ] -> cancel)
+[ > Player | > CoinsTransition | Slots ] -> cancel
+
+
+[ > CoinsOnEdgeV | VSlot ] -> [ | VSlotWithCoin ]
+[ > CoinsOnEdgeH | HSlot ] -> [ | HSlotWithCoin ]
+
+[ VSlotWithCoin5 ] -> [  ] again
+[ VSlotWithCoin4 ] -> [ VSlotWithCoin5 ] again
+[ VSlotWithCoin3 ] -> [ VSlotWithCoin4 ] again
+[ VSlotWithCoin2 ] -> [ VSlotWithCoin3 ] again
+[ VSlotWithCoin ] -> [ VSlotWithCoin2 ] again
+
+[ HSlotWithCoin5 ] -> [  ] again
+[ HSlotWithCoin4 ] -> [ HSlotWithCoin5 ] again
+[ HSlotWithCoin3 ] -> [ HSlotWithCoin4 ] again
+[ HSlotWithCoin2 ] -> [ HSlotWithCoin3 ] again
+[ HSlotWithCoin ] -> [ HSlotWithCoin2 ] again
+
+late [ CoinH TargetH ] -> [ CoinHStart TargetH ] again
+late [ CoinT TargetT ] -> [ CoinTStart TargetT ] again
+
+[ CoinH8 ] -> [ CoinHEnd ] again 
+[ CoinH7 ] -> [ CoinH8 ] again
+[ CoinH6 ] -> [ CoinH7 ] again
+[ CoinH5 ] -> [ CoinH6 ] again
+[ CoinH4 ] -> [ CoinH5 ] again
+[ CoinH3 ] -> [ CoinH4 ] again
+[ CoinH2 ] -> [ CoinH3 ] again
+[ CoinHStart ] -> [ CoinH2 ] again sfx0
+
+[ CoinT8 ] -> [ CoinTEnd ] again 
+[ CoinT7 ] -> [ CoinT8 ] again
+[ CoinT6 ] -> [ CoinT7 ] again
+[ CoinT5 ] -> [ CoinT6 ] again
+[ CoinT4 ] -> [ CoinT5 ] again
+[ CoinT3 ] -> [ CoinT4 ] again
+[ CoinT2 ] -> [ CoinT3 ] again
+[ CoinTStart ] -> [ CoinT2 ] again sfx0
+
+(late [ HSlotWithCoin2 ] -> [ ] (sfx)
+late [ VSlotWithCoin2 ] -> [ ] (sfx))
+
+
+(TODO: have an arcade, where you insert the coin into the slot, and you gain control of another "player" and you have to solve a different puzzle, to get more coins to solve the main puzzle)
+
+(TODO: midflip mystery, mert amikor nyitásnál az élén van, nem tudod melyik az,
+úgyhogy lehet literal coin flip a legvégén
+és lehet az a pálya neve, hogy time travel or not)
+
+(have a surface, where it's possible to keep flipping the coin)
+
+==============
+WINCONDITIONS
+==============
+
+all TargetH on CoinHEnd
+all TargetT on CoinTEnd
+
+=======
+LEVELS
+=======
+
+message Level 1 - Easy
+ü###ó
+öp..ö
+é3h4á
+ö...ö
+ö.x.ö
+ö...ö
+ő###ú
+
+message Level 2 - Loop
+ü####ó
+ö....ö
+öp43.ö
+ö.h..ö
+{99ä.ö
+7,,8oö
+ů00~#ú
+
+message Level 3 - Double
+ü#####ó
+ö....pö
+ö.4#3.ö
+ö.h.x.ö
+ö.4#3.ö
+ö.o.t.ö
+ö.4#3.ö
+ö.....ö
+ő#####ú
+
+message Level 4 - Roll
+ü#####ó
+öp....ö
+{äh6xâî
+78.ö.78
+78.ö.78
+}ć.5.78
+ö....78
+ö....78
+ő####ďć
+
+message Level 5 - Edge
+âç##⌂ä
+}ć..78
+öpt.ůź
+é3...ö
+ö....ö
+ö...oö
+ő####ú
+
+message Level 6 - Deja Vu
+âç##⌂ä
+}ć..78
+öph.ůź
+é3...ö
+ö....ö
+ö...oö
+ő####ú
+
+message Level 7 - Playground
+ü####ó
+öp...ö
+ö.t..ö
+ö....ö
+ö....ö
+ö....ö
+{9ä.xö
+ů0~##ú
+
+message Level 8 - Duality
+ü#####⌂ç#ó
+öp....78xö
+ö..43.78.ö
+ö.h...78.ö
+ö.ť...ůć.ö
+ö........ö
+{99ä.....ö
+7,,ĺ99999î
+ů00000000ć
+
+message Level 9 - Deja Vu
+ü#####⌂ç#ó
+öp....78xö
+ö..43.78.ö
+ö.t...78.ö
+ö.ť...ůć.ö
+ö........ö
+{99ä.....ö
+7,,ĺ99999î
+ů00000000ć
+
+message Level 10 - Stuck
+â9ç#⌂9ä
+7,8p7,8
+}0ćtů0ź
+ö.....ö
+ö.hox.ö
+ö.....ö
+ö.....ö
+{ä...âî
+ů~###ďć
+
+message Level 11 - Careful
+
+âç#######ó
+78.......ö
+78.p.4#3.ö
+78....x..ö
+7ĺ9ä.â999î
+7,,8o7,,,8
+}00ć2ůľ,,8
+ö.....7,,8
+ö.h...7,,8
+ö....âô,,8
+ö....7,,,8
+ő####ď000ć
+
+message Level 12 - Order
+ü########ó
+öp.......ö
+ö..o43h..ö
+ö.t.....xö
+{9ä.âä.â9î
+7,8.78.7,8
+}0ć.ůć.7,8
+ö.h...x7,8
+ö....â9ô,8
+ö...âô,,,8
+ő###ď0000ć
+
+message Level 13 - Deceptive
+ü#####ó
+ö....xö
+ö..th.ö
+ö..@4#á
+ö...t.ö
+ö....oö
+ő#####ú
+
+message Level 14 - Junction
+ü####⌂ç##ó
+ö....78..ö
+ö.p..ůź..ö
+ö.ť..oö..ö
+ö.1..âî..ö
+ö.âä.}~#⌂î
+ö.ůźhö..ůź
+ö..5.5...ö
+ö.t.x1...ö
+ö.o.âäo..ö
+ö..âô8..âî
+ő##ď0~##ďć
+
+message Level 15 - Compact
+ü####⌂ç##ó
+ö....78oxö
+ö.t..78o.ö
+ö.ph.ůć..ö
+ö.t......ö
+ö........ö
+ő########ú
+
+message Level 16  - That's just life, a series of coin flips
+ü####í###ó
+öo...5..xö
+ö....1...ö
+ö....6...ö
+ö...pé324á
+é324íú...ö
+ö...ö....ö
+ö...5...xö
+öo..1..â9î
+{999ä..7,8
+ů000~##ď0ć
+
+message Thank you for playing! :)
+
+
+
+
+(Living on the edge)
+
+(you should take notes)
+
+(tour de coins)
+
+(that's just life, a series of coin flips)

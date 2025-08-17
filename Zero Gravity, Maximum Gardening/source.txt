@@ -1,0 +1,772 @@
+title All in a box / Gardening in Space
+author flummox3d
+homepage flummox3d.itch.io
+(debug)
+(verbose_logging)
+
+realtime_interval 0.08
+
+(Zero G(ardening))
+(Zero Gravity, Maximum Gardening)
+
+========
+OBJECTS
+========
+
+Background .
+#ffc black
+11111
+01111
+11101
+11111
+10111
+
+BoxLeftTop 1
+orange green
+1....
+0....
+0....
+0....
+0....
+
+CornerLeftBottom 2
+orange
+0....
+0....
+0....
+0....
+00000
+
+BoxRightTop 3
+orange green
+....1
+....0
+....0
+....0
+....0
+
+CornerRightBottom 4
+orange
+....0
+....0
+....0
+....0
+00000
+
+BoxBottomMiddle 5
+orange
+.....
+.....
+.....
+.....
+00000
+
+BoxRightMiddle 6
+orange
+....0
+....0
+....0
+....0
+....0
+
+BoxLeftMiddle 7
+orange
+0....
+0....
+0....
+0....
+0....
+
+BoxTopMiddle ♥
+orange
+00000
+.....
+.....
+.....
+.....
+
+Wall #
+lightgray gray
+00000
+01010
+00000
+01010
+00000
+
+LeftOpenLeftTop Ř
+orange green
+10000
+.....
+.....
+.....
+.....
+
+LeftOpenBoxLeftBottom ■
+orange green
+.....
+.....
+.....
+.....
+10000
+
+CornerRightTop ☺
+orange green
+00000
+....0
+....0
+....0
+....0
+
+Player P
+white lightblue white white
+.000.
+.011.
+22222
+.333.
+.3.3.
+
+CornerLeftTop ♦
+orange green
+00000
+0....
+0....
+0....
+0....
+
+RightOpenBoxRightTop ♠
+orange green
+00001
+.....
+.....
+.....
+.....
+
+RightOpenBoxRightBottom •
+orange green
+.....
+.....
+.....
+.....
+00001
+
+Ground *
+brown
+00000
+00000
+00000
+00000
+00000
+
+GrassGround G
+brown green
+11111
+00000
+00000
+00000
+00000
+
+GrassGroundLeft č
+brown green
+10000
+10000
+10000
+10000
+10000
+
+GrassGroundRight ×
+brown green
+00001
+00001
+00001
+00001
+00001
+
+GrassGroundBottom á
+brown green
+00000
+00000
+00000
+00000
+11111
+
+TempGround
+darkbrown
+00000
+00000
+00000
+00000
+00000
+
+TempGround1
+darkbrown brown
+00000
+00000
+00000
+00000
+01111
+
+TempGround2
+darkbrown brown
+00000
+00000
+00011
+01111
+11111
+
+TempGround3
+darkbrown brown
+00001
+00011
+01111
+11111
+11111
+
+TempGround4
+darkbrown brown
+00011
+00111
+11111
+11111
+11111
+
+TempGrassGround
+darkbrown darkgreen
+11111
+00000
+00000
+00000
+00000
+
+TempGrassGround1
+darkbrown brown darkgreen green
+22222
+00000
+00000
+00000
+01111
+
+TempGrassGround2
+darkbrown brown darkgreen green
+22222
+00000
+00011
+01111
+11111
+
+TempGrassGround3
+darkbrown brown darkgreen green
+22223
+00011
+01111
+11111
+11111
+
+TempGrassGround4
+darkbrown brown darkgreen green
+22233
+00111
+11111
+11111
+11111
+
+TempGroundEnd
+brown green
+00000
+00000
+00000
+00000
+00000
+
+TempGrassGroundEnd
+brown green
+11111
+00000
+00000
+00000
+00000
+
+
+DarkGround -
+darkbrown
+00000
+00000
+00000
+00000
+00000
+
+DarkGrassGround D
+darkbrown darkgreen
+11111
+00000
+00000
+00000
+00000
+
+DarkGrassGroundLeft
+darkbrown darkgreen
+10000
+10000
+10000
+10000
+10000
+
+DarkGrassGroundRight
+darkbrown darkgreen
+00001
+00001
+00001
+00001
+00001
+
+DarkGrassGroundBottom
+darkbrown darkgreen
+00000
+00000
+00000
+00000
+11111
+
+BottomOpenBoxLeftBottom ○
+orange green
+0....
+0....
+0....
+0....
+1....
+
+BottomOpenBoxRightBottom ♂
+orange green
+....0
+....0
+....0
+....0
+....1
+
+Water O
+blue white
+00000
+01000
+00000
+00100
+00000
+
+BoxEmptySpace 8
+transparent
+
+BoxEmptySpaceTop !
+transparent
+
+=======
+LEGEND
+=======
+
+@ = Ground and CornerLeftBottom
+; = Ground and CornerRightBottom
+~ = Ground and BoxLeftTop
+ˇ = Ground and BoxRightTop
+° = GrassGround and BoxRightTop
+
+Temps = TempGround or TempGround1 or TempGround2 or TempGround3 or TempGround4 or TempGrassGround or TempGrassGround1 or TempGrassGround2 or TempGrassGround3 or TempGrassGround4 or TempGroundEnd or TempGrassGroundEnd
+
+(LeftOpenBox = LeftOpenLeftTop or LeftOpenBoxLeftBottom
+RightOpenBox = RightOpenBoxRightTop or RightOpenBoxRightBottom
+BottomOpenBox = BottomOpenBoxLeftBottom or BottomOpenBoxRightBottom
+
+OtherBoxes = LeftOpenBox or RightOpenBox or BottomOpenBox)
+Corners = CornerRightTop or CornerLeftTop or CornerLeftBottom or CornerRightBottom
+
+BoxGreenTip = BoxLeftTop or BoxRightTop or LeftOpenLeftTop or LeftOpenBoxLeftBottom or RightOpenBoxRightTop or RightOpenBoxRightBottom or BottomOpenBoxLeftBottom or BottomOpenBoxRightBottom
+
+(TODO: Have BoxEmptyGreenSpaces for Left, Right and Bottom
+so 3 or more correctly placed GrassGrounds also lead to a win)
+BoxGreenTipTop = BoxLeftTop or BoxRightTop
+BoxGreenTipLeft = LeftOpenLeftTop or LeftOpenBoxLeftBottom
+BoxGreenTipRight = RightOpenBoxRightTop or RightOpenBoxRightBottom
+BoxGreenTipBottom = BottomOpenBoxLeftBottom or BottomOpenBoxRightBottom
+
+BoxTop = CornerLeftTop or CornerRightTop or BoxTopMiddle or LeftOpenLeftTop or RightOpenBoxRightTop
+BoxBottom = CornerLeftBottom or CornerRightBottom or BoxBottomMiddle or LeftOpenBoxLeftBottom or RightOpenBoxRightBottom
+BoxLeft = BoxLeftTop or BoxLeftMiddle or CornerLeftBottom or CornerLeftTop or BottomOpenBoxLeftBottom
+(BoxLeftPushFromInside = BoxLeftTop or BoxLeftMiddle)
+BoxRight = BoxRightTop or BoxRightMiddle or CornerRightBottom or CornerRightTop or BottomOpenBoxRightBottom
+(BoxRightPushFromInside = BoxRightTop or BoxRightMiddle)
+BoxMiddle = BoxLeftMiddle or BoxRightMiddle or BoxEmptySpace or BoxEmptySpaceTop or BoxTopMiddle
+
+Box = BoxGreenTip or BoxTop or BoxMiddle or BoxBottom
+BoxRest = BoxLeftMiddle or BoxRightMiddle or BoxBottomMiddle or BoxTopMiddle or Corners or BoxEmptySpace
+
+Grounds = Ground or DarkGround
+GrassGroundOrientations = GrassGround or GrassGroundLeft or GrassGroundRight or GrassGroundBottom
+DarkGrassGroundOrientations = DarkGrassGround or DarkGrassGroundLeft or DarkGrassGroundRight or DarkGrassGroundBottom
+GrassGrounds = GrassGroundOrientations or DarkGrassGroundOrientations
+Revivable = DarkGround or DarkGrassGround
+Pushable = Grounds or GrassGrounds
+
+=======
+SOUNDS
+=======
+
+Ground move 36772507
+
+================
+COLLISIONLAYERS
+================
+
+Background
+Player, Wall, Pushable, Water, Temps
+Box
+
+======
+RULES
+======
+
+[TempGrassGround4] -> [ TempGrassGroundEnd ]
+[TempGrassGround3] -> [TempGrassGround4] again
+[TempGrassGround2] -> [TempGrassGround3] again
+[TempGrassGround1] -> [TempGrassGround2] again
+[TempGrassGround] -> [TempGrassGround1] again
+
+[TempGround4] -> [ TempGroundEnd ]
+[TempGround3] -> [TempGround4] again
+[TempGround2] -> [TempGround3] again
+[TempGround1] -> [TempGround2] again
+[TempGround] -> [TempGround1] again
+
+(rotate ground mechanics?
+like a rotation arrow that when overlapped rotates the ground clockwise)
+
+(push grounds)
+[ > Player | Pushable ] -> [ > Player | > Pushable ] 
+([ > Pushable | Pushable Box ] -> [ > Pushable | > Pushable Box ])
+(right [ > Pushable | Pushable BoxRight ] -> [ > Pushable | > Pushable BoxRight ]
+left [ > Pushable | Pushable BoxLeft ] -> [ > Pushable | > Pushable BoxLeft ])
+
+(push water)
+[ > Player | Water ] -> [ > Player | > Water ] 
+[ > Water | DarkGrassGround ] -> [ | TempGrassGround ]
+[ > Water | DarkGround ] -> [ | TempGround ]
+
+
+(Propagate to adjacent tiles (repeat this rule for all 4 directions))
+[ TempGroundEnd | DarkGrassGround ] -> [ TempGroundEnd | TempGrassGround ]
+[ TempGrassGroundEnd | DarkGrassGround ] -> [ TempGrassGroundEnd | TempGrassGround ]
+
+[ TempGroundEnd | DarkGround ] -> [ TempGroundEnd | TempGround ]
+[ TempGrassGroundEnd | DarkGround ] -> [ TempGrassGroundEnd | TempGround ]
+
+[ TempGroundEnd ] -> [ Ground ]
+[ TempGrassGroundEnd ] -> [ GrassGround ]
+([ Grounds | DarkGround ] -> [ Grounds | TempGrassGround ])
+
+(Convert all Temp to their final state)
+([ TempGrassGround ] -> [ GrassGround ]
+[ TempGround ] -> [ Ground ])
+([ Grounds | DarkGround ] -> [ Grounds | Ground ]
+[ Grounds | DarkGrassGround ] -> [ Grounds | GrassGround ])
+
+
+(grounds don't clip through the pot from the inside)
+(left [ > Pushable | BoxRight ] -> cancel)
+left [ > Pushable | BoxRight ] -> [ Pushable | BoxRight ]
+(right [ BoxRight > Pushable ] -> cancel)
+(right [ BoxRight > Pushable ] -> [ BoxRight Pushable ])
+
+(right [ > Pushable | BoxLeft ] -> cancel)
+right [ > Pushable | BoxLeft ] -> [ Pushable | BoxLeft ]
+(left [ BoxLeft > Pushable ] -> cancel)
+(left [ BoxLeft > Pushable ] -> [ BoxLeft Pushable ])
+
+down [ BoxBottom > Pushable ] -> [ > BoxBottom > Pushable ]
+left [ BoxLeft > Pushable ] -> [ > BoxLeft > Pushable ]
+right [ BoxRight > Pushable ] -> [ > BoxRight > Pushable ]
+
+left [ > Pushable | CornerRightBottom ] -> cancel
+(right [ BoxRightBottom > Pushable ] -> cancel ([ > BoxRightBottom > Pushable ]))
+
+up [ > Pushable | CornerRightBottom ] -> cancel
+(down [ BoxRightBottom > Pushable ] -> cancel ([ > BoxRightBottom > Pushable ]))
+
+up [ > Pushable | CornerLeftBottom ] -> cancel
+(down [ BoxLeftBottom > Pushable ] -> cancel)
+
+down [ BoxBottomMiddle > Pushable ] -> cancel
+up [ BoxTopMiddle > Pushable ] -> cancel
+
+(push sides of pots from outside)
+left [ > Player | BoxRight ] -> [ > Player | > BoxRight ]
+right [ > Player | BoxLeft ] -> [ > Player | > BoxLeft ]
+up [ > Player | BoxBottom ] -> [ > Player | > BoxBottom ]
+down [ > Player | BoxTop ] -> [ > Player | > BoxTop ]
+
+(push sides of pots from the inside)
+right [ > Player BoxRight ] -> [ > Player > BoxRight ]
+left [ > Player BoxLeft ] -> [ > Player > BoxLeft ]
+up [ > Player BoxTop ] -> [ > Player > BoxTop ]
+down [ > Player BoxBottom ] -> [ > Player > BoxBottom ]
+
+([ > Player | Pushable Box ] -> [ > Player | > Pushable Box ])
+
+(pot sides move together)
+[ > Box ] [ stationary Box ] -> [ > Box ] [ > Box ]
++ [ up BoxBottom Pushable | BoxGreenTip Pushable | Pushable ] -> cancel (this part fixes clipping the pot through grounds)
+[ > Box Pushable ] [ stationary Box ] -> [ > Box Pushable ] [ > Box ]
+[ > Box ] [ Pushable Box ] -> [ > Box ] [ > Pushable Box ]
+[ > Box | Wall ] -> cancel
+
+
+(don't push pot through multiple grounds)
+
+
+left [ > BoxLeft | Pushable ] -> cancel
+right [ > BoxRight | Pushable ] -> cancel
+down [ > BoxBottom | Pushable ] -> cancel
+(down [ Pushable | BoxTop Pushable | up BoxBottom Pushable ] -> cancel)
+([ up BoxBottom Pushable | BoxTop Pushable | Pushable ] -> cancel)
+
+(up [ > BoxLeft Pushable | ... | BoxTop Pushable | Pushable ] -> cancel
++ down [ Pushable | BoxTop Pushable | ... | BoxBottom Pushable ] -> cancel)
+
+==============
+WINCONDITIONS
+==============
+
+all BoxGreenTipTop on GrassGround
+all BoxGreenTipLeft on GrassGroundLeft
+all BoxGreenTipRight on GrassGroundRight
+
+all BoxGreenTipBottom on GrassGroundBottom
+all BoxRest on Ground
+
+=======
+LEVELS
+=======
+
+(explain or show: you have to arrange the grounds preemptively
+otherwise you might not be able to fill the pot)
+(explain or show: ground sticks to the pot)
+(explain or show: you still pull the ground when inside the pot
+for example when its above you overlapping an emptyspace in a bigger pot)
+
+message Welcome to Space Station Zeta.
+message Your mission is top secret.
+message During one of our routine spacewalks, we discovered some unidentified seeds.
+message Your job is to cultivate the seeds, so we can figure out what are they and if they are useful for us.
+
+message Level 1 - Seeds on top
+
+######
+#....#
+#.#g.#
+#.pg.#
+#....#
+##13##
+##@;##
+######
+
+message Level 2 - Pot movement
+
+#######
+#p.#..#
+##g#g.#
+#..#..#
+#13...#
+#@;...#
+#######
+
+message Level 3 - Fill the pot with soil
+
+#####
+#...#
+#.g.#
+#.g.#
+#*..#
+#p*.#
+#13##
+#24##
+#####
+
+message Level 4 - Pot movement #2
+
+#######
+#p....#
+#13#g.#
+#2;*..#
+#.g...#
+#.....#
+#######
+
+message Level 5 - Pot sizes
+
+..####....
+###..#####
+#...p..gg#
+#.*.13...#
+#...76.*.#
+#.*.24.*.#
+#........#
+##########
+
+message Level 6 - Remember, order matters
+
+######
+#g...#
+#.*..#
+#p.*.#
+#.1°.#
+#.24.#
+#....#
+######
+
+message Level 7 - Stash
+
+#########
+####..###
+#pg...###
+#...1ˇg.#
+##..@4..#
+#########
+#########
+
+message Level 8 - Pot sizes
+
+############
+#p..#..#...#
+#.g.#..#g..#
+#.g.#*.#...#
+#1!3.....*.#
+#@54.......#
+############
+
+message Level 9 - Breach
+
+########
+#..g...#
+#..g...#
+####*..#
+#p.#*..#
+#13....#
+#24....#
+#####..#
+########
+
+message Level 10 - Revive with water
+#######
+#po.dd#
+###.--#
+#.13..#
+#.24..#
+#.....#
+#######
+
+########
+###....#
+#po.dd.#
+###.--.#
+##13...#
+#.24.###
+#....#o#
+########
+
+(later)
+######
+#....#
+#.od.#
+#.pd.#
+#.--.#
+##13##
+##24##
+######
+
+######
+#....#
+#.od.#
+#.pd.#
+#.--.#
+##13##
+##24##
+######
+
+message Level - Experimental pots
+#########
+####..###
+#..p.g..#
+##1..**.#
+##25....#
+#########
+#########
+
+###########
+###g......#
+###1.p..**#
+###213...*#
+#.g.24.g..#
+#...####..#
+###########
+
+###########
+###g......#
+###1.p..**#
+###213...*#
+#.g.24.g..#
+#...####..#
+###########
+
+################
+#..............#
+#..13.ř☺.♦♠.♦☺.#
+#..24.■4.2•.○♂.#
+#..............#
+#..p...........#
+#.##...........#
+#..g...........#
+#..............#
+################
+
+################
+#..............#
+#..13.ř☺.♦♠.♦☺.#
+#..76..6.7..76.#
+#..24.■4.2•.○♂.#
+#..............#
+#..p...........#
+#.##...........#
+#..g...........#
+#..............#
+################
+
+....######
+#####....#
+####.....#
+#..p.....#
+##♦♠.*.×.#
+##2•.*.×.#
+##########
+##########
+
+#########
+#.......#
+#..p.č..#
+#....č..#
+#.*ř☺...#
+#.*■4...#
+#########
+
+#########
+#.......#
+#..p....#
+#.♦☺....#
+#.○♂....#
+#.**....#
+#.......#
+#.áá....#
+#.......#
+#########
+
+(pot already stacked, but have to rearrange)
+
+(pot can separate grounds if you don't fit to pull out pieces)
+
+(dead grounds + water
+use water as last, otherwise wasted)
+
+(remote control pot)

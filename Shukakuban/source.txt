@@ -1,0 +1,482 @@
+title Shukakuban
+author flummox3d
+homepage flummox3d.itch.io
+
+(Main inspirations are Carry roast from coast to coast
+and Zen Puzzle Garden)
+
+========
+OBJECTS
+========
+
+Background
+lightgreen green
+11111
+11111
+11111
+11111
+11111
+
+Wall
+brown darkbrown
+00010
+11111
+01000
+11111
+00010
+
+PlayerToolless P
+brown orange white blue
+.000.
+.111.
+23232
+.333.
+.3.3.
+
+PlayerWithTool
+brown orange white blue
+.000.
+.111.
+23232
+.333.
+.3.3.
+
+PlayerWithSeeds
+brown orange white blue
+.000.
+.111.
+23232
+.333.
+.3.3.
+
+Crate
+orange
+00000
+0...0
+0...0
+0...0
+00000
+
+Soil S
+#964B00
+
+PlowedSoil X
+#964B00 black
+00000
+01110
+00000
+00111
+00000
+
+SeededSoil
+#964B00 yellow 
+00000
+01010
+00000
+00100
+10000
+
+Wheat I
+yellow
+00.00
+0..0.
+0..0.
+0.0..
+0..0.
+
+CutWheat
+yellow
+00...
+000..
+.....
+...00
+..000
+
+Plow 7
+darkbrown grey white
+.....
+00000
+111.0
+112..
+12...
+(can only be pulled, has to plow all areas)
+
+SeedSack D
+yellow brown
+.00..
+..11.
+.000.
+00000
+.000.
+
+(carry, so you become 2part, trail behind it depending on which direction you grabbed it
+can only follow previous path
+can't cross over it player, because it ruins the patch
+)
+
+(plow & seeds on the same level - phase 1)
+("time passes")
+(sickle & container on same level - phase 2)
+(so one level is two levels essentially)
+
+SeedSackGrabbed
+yellow brown
+.00..
+..11.
+.000.
+00000
+.000.
+
+Sickle /
+grey white brown
+.0002
+11112
+...2.
+..2..
+.2...
+(carry, so you become 2part, you can't walk on what you reaped
+and in all directions player has to be first and the sickle the second
+go through each wheat patch)
+
+SickleGrabbed
+grey white brown
+.0002
+11112
+...2.
+..2..
+.2...
+
+Container U
+grey white
+0...0
+0...0
+0...0
+0...0
+.000.
+
+(push or pull
+collects the wheat)
+
+
+=======
+LEGEND
+=======
+
+. = Background
+# = Wall
+* = Crate
+
+Player = PlayerToolless or PlayerWithTool or PlayerWithSeeds
+Soils = Soil or PlowedSoil or SeededSoil
+Tools = Plow or SeedSack or Sickle or Container or SeedSackGrabbed or SickleGrabbed
+Pullable = Plow or Container
+Carriable = Sickle or SeedSack
+Colliders = Plow or SeedSack or Sickle or Container or Wall or Crate
+
+=======
+SOUNDS
+=======
+
+(start)
+startgame 69327903
+
+sfx0 28016907 (plow)
+sfx1 38857703 (pickup seeds/sickle)
+sfx2 4956302 (plant)
+sfx3 41798903 (put down seeds/sickle)
+sfx4 73113707 (cut) 
+sfx5 73592503 (collect)
+sfx6 49342508 (time passes)
+cancel 74645702
+
+endlevel 58597903 
+
+================
+COLLISIONLAYERS
+================
+
+Background
+Soils
+Player, Wall, Crate, Tools
+Wheat, CutWheat
+
+======
+RULES
+======
+
+(Push container)
+[ > Player | Container ] -> [ > Player | > Container ] 
+
+(Pull plow)
+[ < Player | Plow ] -> [ < Player | < Plow ]
+[ > Player | Wall ] -> cancel
+
+(Carry SeedSack)
+[ action PlayerToolless | SeedSack ] -> [ PlayerWithSeeds | SeedSackGrabbed ] sfx1
+[ > PlayerWithSeeds ] [ stationary SeedSackGrabbed ] -> [ > PlayerWithSeeds ] [ > SeedSackGrabbed ]
+
+(Put down seedsack)
+[ action PlayerWithSeeds | SeedSackGrabbed ] -> [ PlayerToolless | SeedSack ] sfx3
+
+(Carry sickle)
+[ action PlayerToolless | Sickle ] -> [ PlayerWithTool | SickleGrabbed ] sfx1
+[ > PlayerWithTool ] [ stationary SickleGrabbed ] -> [ > PlayerWithTool ] [ > SickleGrabbed ]
+
+(Put down sickle)
+[ action PlayerWithTool | SickleGrabbed ] -> [ PlayerToolless | Sickle ] sfx3
+
+(No detaching from grabbed stuff)
+[ > SickleGrabbed | Colliders ] -> cancel
+[ > SeedSackGrabbed | Colliders ] -> cancel
+[ > PlayerWithTool | Colliders ] -> cancel
+[ > PlayerWithSeeds | Colliders ] -> cancel
+
+(Plow mechanics)
+[ Soil > Plow ] -> [ PlowedSoil > Plow ] sfx0
+([ > Plow | SeededSoil ] -> cancel)
+
+(Seedsack mechanics)
+[ PlowedSoil > PlayerWithSeeds ] -> [ SeededSoil > PlayerWithSeeds ] sfx2
+
+(Sickle mechanics)
+late [ SickleGrabbed Wheat ] -> [ SickleGrabbed CutWheat ] sfx4
+
+(Container mechanics)
+late [ CutWheat Container ] -> [ Container ] sfx5
+
+==============
+WINCONDITIONS
+==============
+
+No Soil
+No PlowedSoil
+No Wheat
+No CutWheat
+
+=======
+LEVELS
+=======
+
+message Level 1 - Basics
+message Pull your plow to loosen the soil.
+message Then press X to grab the seeds...
+message and plant them by walking over the plowed soil.
+
+#######
+#.....#
+#.s7p.#
+#.s...#
+#.sd..#
+#.s...#
+#.....#
+#######
+
+message Time passes...
+message Press X to grab your scythe...
+message and harvest!
+message Then use your container to collect the wheat.
+
+#######
+#.....#
+#.i/p.#
+#.i...#
+#.iu..#
+#.i...#
+#.....#
+#######
+
+message Level 2 - Sides
+
+#######
+#.....#
+#.sdp.#
+#.s#s.#
+#.s.s.#
+#.s7s.#
+#.....#
+#######
+
+message Time passes...
+
+#######
+#.....#
+#.iup.#
+#.i#i.#
+#.i.i.#
+#.i/i.#
+#.....#
+#######
+
+message Level 3 - Spacing
+
+#######
+#...#.#
+#.7sp.#
+#.#s..#
+#..sd##
+#...###
+#######
+#######
+
+message Time passes...
+
+#######
+#...#.#
+#.uip.#
+#.#i..#
+#..i/##
+#...###
+#######
+#######
+
+message Level 4 - Pit
+
+#######
+#.....#
+#sd...#
+#s###.#
+#s#...#
+#s#.p.#
+#7#...#
+#######
+
+message Time passes...
+
+#######
+#.....#
+#iu...#
+#i###.#
+#i#...#
+#i#.p.#
+#/#...#
+#######
+
+message Level 5 - Park
+
+#######
+#.....#
+#..##.#
+#.sss.#
+#.###.#
+#..p..#
+#7.#.d#
+#######
+
+message Time passes...
+
+#######
+#.....#
+#.u##.#
+#.iii.#
+#.###.#
+#..p..#
+#/.#..#
+#######
+
+message Level 6 - Tricky
+
+########
+####..##
+#.p....#
+#..#.#.#
+##s#7#.#
+##s#.d.#
+##.#s#.#
+##.....#
+########
+
+message Time passes...
+
+########
+####..##
+#......#
+#.u#.#.#
+##i#/#.#
+##i#.p.#
+##.#i#.#
+##.....#
+########
+
+message Level 7 - It ain't much...
+
+#########
+#...p...#
+#..sss..#
+#.##.##.#
+#.ssdss.#
+#.ss7ss.#
+#.......#
+#########
+
+message Time passes...
+
+#########
+#...p...#
+#..iii..#
+#.##.##.#
+#.iiuii.#
+#.ii/ii.#
+#.......#
+#########
+
+message Level 7 - ...but it's honest work.
+
+#########
+#########
+##.p#####
+##ss#####
+#.ss.####
+#.ss.####
+##ss#####
+##ss..###
+#......##
+####.d.7#
+#########
+#########
+
+message Time passes...
+
+#########
+#########
+##.p#####
+##ii#####
+#.ii.####
+#.ii.####
+##ii#####
+##ii..###
+#....u.##
+####.../#
+#########
+#########
+
+message Level 8 - Prepare
+
+#############
+####......p##
+##7.....#####
+##..#####..##
+##.#.......##
+##.#..###d.##
+##.#.sss.#.##
+##.#.sss.#.##
+##.#.....#.##
+##..#####...#
+##..........#
+##..#########
+#############
+
+message Time passes...
+
+#############
+####......p##
+##/.....#####
+##..#####..##
+##.#.......##
+##.#.u###..##
+##.#.iii.#.##
+##.#.iii.#.##
+##.#.....#.##
+##..#####...#
+##..........#
+##..#########
+#############

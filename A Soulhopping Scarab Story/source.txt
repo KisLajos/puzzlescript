@@ -1,0 +1,868 @@
+title A Soulhopping Scarab Story
+author flummox3d
+homepage flummox3d.itch.io
+(verbose_logging)
+
+realtime_interval 0.08
+
+(scarab has a soul
+that can travel between husks
+husks are the boxes OR statues
+
+husk to activate pressure plates for lights
+and for exits
+but soul can't cross the light
+but husk can block the light
+
+evil spirits eat the soul
+but can also be eliminited by the light 
+or contained by a husk)
+
+========
+OBJECTS
+========
+
+Background .
+darkbrown
+
+Wall #
+yellow lightbrown
+00010
+11111
+01000
+11111
+00010
+
+LightSourceV S
+yellow lightbrown #ffa grey
+33333
+31313
+01300
+11211
+00210
+
+LightSourceH Z
+yellow lightbrown #ffa grey
+33010
+31111
+33322
+31111
+33010
+
+LightV I
+#ffa
+..0..
+..0..
+..0..
+..0..
+..0..
+
+LightH -
+#ffa #ff9 #ff8 #ff7 #ff6
+.....
+.....
+01234
+.....
+.....
+
+Beam1
+#ffa #ff9 #ff8 #ff7 #ff6
+.....
+.....
+40123
+.....
+.....
+
+Beam2
+#ffa #ff9 #ff8 #ff7 #ff6
+.....
+.....
+34012
+.....
+.....
+
+Beam3
+#ffa #ff9 #ff8 #ff7 #ff6
+.....
+.....
+23401
+.....
+.....
+
+Beam4
+#ffa #ff9 #ff8 #ff7 #ff6
+.....
+.....
+12340
+.....
+.....
+
+Beam5
+#ffa #ff9 #ff8 #ff7 #ff6
+.....
+.....
+.....
+.....
+.....
+
+Soul O
+white
+.....
+.000.
+00000
+.000.
+.....
+
+Soul1
+#ffe
+..0..
+.000.
+00000
+.000.
+..0..
+
+Soul2
+#eee
+.000.
+00000
+00000
+00000
+.000.
+
+
+Soul3
+lightgray
+.000.
+00000
+00000
+00000
+.000.
+
+
+Soul4
+grey
+.000.
+00000
+00000
+00000
+.000.
+
+Soul5
+black
+.000.
+00000
+00000
+00000
+.000.
+
+PlayerU P
+#2f3c87 white
+.0.0.
+0...0
+.101.
+00000
+.000.
+
+PossessedU
+#2f3c87 lightred
+.0.0.
+0...0
+.101.
+00000
+.000.
+
+HuskU U
+#2f3c87 white
+.....
+.0.0.
+0...0
+00000
+.000.
+
+PlayerD D
+#2f3c87 #fffeee
+.000.
+00000
+.101.
+0...0
+.0.0.
+
+PossessedD å
+#2f3c87 lightred
+.000.
+00000
+.101.
+0...0
+.0.0.
+
+HuskD ö
+#2f3c87 #fffeee
+.000.
+00000
+0...0
+.0.0.
+.....
+
+PlayerL L
+#2f3c87 #fffeee
+.0.0.
+0.100
+..000
+0.100
+.0.0.
+
+PossessedL
+#2f3c87 lightred
+.0.0.
+0.100
+..000
+0.100
+.0.0.
+
+HuskL
+#2f3c87 #fffeee
+..00.
+.0.00
+...00
+.0.00
+..00.
+
+PlayerR R
+#2f3c87 #fffeee
+.0.0.
+001.0
+000..
+001.0
+.0.0.
+
+PossessedR
+#2f3c87 lightred
+.0.0.
+001.0
+000..
+001.0
+.0.0.
+
+HuskR
+#2f3c87 #fffeee
+.00..
+00.0.
+00...
+00.0.
+.00..
+
+Spirit1 
+red lightred
+.000.
+00000
+.000.
+00000
+.000.
+
+Spirit2 
+red lightred
+.000.
+01010
+.000.
+00000
+.000.
+
+Spirit3 !
+red lightred
+.000.
+01010
+.000.
+00000
+.000.
+
+Spirit4 
+red lightred
+.000.
+01010
+.000.
+00000
+.000.
+
+Spirit5
+red lightred
+.000.
+01010
+.010.
+00000
+.000.
+
+Spirit6
+red lightred
+.000.
+01010
+.010.
+00100
+.000.
+
+Spirit7
+red lightred
+.000.
+01010
+.010.
+00100
+.000.
+
+Button B
+grey
+.....
+.000.
+.000.
+.000.
+.....
+
+ExitClosed X
+grey purple pink lightbrown white
+00000
+0...0
+0...0
+0...0
+0...0
+
+ExitWaiting
+grey purple pink lightbrown white
+00000
+0...0
+0...0
+0...0
+0...0
+
+ExitOpened
+grey lightbrown lightblue white
+00000
+02220
+02210
+02110
+01110
+
+Exit1
+blue purple pink lightbrown white
+.000.
+3...1
+3...1
+3...1
+.222.
+
+Exit2
+blue purple pink lightbrown white
+.....
+.301.
+.3.1.
+.321.
+.....
+
+Exit3
+blue purple pink lightbrown white
+.....
+.301.
+.3.1.
+.321.
+.....
+
+Exit4
+blue purple pink lightbrown white
+.000.
+3...1
+3...1
+3...1
+.222.
+
+Exit5
+blue purple pink lightbrown white
+.000.
+3...1
+3...1
+3...1
+.222.
+
+Fire
+red yellow orange
+..2..
+.212.
+21112
+21112
+.212.
+
+Fire2 
+red yellow orange
+.....
+..2..
+.212.
+21112
+.212.
+
+Fire3
+red yellow orange
+.....
+.....
+..2..
+.212.
+.212.
+
+Fire4
+red yellow orange
+.....
+.....
+.....
+..2..
+.212.
+
+Fire5
+red yellow orange
+.....
+.....
+.....
+.....
+..1..
+
+Separator Í
+lightblue lightbrown
+..1..
+.101.
+10001
+10001
+11111
+
+=======
+LEGEND
+=======
+
+Player = PlayerU or PlayerD or PlayerL or PlayerR or Soul or Soul1 or Soul2 or Soul3 or Soul4 or Soul5
+PlayerSolid = PlayerU or PlayerD or PlayerL or PlayerR
+Souls = Soul or Soul1 or Soul2 or Soul3 or Soul4 or Soul5
+
+HBeams = Beam1 or Beam2 or Beam3 or Beam4 or Beam5
+(HBeamsToLeft)
+(HBeamsToRight)
+Lights = LightV or LightH or HBeams (or VBeams)
+
+Sources = S or Z
+Spirits = Spirit1 or Spirit2 or Spirit3 or Spirit4 or Spirit5 or Spirit6 or Spirit7
+
+Husks = HuskU or HuskD or HuskL or HuskR
+
+Possesseds = PossessedU or PossessedD or PossessedL or PossessedR
+
+LightSensitive = Spirits or Souls
+
+CanPushButton = Husks or PlayerSolid or Possesseds or Separator
+
+MovementLayer = CanPushButton or Wall or Sources
+
+Exits =  ExitOpened or ExitClosed or ExitWaiting or Exit1 or Exit2 or Exit3 or Exit4 or Exit5
+
+Walls = Wall or Sources
+Obstacle = Walls or canpushbutton
+Fires = Fire or Fire2 or Fire3 or Fire4 or Fire5
+
+Ű = HuskU and Button
+; = Spirit3 and Button
+
+=======
+SOUNDS
+=======
+
+startgame 13749708
+
+sfx0 16566303 (soul exit)
+sfx1 38857703 (soul enter)
+sfx2 4956302 (close door)
+sfx3 41798903 (open door)
+sfx4 25526702 (scorched by light)
+sfx5 34063308 (soul eaten)
+sfx6 81603102 (player possesed)
+sfx7 1665302 (husk possesed)
+
+cancel 74645702
+
+endlevel 31484108
+
+================
+COLLISIONLAYERS
+================
+
+Background
+Button
+Souls, Spirits, Fires
+Exits
+MovementLayer
+LightV(, VBeams)
+LightH, HBeams
+
+======
+RULES
+======
+
+(-- soul animation --)
+[ stationary Button ] [ Soul4 ] -> [ stationary Button ] [ Soul5 ]
+[ stationary Button ] [ Soul3 ] -> [ stationary Button ] [ Soul4 ]
+[ stationary Button ] [ Soul2 ] -> [ stationary Button ] [ Soul3 ]
+[ stationary Button ] [ Soul1 ] -> [ stationary Button ] [ Soul2 ]
+[ stationary Button ] [ Soul ] -> [ stationary Button ] [ Soul1 ]
+[ stationary Button ] [ Soul5 ] -> [ stationary Button ] [ Soul ]
+
+(-- light beam animation --)
+([ stationary Wall ] [ Beam4 ] -> [ stationary Wall ] [ Beam5 ]
+[ stationary Wall ] [ Beam3 ] -> [ stationary Wall ] [ Beam4 ]
+[ stationary Wall ] [ Beam2 ] -> [ stationary Wall ] [ Beam3 ]
+[ stationary Wall ] [ Beam1 ] -> [ stationary Wall ] [ Beam2 ]
+[ stationary Wall ] [ LightH ] -> [ stationary Wall ] [ Beam1 ]
+[ stationary Wall ] [ Beam5 ] -> [ stationary Wall ] [ LightH ])
+
+(-- spirit animation --)
+
+([ stationary Wall ] [ Spirit4 ] -> [ stationary Wall ] [ Spirit4 ]
+[ stationary Wall ] [ Spirit3 ] -> [ stationary Wall ] [ Spirit4 ]
+[ stationary Wall ] [ Spirit3 ] -> [ stationary Wall ] [ Spirit4 ]
+[ stationary Wall ] [ Spirit2 ] -> [ stationary Wall ] [ Spirit3 ]
+[ stationary Wall ] [ Spirit2 ] -> [ stationary Wall ] [ Spirit3 ]
+[ stationary Wall ] [ Spirit1 ] -> [ stationary Wall ] [ Spirit2 ]
+[ stationary Wall ] [ Spirit1 ] -> [ stationary Wall ] [ Spirit4 ])
+
+
+(-- fire animation --)
+(this way the animation plays without interrupting the gameplay)
+[ stationary Wall ] [ Fire5 ] -> [ stationary Wall ] [ ]
+[ stationary Wall ] [ Fire4 ] -> [ stationary Wall ] [ Fire5 ]
+[ stationary Wall ] [ Fire3 ] -> [ stationary Wall ] [ Fire4 ]
+[ stationary Wall ] [ Fire2 ] -> [ stationary Wall ] [ Fire3 ]
+[ stationary Wall ] [ Fire ] -> [ stationary Wall ] [ Fire2 ]
+
+(-- exit animation --)
+([ stationary Wall ] [ Exit4 ] -> [ stationary Wall ] [ Exit5 ]
+[ stationary Wall ] [ Exit3 ] -> [ stationary Wall ] [ Exit4 ]
+[ stationary Wall ] [ Exit2 ] -> [ stationary Wall ] [ Exit3 ]
+[ stationary Wall ] [ Exit1 ] -> [ stationary Wall ] [ Exit2 ]
+[ stationary Wall ] [ ExitOpened ] -> [ stationary Wall ] [ Exit1 ]
+[ stationary Wall ] [ Exit5 ] -> [ stationary Wall ] [ ExitOpened ])
+
+(-- scarab mechanics --)
+
+(facing directions)
+(up [ > PlayerU ] -> [ > PlayerU ])
+down [ > PlayerU ] -> [ > PlayerD ]
+left [ > PlayerU ] -> [ > PlayerL ]
+right [ > PlayerU ] -> [ > PlayerR ]
+
+up [ > PlayerD ] -> [ > PlayerU ]
+(down [ > PlayerD ] -> [ > PlayerD ])
+left [ > PlayerD ] -> [ > PlayerL ]
+right [ > PlayerD ] -> [ > PlayerR ]
+
+up [ > PlayerL ] -> [ > PlayerU ]
+down [ > PlayerL ] -> [ > PlayerD ]
+(left [ > PlayerL ] -> [ > PlayerL ])
+right [ > PlayerL ] -> [ > PlayerR ]
+
+up [ > PlayerR ] -> [ > PlayerU ]
+down [ > PlayerR ] -> [ > PlayerD ]
+left [ > PlayerR ] -> [ > PlayerL ]
+(right [ > PlayerR ] -> [ > PlayerR ])
+
+(move from husk to husk)
+[ action PlayerU ] -> [ HuskU Soul ] sfx0
+[ action PlayerD ] -> [ HuskD Soul ] sfx0
+[ action PlayerR ] -> [ HuskR Soul ] sfx0
+[ action PlayerL ] -> [ HuskL Soul ] sfx0
+
+(enter husks)
+[ action Player HuskU ] -> [ PlayerU ] sfx1
+[ action Player HuskD ] -> [ PlayerD ] sfx1
+[ action Player HuskR ] -> [ PlayerR ] sfx1
+[ action Player HuskL ] -> [ PlayerL ] sfx1
+
+(maybe introduce an altar or something, so it's not that easy to freeroam as a soul?)
+(altar and counter - limit how many times can one soulhop)
+
+(-- separator mechanics --)
+[ > PlayerD | Separator ] -> [ Soul | HuskD ]
+
+(-- spirit mechanics --)
+
+(husk can host spirit, but than you can't move into husk)
+[ HuskU Spirits ] -> [ PossessedU ] sfx7
+[ HuskD Spirits ] -> [ PossessedD ] sfx7
+[ HuskL Spirits ] -> [ PossessedL ] sfx7
+[ HuskR Spirits ] -> [ PossessedR ] sfx7
+
+(spirits kill soul/scarab)
+[ Souls | Spirits ] -> [ | Spirits ] sfx5
+[ PlayerU | Spirits ] -> [ PossessedU | Spirits ] sfx6
+[ PlayerD | Spirits ] -> [ PossessedD | Spirits ] sfx6
+[ PlayerL | Spirits ] -> [ PossessedL | Spirits ] sfx6
+[ PlayerR | Spirits ] -> [ PossessedR | Spirits ] sfx6
+
+late [ Possesseds Spirits ] -> cancel
+
+(-- light mechanics --)
+
+(light kills soul and spirits - has to be first!)
+[ Lights LightSensitive ] -> [ Lights Fire ] sfx4
+
+late [ Sources Exits ] -> cancel
+late [ Sources Spirits ] -> cancel
+
+(draw light beams)
+(light is blocked by obstacles)
+[ Lights ] -> [ ]
+late down [ LightSourceV | No Obstacle ] -> [ LightSourceV | LightV ]
+late down [ LightV | No Obstacle ] -> [ LightV | LightV ]
+
+late right [ LightSourceH | No Obstacle ] -> [ LightSourceH | LightH ]
+late right [ LightH | No Obstacle ] -> [ LightH | LightH ] 
+
+(-- pushing mechanics --)
+
+(player moves husks)
+[ > PlayerSolid | Husks ] -> [ > PlayerSolid | > Husks ]
+[ > PlayerSolid | Possesseds ] -> [ > PlayerSolid | > Possesseds ]
+[ > PlayerSolid | Sources ] -> [ > PlayerSolid | > Sources ]
+
+([ > PlayerU | HuskU ] -> [ > PlayerU | > HuskU ]
+[ > PlayerU | HuskUEvil ] -> [ > PlayerU | > HuskUEvil ]
+[ > PlayerU | HuskU ] -> [ > PlayerU | > HuskU ]
+[ > PlayerU | HuskU ] -> [ > PlayerU | > HuskU ]
+[ > PlayerU | HuskU ] -> [ > PlayerU | > HuskU ])
+
+(soul can't go through walls/sources/exitopened)
+[ > Souls | Walls ] -> cancel
+[ > Souls | ExitOpened ] -> cancel
+[ action Souls PossessedS ] -> cancel
+
+([] - maybe scepters that accumulate light a'la talos2)
+
+(-- button mechanics --)
+
+(buttons can be "pushed down" by solid players & husks)
+(all buttons need to be pushed down to open exit)
+late [ CanPushButton Button ] [ ExitClosed ] -> [ CanPushButton Button ] [ ExitWaiting ]
+late [ Button no CanPushButton ] [ ExitOpened ] -> [ Button ] [ ExitClosed ] sfx2
+late [ Button no CanPushButton ] [ ExitWaiting ] -> [ Button ] [ ExitClosed ]
+late [ ExitWaiting ] -> [ ExitOpened ] sfx3
+
+==============
+WINCONDITIONS
+==============
+
+(exit with your body & souls)
+Some PlayerSolid on ExitOpened ("all playersolid" doesn't work, because switching to soul removes playersolids, and "all" doesn't require playersolid to exist)
+(contain all evil spirits)
+No Spirits
+
+=======
+LEVELS
+=======
+
+(press x to free your soul)
+
+(introduce button, husks, soulhopping, exit)
+message press x to free your soul
+
+#######
+#p.b..#
+####..#
+#.....#
+#u...x#
+#######
+
+message keep the door open
+
+#######
+#u...l#
+#....##
+#.b.b.#
+#.....#
+#u...x#
+#######
+
+message sometimes it's easy
+
+#####
+##u##
+#...#
+#...#
+#ű#.#
+#o#X#
+#####
+
+message you can't leave without a body
+#######
+#ű....#
+#####u#
+#.....#
+#.###x#
+#....o#
+#######
+
+(introduce lightbeams)
+
+message ancient egyptian laser beams
+
+#######s#
+#####o#i#
+#####.#i#
+###.x.#i#
+#u..#.#i#
+#...#ű#i#
+#######i#
+z-----#i#
+#########
+
+message your soul is fragile
+
+#######
+#..b..#
+#..u..#
+#.###.#
+#.....#
+z-----#
+#u.o.x#
+#######
+
+message but the husks are tough
+
+######
+#u.b.#
+#..d.#
+#.####
+#..###
+z----#
+#...x#
+######
+
+message shield
+
+#######
+#..b..#
+#..d..#
+#.###.#
+#.....#
+z.....#
+#u...x#
+#######
+
+message PORTABLE ancient egyptian laser beams
+
+#######
+#..u###
+#...###
+#..s..#
+#.....#
+#....b#
+#...px#
+#######
+
+(introduce spirits)
+
+message contain the evil souls
+
+#######
+#....b#
+#..d..#
+#.###!#
+#....u#
+#x....#
+#######
+
+message or scorch them
+
+##s####
+#.i..b#
+#.id..#
+#.###.#
+#.#...#
+zu...!#
+#.#..x#
+#######
+
+message all evil shall be contained or scorched
+
+#######
+#us...#
+#.i...#
+#!i.!b#
+#.i...#
+#.i...#
+#xu..p#
+#######
+
+message parked
+
+#######
+#..#ö##
+#.b#å##
+#.....#
+#.p...#
+#.##..#
+#.x#.!#
+#######
+
+message door
+
+#######
+#....!#
+#.....#
+#öbxb.#
+#ö###.#
+#z----#
+#r....#
+#######
+
+message where's the button
+
+########
+###...##
+###...##
+###...##
+####.###
+#p.s!.##
+#..i..##
+##.i...#
+##.u...#
+####;.x#
+########
+
+message trial 
+
+#########
+#b!.s.l##
+#.......#
+##......#
+##.....x#
+###!##ű##
+##.....##
+##.....##
+#z.....##
+##.....##
+##ö!..!##
+#########
+
+message judgement
+
+###########
+#######.b##
+##ö#ö...###
+##å#.#..###
+##...p...##
+##..#s#..##
+##.;...;.##
+##..#.#..##
+##x.ö...!##
+###########
+
+message ascension
+
+#######
+#ű.d.ű#
+#.....#
+#.....#
+#.....#
+#ű...ű#
+#######
+
+message Thank you for playing!
+message Made for Thinky Puzzle Game Jam 5
