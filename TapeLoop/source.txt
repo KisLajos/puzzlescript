@@ -6,6 +6,8 @@ run_rules_on_level_start
 
 realtime_interval 0.25
 
+throttle_movement
+
 (TODO
 [x] - indicate which way the tape goes
 [x] - Tape can be automatic
@@ -24,8 +26,8 @@ mechanics
 [ ] - 
 [ ] - Tape can be controlled ( <<, >, [] )
 	[x] - Active with stuff
-	[ ] - Rewind changes direction
-	[ ] - Play moves tape in indicated default direction (for example when the tape is stopped by default)
+	[x] - Rewind changes direction
+	[x] - Play moves tape in indicated default direction (for example when the tape is stopped by default)
 	[x] - Stop stops the tape
     
 [ ] - Data could be specific, as in "connected" to some blocks in the game
@@ -87,6 +89,7 @@ black orange white blue grey
 .303.
 .3.3.
 
+(tape straight)
 TapePushUp ↑
 black darkgray
 10001
@@ -119,6 +122,103 @@ black darkgray
 00000
 11111
 
+TapePushUpStop
+black grey
+10001
+10001
+10001
+10001
+10001
+
+TapePushDownStop
+black grey
+10001
+10001
+10001
+10001
+10001
+
+TapePushLeftStop
+black grey
+11111
+00000
+00000
+00000
+11111
+
+TapePushRightStop
+black grey
+11111
+00000
+00000
+00000
+11111
+
+TapePushUpReverse
+black grey
+10001
+10001
+10001
+10001
+10001
+
+TapePushDownReverse
+black grey
+10001
+10001
+10001
+10001
+10001
+
+TapePushLeftReverse
+black grey
+11111
+00000
+00000
+00000
+11111
+
+TapePushRightReverse
+black grey
+11111
+00000
+00000
+00000
+11111
+
+TapePushUpTemp
+black grey
+10001
+10001
+10001
+10001
+10001
+
+TapePushDownTemp
+black grey
+10001
+10001
+10001
+10001
+10001
+
+TapePushLeftTemp
+black grey
+11111
+00000
+00000
+00000
+11111
+
+TapePushRightTemp
+black grey
+11111
+00000
+00000
+00000
+11111
+
+(tape cw)
 TapeCornerPushRightDown ╗
 black darkgray
 11111
@@ -128,31 +228,23 @@ black darkgray
 10001
 
 TapeCornerPushRightDownStop
-black darkgray
+black gray
 11111
 00001
 00001
 00001
 10001
 
-TapeCornerPushRightDownStopTemp
-black darkgray
+TapeCornerPushRightDownReverse
+black gray
 11111
 00001
 00001
 00001
 10001
 
-TapeCornerPushUpLeft
-black darkgray
-11111
-00001
-00001
-00001
-10001
-
-TapeTempCornerPushRightDown 
-black darkgray
+TapeCornerPushRightDownTemp
+black gray
 11111
 00001
 00001
@@ -168,31 +260,23 @@ black darkgray
 11111
 
 TapeCornerPushDownLeftStop
-black darkgray
+black gray
 10001
 00001
 00001
 00001
 11111
 
-TapeCornerPushDownLeftStopTemp
-black darkgray
+TapeCornerPushDownLeftReverse
+black gray
 10001
 00001
 00001
 00001
 11111
 
-TapeCornerPushRightUp
-black darkgray
-10001
-00001
-00001
-00001
-11111
-
-TapeTempCornerPushDownLeft
-black darkgray
+TapeCornerPushDownLeftTemp
+black gray
 10001
 00001
 00001
@@ -208,31 +292,23 @@ black darkgray
 11111
 
 TapeCornerPushLeftUpStop
-black darkgray
+black gray
 10001
 10000
 10000
 10000
 11111
 
-TapeCornerPushLeftUpStopTemp
-black darkgray
+TapeCornerPushLeftUpReverse
+black gray
 10001
 10000
 10000
 10000
 11111
 
-TapeCornerPushDownRight
-black darkgray
-10001
-10000
-10000
-10000
-11111
-
-TapeTempCornerPushLeftUp
-black darkgray
+TapeCornerPushLeftUpTemp
+black gray
 10001
 10000
 10000
@@ -248,29 +324,30 @@ black darkgray
 10001
 
 TapeCornerPushUpRightStop
-black darkgray
+black gray
 11111
 10000
 10000
 10000
 10001
 
-TapeCornerPushUpRightStopTemp
-black darkgray
+TapeCornerPushUpRightReverse
+black gray
 11111
 10000
 10000
 10000
 10001
 
-TapeTempCornerPushUpRight
-black darkgray
+TapeCornerPushUpRightTemp
+black gray
 11111
 10000
 10000
 10000
 10001
 
+(tape ccw)
 TapeCornerPushLeftDown
 black darkgray
 11111
@@ -279,102 +356,127 @@ black darkgray
 10000
 10001
 
-TapeTempLeft
+TapeCornerPushLeftDownStop
+black gray
+11111
+10000
+10000
+10000
+10001
+
+TapeCornerPushLeftDownReverse
+black gray
+11111
+10000
+10000
+10000
+10001
+
+TapeCornerPushLeftDownTemp
+black gray
+11111
+10000
+10000
+10000
+10001
+
+TapeCornerPushDownRight
+black darkgray
+10001
+10000
+10000
+10000
+11111
+
+TapeCornerPushDownRightStop
+black gray
+10001
+10000
+10000
+10000
+11111
+
+TapeCornerPushDownRightReverse
+black gray
+10001
+10000
+10000
+10000
+11111
+
+TapeCornerPushDownRightTemp
+black gray
+10001
+10000
+10000
+10000
+11111
+
+TapeCornerPushRightUp
+black darkgray
+10001
+00001
+00001
+00001
+11111
+
+TapeCornerPushRightUpStop
+black gray
+11111
+10000
+10000
+10000
+10001
+
+TapeCornerPushRightUpReverse
+black gray
+11111
+10000
+10000
+10000
+10001
+
+TapeCornerPushRightUpTemp
+black gray
+11111
+10000
+10000
+10000
+10001
+
+TapeCornerPushUpLeft
 black darkgray
 11111
-00000
-00000
-00000
+00001
+00001
+00001
+10001
+
+TapeCornerPushUpLeftStop
+black gray
 11111
+00001
+00001
+00001
+10001
 
-TapeTempRight
-black darkgray
+TapeCornerPushUpLeftReverse
+black gray
 11111
-00000
-00000
-00000
+00001
+00001
+00001
+10001
+
+TapeCornerPushUpLeftTemp
+black gray
 11111
-
-TapeTempUp
-black darkgray
-10001
-10001
-10001
-10001
+00001
+00001
+00001
 10001
 
-TapeTempDown
-black darkgray
-10001
-10001
-10001
-10001
-10001
-
-TapePushUpStop
-black grey
-00000
-00100
-01010
-00000
-00000
-
-TapePushDownStop
-black grey
-00000
-00000
-01010
-00100
-00000
-
-TapePushLeftStop
-black grey
-00000
-00100
-01000
-00100
-00000
-
-TapePushRightStop
-black grey
-00000
-00100
-00010
-00100
-00000
-
-TapePushUpStopTemp
-black grey
-00000
-00100
-01010
-00000
-00000
-
-TapePushDownStopTemp
-black grey
-00000
-00000
-01010
-00100
-00000
-
-TapePushLeftStopTemp
-black grey
-00000
-00100
-01000
-00100
-00000
-
-TapePushRightStopTemp
-black grey
-00000
-00100
-00010
-00100
-00000
-
+(other stuff)
 Cleaner *
 orange
 00000
@@ -438,12 +540,29 @@ black grey darkgray
 .1.1.
 .....
 .....
+
+IndicatorUpReverse
+black grey darkgray
+.....
+.....
+.1.1.
+..1..
+.....
+
 IndicatorDown
 black grey darkgray
 .....
 .....
 .1.1.
 ..1..
+.....
+
+IndicatorDownReverse
+black grey darkgray
+.....
+..1..
+.1.1.
+.....
 .....
 
 IndicatorLeft
@@ -454,11 +573,27 @@ black grey darkgray
 ..1..
 .....
 
+IndicatorLeftReverse
+black grey darkgray
+.....
+..1..
+...1.
+..1..
+.....
+
 IndicatorRight Ś
 black grey darkgray
 .....
 ..1..
 ...1.
+..1..
+.....
+
+IndicatorRightReverse
+black grey darkgray
+.....
+..1..
+.1...
 ..1..
 .....
 
@@ -493,6 +628,14 @@ lightbrown
 .000.
 .000.
 .....
+
+WheelStop
+white
+.000.
+0.0.0
+0...0
+0.0.0
+.000.
 
 Wheel o
 white
@@ -542,6 +685,102 @@ white
 0.0.0
 .000.
 
+WheelTemp
+white
+.000.
+0.0.0
+0...0
+0.0.0
+.000.
+
+WheelTemp1
+white
+.000.
+0.0.0
+0...0
+0.0.0
+.000.
+
+WheelTemp2
+white
+.000.
+0..00
+0...0
+00..0
+.000.
+
+WheelTemp3
+white
+.000.
+0...0
+00.00
+0...0
+.000.
+
+WheelTemp4
+white
+.000.
+00..0
+0...0
+0..00
+.000.
+
+WheelTemp5
+white
+.000.
+0.0.0
+0...0
+0.0.0
+.000.
+
+WheelReverse ø
+white
+.000.
+0.0.0
+0...0
+0.0.0
+.000.
+
+WheelReverse1
+white
+.000.
+0.0.0
+0...0
+0.0.0
+.000.
+
+WheelReverse2
+white
+.000.
+00..0
+0...0
+0..00
+.000.
+
+WheelReverse3
+white
+.000.
+0...0
+00.00
+0...0
+.000.
+
+WheelReverse4
+white
+.000.
+0..00
+0...0
+00..0
+.000.
+
+WheelReverse5
+white
+.000.
+0.0.0
+0...0
+0.0.0
+.000.
+
 =======
 LEGEND
 =======
@@ -554,16 +793,32 @@ $ = IndicatorRight and TapePushRight
 } = CleanerOnTape and TapePushLeft
 
 TapeStraight = TapePushUp or TapePushDown or TapePushLeft or TapePushRight
-TapeCorners = TapeCornerPushRightDown or TapeCornerPushDownLeft or TapeCornerPushLeftUp or TapeCornerPushUpRight or TapeCornerPushUpLeft or TapeCornerPushRightUp or TapeCornerPushDownRight or TapeCornerPushLeftDown
-TapeTempStraight = TapeTempLeft or TapeTempRight or TapeTempUp or TapeTempDown
-TapeTempCorners = TapeTempCornerPushRightDown or TapeTempCornerPushDownLeft or TapeTempCornerPushLeftUp or TapeTempCornerPushUpRight
-TapeNoMoves = TapePushUpStop or TapePushDownStop or TapePushRightStop or TapePushLeftStop or TapePushUpStopTemp or TapePushDownStopTemp or TapePushLeftStopTemp or TapePushRightStopTemp or TapeCornerPushRightDownStop or TapeCornerPushRightDownStopTemp or TapeCornerPushDownLeftStop or TapeCornerPushDownLeftStopTemp or TapeCornerPushLeftUpStop or TapeCornerPushLeftUpStopTemp or TapeCornerPushUpRightStop or TapeCornerPushUpRightStopTemp
+TapeStraightStops = TapePushUpStop or TapePushDownStop or TapePushRightStop or TapePushLeftStop
+TapeStraightReverses = TapePushUpReverse or TapePushDownReverse or TapePushRightReverse or TapePushLeftReverse
+TapeStraightTemps = TapePushLeftTemp or TapePushRightTemp or TapePushUpTemp or TapePushDownTemp
 
-Tapes = TapeStraight or TapeCorners or TapeNoMoves or TapeTempStraight or TapeTempCorners
+TapeCWCorners = TapeCornerPushRightDown or TapeCornerPushDownLeft or TapeCornerPushLeftUp or TapeCornerPushUpRight
+TapeCCWCorners = TapeCornerPushLeftDown or TapeCornerPushDownRight or TapeCornerPushRightUp or TapeCornerPushUpLeft 
+TapeCorners = TapeCWCorners or TapeCCWCorners
 
-TapeTravelPossible = Cleaner or Magnet or RandomDataOnTape or PlayerOnTape or CleanerOnTape
+TapeCwCornerStops = TapeCornerPushRightDownStop or TapeCornerPushDownLeftStop or TapeCornerPushLeftUpStop or TapeCornerPushUpRightStop or TapeCornerPushLeftDownStop
+TapeCwCornerReverses = TapeCornerPushRightDownReverse  or TapeCornerPushDownLeftReverse  or TapeCornerPushLeftUpReverse or TapeCornerPushUpRightReverse
+TapeCwCornerTemps = TapeCornerPushRightDownTemp  or TapeCornerPushDownLeftTemp  or TapeCornerPushLeftUpTemp or TapeCornerPushUpRightTemp
 
-Indicators = IndicatorUp or IndicatorDown or IndicatorLeft or IndicatorRight
+TapeCCwCornerStops = TapeCornerPushLeftDownStop or TapeCornerPushDownRightStop or TapeCornerPushRightUpStop or TapeCornerPushUpLeftStop
+TapeCCwCornerReverses = TapeCornerPushLeftDownReverse or TapeCornerPushDownRightReverse or TapeCornerPushRightUpReverse or TapeCornerPushUpLeftReverse
+TapeCCwCornerTemps = TapeCornerPushLeftDownTemp  or TapeCornerPushDownRightTemp  or TapeCornerPushRightUpTemp or TapeCornerPushUpLeftTemp
+
+TapeNoMoves =  TapeStraightStops or TapeCwCornerStops or TapeCCwCornerStops
+TapeReverses = TapeStraightReverses or TapeCwCornerReverses or TapeCCwCornerReverses
+TapeTemps = TapeStraightTemps or TapeCwCornerTemps or TapeCCwCornerTemps
+
+IndicatorReverses = IndicatorUpReverse or IndicatorDownReverse or IndicatorLeftReverse or IndicatorRightReverse
+Indicators = IndicatorUp or IndicatorDown or IndicatorLeft or IndicatorRight or IndicatorReverses
+
+Tapes = TapeStraight or TapeCorners or TapeNoMoves or TapeReverses or TapeTemps
+
+TapeTravelPossible = Cleaner or Magnet or RandomDataOnTape or PlayerOnTape or CleanerOnTape or Indicators
 
 StuffOnTape = RandomDataOnTape or CleanerOnTape or PlayerOnTape
 
@@ -575,9 +830,12 @@ Obstacle = Player or Wall or Cleaner or Pushable
 
 Magnets = LockedMagnet or Magnet
 
-Buttons = RewindButton or PlayButton or StopButton or ActiveRewindButton
+Buttons = RewindButton or PlayButton or ActiveRewindButton or StopButton
 
-Wheels = Wheel or Wheel1 or Wheel2 or Wheel3 or Wheel4 or Wheel5
+WheelsNormal = Wheel or Wheel1 or Wheel2 or Wheel3 or Wheel4 or Wheel5
+WheelsReversed = WheelReverse or WheelReverse1 or WheelReverse2 or WheelReverse3 or WheelReverse4 or WheelReverse5
+WheelsTemps = WheelTemp or WheelTemp1 or WheelTemp2 or WheelTemp3 or WheelTemp4 or WheelTemp5
+Wheels = WheelsNormal or WheelsReversed or WheelsTemps or WheelStop
 
 =======
 SOUNDS
@@ -607,6 +865,13 @@ RULES
 [ stationary Wall ] [ Wheel1 ] -> [ stationary Wall ] [ Wheel2 ]
 [ stationary Wall ] [ Wheel ] -> [ stationary Wall ] [ Wheel1 ]
 [ stationary Wall ] [ Wheel5 ] -> [ stationary Wall ] [ Wheel ]
+
+[ stationary Wall ] [ WheelReverse4 ] -> [ stationary Wall ] [ WheelReverse5 ]
+[ stationary Wall ] [ WheelReverse3 ] -> [ stationary Wall ] [ WheelReverse4 ]
+[ stationary Wall ] [ WheelReverse2 ] -> [ stationary Wall ] [ WheelReverse3 ]
+[ stationary Wall ] [ WheelReverse1 ] -> [ stationary Wall ] [ WheelReverse2 ]
+[ stationary Wall ] [ WheelReverse ] -> [ stationary Wall ] [ WheelReverse1 ]
+[ stationary Wall ] [ WheelReverse5 ] -> [ stationary Wall ] [ WheelReverse ]
 
 up [ > PlayerU ] -> [ > PlayerU ]
 down [ > PlayerU ] -> [ > PlayerD ]
@@ -638,27 +903,33 @@ down [ stationary Player ] [ TapeTravelPossible TapePushDown ] -> [ Player ] [ >
 left [ stationary Player ] [ TapeTravelPossible TapePushLeft ] -> [ Player ] [ > TapeTravelPossible TapePushLeft ]
 right [ stationary Player ] [ TapeTravelPossible TapePushRight ] -> [ Player ] [ > TapeTravelPossible TapePushRight ]
 
+(straight paths reversed)
+down [ stationary Player ] [ TapeTravelPossible TapePushUpReverse ] -> [ Player ] [ > TapeTravelPossible TapePushUpReverse ]
+up [ stationary Player ] [ TapeTravelPossible TapePushDownReverse ] -> [ Player ] [ > TapeTravelPossible TapePushDownReverse ]
+right [ stationary Player ] [ TapeTravelPossible TapePushLeftReverse ] -> [ Player ] [ > TapeTravelPossible TapePushLeftReverse ]
+left [ stationary Player ] [ TapeTravelPossible TapePushRightReverse ] -> [ Player ] [ > TapeTravelPossible TapePushRightReverse ]
+
 (corners)
 down [ stationary Player ] [ TapeTravelPossible TapeCornerPushRightDown ] -> [ Player ] [ > TapeTravelPossible TapeCornerPushRightDown ]
 left [ stationary Player ] [ TapeTravelPossible TapeCornerPushDownLeft ] -> [ Player ] [ > TapeTravelPossible TapeCornerPushDownLeft ]
 up [ stationary Player ] [ TapeTravelPossible TapeCornerPushLeftUp ] -> [ Player ] [ > TapeTravelPossible TapeCornerPushLeftUp ]
 right [ stationary Player ] [ TapeTravelPossible TapeCornerPushUpRight ] -> [ Player ] [ > TapeTravelPossible TapeCornerPushUpRight ]
 
-(Indicator moving)
-up [ stationary Player ] [ IndicatorUp TapePushUp ] -> [ Player ] [ > IndicatorUp TapePushUp ]
-down [ stationary Player ] [ IndicatorDown TapePushDown ] -> [ Player ] [ > IndicatorDown TapePushDown ]
-left [ stationary Player ] [ IndicatorLeft TapePushLeft ] -> [ Player ] [ > IndicatorLeft TapePushLeft ]
-right [ stationary Player ] [ IndicatorRight TapePushRight ] -> [ Player ] [ > IndicatorRight TapePushRight ]
+down [ stationary Player ] [ TapeTravelPossible TapeCornerPushRightUp ] -> [ Player ] [ > TapeTravelPossible TapeCornerPushRightUp ]
+left [ stationary Player ] [ TapeTravelPossible TapeCornerPushUpLeft ] -> [ Player ] [ > TapeTravelPossible TapeCornerPushUpLeft ]
+up [ stationary Player ] [ TapeTravelPossible TapeCornerPushLeftDown ] -> [ Player ] [ > TapeTravelPossible TapeCornerPushLeftDown ]
+right [ stationary Player ] [ TapeTravelPossible TapeCornerPushDownRight ] -> [ Player ] [ > TapeTravelPossible TapeCornerPushDownRight ]
 
-down [ stationary Player ] [ IndicatorRight TapeCornerPushRightDown ] -> [ Player ] [ > IndicatorDown TapeCornerPushRightDown ]
-left [ stationary Player ] [ IndicatorDown TapeCornerPushDownLeft ] -> [ Player ] [ > IndicatorLeft TapeCornerPushDownLeft ]
-up [ stationary Player ] [ IndicatorLeft TapeCornerPushLeftUp ] -> [ Player ] [ > IndicatorUp TapeCornerPushLeftUp ]
-right [ stationary Player ] [ IndicatorUp TapeCornerPushUpRight ] -> [ Player ] [ > IndicatorRight TapeCornerPushUpRight ]
+(corners reversed)
+left [ stationary Player ] [ TapeTravelPossible TapeCornerPushRightDownReverse ] -> [ Player ] [ > TapeTravelPossible TapeCornerPushRightDownReverse ]
+up [ stationary Player ] [ TapeTravelPossible TapeCornerPushDownLeftReverse ] -> [ Player ] [ > TapeTravelPossible TapeCornerPushDownLeftReverse ]
+right [ stationary Player ] [ TapeTravelPossible TapeCornerPushLeftUpReverse ] -> [ Player ] [ > TapeTravelPossible TapeCornerPushLeftUpReverse ]
+down [ stationary Player ] [ TapeTravelPossible TapeCornerPushUpRightReverse ] -> [ Player ] [ > TapeTravelPossible TapeCornerPushUpRightReverse ]
 
-late [ IndicatorRight TapePushDown ] -> [ IndicatorDown TapePushDown ]
-late [ IndicatorDown TapePushLeft ] -> [ IndicatorLeft TapePushLeft ]
-late [ IndicatorLeft TapePushUp ] -> [ IndicatorUp TapePushUp ]
-late [ IndicatorUp TapePushRight ] -> [ IndicatorRight TapePushRight ]
+left [ stationary Player ] [ TapeTravelPossible TapeCornerPushRightUpReverse ] -> [ Player ] [ > TapeTravelPossible TapeCornerPushRightUpReverse ]
+down [ stationary Player ] [ TapeTravelPossible TapeCornerPushUpLeftReverse ] -> [ Player ] [ > TapeTravelPossible TapeCornerPushUpLeftReverse ]
+right [ stationary Player ] [ TapeTravelPossible TapeCornerPushLeftDownReverse ] -> [ Player ] [ > TapeTravelPossible TapeCornerPushLeftDownReverse ]
+up [ stationary Player ] [ TapeTravelPossible TapeCornerPushDownRightReverse ] -> [ Player ] [ > TapeTravelPossible TapeCornerPushDownRightReverse ]
 
 (Player leaves dust on tape)
 [ > Player Tapes ] -> [ > Player DustOnTape Tapes ]
@@ -686,59 +957,256 @@ late [ Cleaner DustOnTape ] -> [ Cleaner ]
 (no playerontape means no player)
 [ > CleanerOnTape Magnets ] [ Cleaner ] -> [ Magnets ] [ ]
 
-
 (Buttons)
 (Stop button)
-late [ Pushable StopButton ] [ TapePushRight ] -> [ Pushable StopButton ] [ TapePushRightStopTemp ]
+(straight paths)
+late [ Pushable StopButton ] [ TapePushRight ] -> [ Pushable StopButton ] [ TapePushRightTemp ]
 late [ StopButton no Pushable ] [ TapePushRightStop ] -> [ StopButton ] [ TapePushRight ]
-late [ StopButton no Pushable ] [ TapePushRightStopTemp ] -> [ StopButton ] [ TapePushRight ]
-late [ TapePushRightStopTemp ] -> [ TapePushRightStop ]
+late [ StopButton no Pushable ] [ TapePushRightTemp ] -> [ StopButton ] [ TapePushRight ]
+late [ TapePushRightTemp ] -> [ TapePushRightStop ]
 
-late [ Pushable StopButton ] [ TapePushLeft ] -> [ Pushable StopButton ] [ TapePushLeftStopTemp ]
+late [ Pushable StopButton ] [ TapePushLeft ] -> [ Pushable StopButton ] [ TapePushLeftTemp ]
 late [ StopButton no Pushable ] [ TapePushLeftStop ] -> [ StopButton ] [ TapePushLeft ]
-late [ StopButton no Pushable ] [ TapePushLeftStopTemp ] -> [ StopButton ] [ TapePushLeft ]
-late [ TapePushLeftStopTemp ] -> [ TapePushLeftStop ]
+late [ StopButton no Pushable ] [ TapePushLeftTemp ] -> [ StopButton ] [ TapePushLeft ]
+late [ TapePushLeftTemp ] -> [ TapePushLeftStop ]
 
-late [ Pushable StopButton ] [ TapePushUp ] -> [ Pushable StopButton ] [ TapePushUpStopTemp ]
+late [ Pushable StopButton ] [ TapePushUp ] -> [ Pushable StopButton ] [ TapePushUpTemp ]
 late [ StopButton no Pushable ] [ TapePushUpStop ] -> [ StopButton ] [ TapePushUp ]
-late [ StopButton no Pushable ] [ TapePushUpStopTemp ] -> [ StopButton ] [ TapePushUp ]
-late [ TapePushUpStopTemp ] -> [ TapePushUpStop ]
+late [ StopButton no Pushable ] [ TapePushUpTemp ] -> [ StopButton ] [ TapePushUp ]
+late [ TapePushUpTemp ] -> [ TapePushUpStop ]
 
-late [ Pushable StopButton ] [ TapePushDown ] -> [ Pushable StopButton ] [ TapePushDownStopTemp ]
+late [ Pushable StopButton ] [ TapePushDown ] -> [ Pushable StopButton ] [ TapePushDownTemp ]
 late [ StopButton no Pushable ] [ TapePushDownStop ] -> [ StopButton ] [ TapePushDown ]
-late [ StopButton no Pushable ] [ TapePushDownStopTemp ] -> [ StopButton ] [ TapePushDown ]
-late [ TapePushDownStopTemp ] -> [ TapePushDownStop ]
+late [ StopButton no Pushable ] [ TapePushDownTemp ] -> [ StopButton ] [ TapePushDown ]
+late [ TapePushDownTemp ] -> [ TapePushDownStop ]
 
-late [ Pushable StopButton ] [ TapeCornerPushRightDown ] -> [ Pushable StopButton ] [ TapeCornerPushRightDownStopTemp ]
+(cw corners)
+late [ Pushable StopButton ] [ TapeCornerPushRightDown ] -> [ Pushable StopButton ] [ TapeCornerPushRightDownTemp ]
 late [ StopButton no Pushable ] [ TapeCornerPushRightDownStop ] -> [ StopButton ] [ TapeCornerPushRightDown ]
-late [ StopButton no Pushable ] [ TapeCornerPushRightDownStopTemp ] -> [ StopButton ] [ TapeCornerPushRightDown ]
-late [ TapeCornerPushRightDownStopTemp ] -> [ TapeCornerPushRightDownStop ]
+late [ StopButton no Pushable ] [ TapeCornerPushRightDownTemp ] -> [ StopButton ] [ TapeCornerPushRightDown ]
+late [ TapeCornerPushRightDownTemp ] -> [ TapeCornerPushRightDownStop ]
 
-late [ Pushable StopButton ] [ TapeCornerPushDownLeft ] -> [ Pushable StopButton ] [ TapeCornerPushDownLeftStopTemp ]
+late [ Pushable StopButton ] [ TapeCornerPushDownLeft ] -> [ Pushable StopButton ] [ TapeCornerPushDownLeftTemp ]
 late [ StopButton no Pushable ] [ TapeCornerPushDownLeftStop ] -> [ StopButton ] [ TapeCornerPushDownLeft ]
-late [ StopButton no Pushable ] [ TapeCornerPushDownLeftStopTemp ] -> [ StopButton ] [ TapeCornerPushDownLeft ]
-late [ TapeCornerPushDownLeftStopTemp ] -> [ TapeCornerPushDownLeftStop ]
+late [ StopButton no Pushable ] [ TapeCornerPushDownLeftTemp ] -> [ StopButton ] [ TapeCornerPushDownLeft ]
+late [ TapeCornerPushDownLeftTemp ] -> [ TapeCornerPushDownLeftStop ]
 
-late [ Pushable StopButton ] [ TapeCornerPushLeftUp ] -> [ Pushable StopButton ] [ TapeCornerPushLeftUpStopTemp ]
+late [ Pushable StopButton ] [ TapeCornerPushLeftUp ] -> [ Pushable StopButton ] [ TapeCornerPushLeftUpTemp ]
 late [ StopButton no Pushable ] [ TapeCornerPushLeftUpStop ] -> [ StopButton ] [ TapeCornerPushLeftUp ]
-late [ StopButton no Pushable ] [ TapeCornerPushLeftUpStopTemp ] -> [ StopButton ] [ TapeCornerPushLeftUp ]
-late [ TapeCornerPushLeftUpStopTemp ] -> [ TapeCornerPushLeftUpStop ]
+late [ StopButton no Pushable ] [ TapeCornerPushLeftUpTemp ] -> [ StopButton ] [ TapeCornerPushLeftUp ]
+late [ TapeCornerPushLeftUpTemp ] -> [ TapeCornerPushLeftUpStop ]
 
-late [ Pushable StopButton ] [ TapeCornerPushUpRight ] -> [ Pushable StopButton ] [ TapeCornerPushUpRightStopTemp ]
+late [ Pushable StopButton ] [ TapeCornerPushUpRight ] -> [ Pushable StopButton ] [ TapeCornerPushUpRightTemp ]
 late [ StopButton no Pushable ] [ TapeCornerPushUpRightStop ] -> [ StopButton ] [ TapeCornerPushUpRight ]
-late [ StopButton no Pushable ] [ TapeCornerPushUpRightStopTemp ] -> [ StopButton ] [ TapeCornerPushUpRight ]
-late [ TapeCornerPushUpRightStopTemp ] -> [ TapeCornerPushUpRightStop ]
+late [ StopButton no Pushable ] [ TapeCornerPushUpRightTemp ] -> [ StopButton ] [ TapeCornerPushUpRight ]
+late [ TapeCornerPushUpRightTemp ] -> [ TapeCornerPushUpRightStop ]
 
-(TODO: for rewind should be separate state instead of switching between pushleft and pushright - it should be fx pushleft -> pushreversed -> pushright, so that ps can correctly keep track of states instead of switching everything around immediately)
- 
+(ccw corners)
+late [ Pushable StopButton ] [ TapeCornerPushLeftDown ] -> [ Pushable StopButton ] [ TapeCornerPushLeftDownTemp ]
+late [ StopButton no Pushable ] [ TapeCornerPushLeftDownStop ] -> [ StopButton ] [ TapeCornerPushLeftDown ]
+late [ StopButton no Pushable ] [ TapeCornerPushLeftDownTemp ] -> [ StopButton ] [ TapeCornerPushLeftDown ]
+late [ TapeCornerPushLeftDownTemp ] -> [ TapeCornerPushLeftDownStop ]
 
-([ Player RewindButton ] [ TapePushUp ] -> [ Player RewindButton ] [ TapePushDown ]
+late [ Pushable StopButton ] [ TapeCornerPushDownRight ] -> [ Pushable StopButton ] [ TapeCornerPushDownRightTemp ]
+late [ StopButton no Pushable ] [ TapeCornerPushDownRightStop ] -> [ StopButton ] [ TapeCornerPushDownRight ]
+late [ StopButton no Pushable ] [ TapeCornerPushDownRightTemp ] -> [ StopButton ] [ TapeCornerPushDownRight ]
+late [ TapeCornerPushDownRightTemp ] -> [ TapeCornerPushDownRightStop ]
 
-[ Player RewindButton ] [ TapePushLeft ] -> [ Player RewindButton ] [ TapePushRight ]
+late [ Pushable StopButton ] [ TapeCornerPushRightUp ] -> [ Pushable StopButton ] [ TapeCornerPushRightUpTemp ]
+late [ StopButton no Pushable ] [ TapeCornerPushRightUpStop ] -> [ StopButton ] [ TapeCornerPushRightUp ]
+late [ StopButton no Pushable ] [ TapeCornerPushRightUpTemp ] -> [ StopButton ] [ TapeCornerPushRightUp ]
+late [ TapeCornerPushRightUpTemp ] -> [ TapeCornerPushRightUpStop ]
 
-[ Player RewindButton ] [ TapeCornerPushUpRight ] -> [ Player RewindButton ] [ TapeCornerPushLeftDown ]
+late [ Pushable StopButton ] [ Wheel ] -> [ Pushable StopButton ] [ WheelTemp ]
+late [ StopButton no Pushable ] [ WheelStop ] -> [ StopButton ] [ Wheel ]
+late [ StopButton no Pushable ] [ WheelTemp ] -> [ StopButton ] [ Wheel ]
+late [ WheelTemp ] -> [ WheelStop ]
 
-[ Player RewindButton ] [ TapeCornerPushLeftUp ] -> [ Player RewindButton ] [ TapeCornerPushDownRight ])
+late [ Pushable StopButton ] [ Wheel1 ] -> [ Pushable StopButton ] [ WheelTemp ]
+late [ StopButton no Pushable ] [ WheelStop ] -> [ StopButton ] [ Wheel1 ]
+late [ StopButton no Pushable ] [ WheelTemp ] -> [ StopButton ] [ Wheel1 ]
+late [ WheelTemp ] -> [ WheelStop ]
+
+late [ Pushable StopButton ] [ Wheel2 ] -> [ Pushable StopButton ] [ WheelTemp ]
+late [ StopButton no Pushable ] [ WheelStop ] -> [ StopButton ] [ Wheel2 ]
+late [ StopButton no Pushable ] [ WheelTemp ] -> [ StopButton ] [ Wheel2 ]
+late [ WheelTemp ] -> [ WheelStop ]
+
+late [ Pushable StopButton ] [ Wheel3 ] -> [ Pushable StopButton ] [ WheelTemp ]
+late [ StopButton no Pushable ] [ WheelStop ] -> [ StopButton ] [ Wheel3 ]
+late [ StopButton no Pushable ] [ WheelTemp ] -> [ StopButton ] [ Wheel3 ]
+late [ WheelTemp ] -> [ WheelStop ]
+	
+late [ Pushable StopButton ] [ Wheel4 ] -> [ Pushable StopButton ] [ WheelTemp ]
+late [ StopButton no Pushable ] [ WheelStop ] -> [ StopButton ] [ Wheel4 ]
+late [ StopButton no Pushable ] [ WheelTemp ] -> [ StopButton ] [ Wheel4 ]
+late [ WheelTemp ] -> [ WheelStop ]
+
+late [ Pushable StopButton ] [ Wheel5 ] -> [ Pushable StopButton ] [ WheelTemp ]
+late [ StopButton no Pushable ] [ WheelStop ] -> [ StopButton ] [ Wheel5 ]
+late [ StopButton no Pushable ] [ WheelTemp ] -> [ StopButton ] [ Wheel5 ]
+late [ WheelTemp ] -> [ WheelStop ]
+
+
+
+(rewind button)
+(straight paths)
+late [ Pushable RewindButton ] [ TapePushRight ] -> [ Pushable RewindButton ] [ TapePushRightTemp ]
+late [ RewindButton no Pushable ] [ TapePushRightReverse ] -> [ RewindButton ] [ TapePushRight ]
+late [ RewindButton no Pushable ] [ TapePushRightTemp ] -> [ RewindButton ] [ TapePushRight ]
+late [ TapePushRightTemp ] -> [ TapePushRightReverse ]
+
+late [ Pushable RewindButton ] [ TapePushLeft ] -> [ Pushable RewindButton ] [ TapePushLeftTemp ]
+late [ RewindButton no Pushable ] [ TapePushLeftReverse ] -> [ RewindButton ] [ TapePushLeft ]
+late [ RewindButton no Pushable ] [ TapePushLeftTemp ] -> [ RewindButton ] [ TapePushLeft ]
+late [ TapePushLeftTemp ] -> [ TapePushLeftReverse ]
+
+late [ Pushable RewindButton ] [ TapePushUp ] -> [ Pushable RewindButton ] [ TapePushUpTemp ]
+late [ RewindButton no Pushable ] [ TapePushUpReverse ] -> [ RewindButton ] [ TapePushUp ]
+late [ RewindButton no Pushable ] [ TapePushUpTemp ] -> [ RewindButton ] [ TapePushUp ]
+late [ TapePushUpTemp ] -> [ TapePushUpReverse ]
+
+late [ Pushable RewindButton ] [ TapePushDown ] -> [ Pushable RewindButton ] [ TapePushDownTemp ]
+late [ RewindButton no Pushable ] [ TapePushDownReverse ] -> [ RewindButton ] [ TapePushDown ]
+late [ RewindButton no Pushable ] [ TapePushDownTemp ] -> [ RewindButton ] [ TapePushDown ]
+late [ TapePushDownTemp ] -> [ TapePushDownReverse ]
+
+(cw corners)
+late [ Pushable RewindButton ] [ TapeCornerPushRightDown ] -> [ Pushable RewindButton ] [ TapeCornerPushRightDownTemp ]
+late [ RewindButton no Pushable ] [ TapeCornerPushRightDownReverse ] -> [ RewindButton ] [ TapeCornerPushRightDown ]
+late [ RewindButton no Pushable ] [ TapeCornerPushRightDownTemp ] -> [ RewindButton ] [ TapeCornerPushRightDown ]
+late [ TapeCornerPushRightDownTemp ] -> [ TapeCornerPushRightDownReverse ]
+
+late [ Pushable RewindButton ] [ TapeCornerPushDownLeft ] -> [ Pushable RewindButton ] [ TapeCornerPushDownLeftTemp ]
+late [ RewindButton no Pushable ] [ TapeCornerPushDownLeftReverse ] -> [ RewindButton ] [ TapeCornerPushDownLeft ]
+late [ RewindButton no Pushable ] [ TapeCornerPushDownLeftTemp ] -> [ RewindButton ] [ TapeCornerPushDownLeft ]
+late [ TapeCornerPushDownLeftTemp ] -> [ TapeCornerPushDownLeftReverse ]
+
+late [ Pushable RewindButton ] [ TapeCornerPushLeftUp ] -> [ Pushable RewindButton ] [ TapeCornerPushLeftUpTemp ]
+late [ RewindButton no Pushable ] [ TapeCornerPushLeftUpReverse ] -> [ RewindButton ] [ TapeCornerPushLeftUp ]
+late [ RewindButton no Pushable ] [ TapeCornerPushLeftUpTemp ] -> [ RewindButton ] [ TapeCornerPushLeftUp ]
+late [ TapeCornerPushLeftUpTemp ] -> [ TapeCornerPushLeftUpReverse ]
+
+late [ Pushable RewindButton ] [ TapeCornerPushUpRight ] -> [ Pushable RewindButton ] [ TapeCornerPushUpRightTemp ]
+late [ RewindButton no Pushable ] [ TapeCornerPushUpRightReverse ] -> [ RewindButton ] [ TapeCornerPushUpRight ]
+late [ RewindButton no Pushable ] [ TapeCornerPushUpRightTemp ] -> [ RewindButton ] [ TapeCornerPushUpRight ]
+late [ TapeCornerPushUpRightTemp ] -> [ TapeCornerPushUpRightReverse ]
+
+(ccw corners)
+late [ Pushable RewindButton ] [ TapeCornerPushLeftDown ] -> [ Pushable RewindButton ] [ TapeCornerPushLeftDownTemp ]
+late [ RewindButton no Pushable ] [ TapeCornerPushLeftDownReverse ] -> [ RewindButton ] [ TapeCornerPushLeftDown ]
+late [ RewindButton no Pushable ] [ TapeCornerPushLeftDownTemp ] -> [ RewindButton ] [ TapeCornerPushLeftDown ]
+late [ TapeCornerPushLeftDownTemp ] -> [ TapeCornerPushLeftDownReverse ]
+
+late [ Pushable RewindButton ] [ TapeCornerPushDownRight ] -> [ Pushable RewindButton ] [ TapeCornerPushDownRightTemp ]
+late [ RewindButton no Pushable ] [ TapeCornerPushDownRightReverse ] -> [ RewindButton ] [ TapeCornerPushDownRight ]
+late [ RewindButton no Pushable ] [ TapeCornerPushDownRightTemp ] -> [ RewindButton ] [ TapeCornerPushDownRight ]
+late [ TapeCornerPushDownRightTemp ] -> [ TapeCornerPushDownRightReverse ]
+
+late [ Pushable RewindButton ] [ TapeCornerPushRightUp ] -> [ Pushable RewindButton ] [ TapeCornerPushRightUpTemp ]
+late [ RewindButton no Pushable ] [ TapeCornerPushRightUpReverse ] -> [ RewindButton ] [ TapeCornerPushRightUp ]
+late [ RewindButton no Pushable ] [ TapeCornerPushRightUpTemp ] -> [ RewindButton ] [ TapeCornerPushRightUp ]
+late [ TapeCornerPushRightUpTemp ] -> [ TapeCornerPushRightUpReverse ]
+
+late [ Pushable RewindButton ] [ TapeCornerPushUpLeft ] -> [ Pushable RewindButton ] [ TapeCornerPushUpLeftTemp ]
+late [ RewindButton no Pushable ] [ TapeCornerPushUpLeftReverse ] -> [ RewindButton ] [ TapeCornerPushUpLeft ]
+late [ RewindButton no Pushable ] [ TapeCornerPushUpLeftTemp ] -> [ RewindButton ] [ TapeCornerPushUpLeft ]
+late [ TapeCornerPushUpLeftTemp ] -> [ TapeCornerPushUpLeftReverse ]
+
+(wheels)
+late [ Pushable RewindButton ] [ Wheel ] -> [ Pushable RewindButton ] [ WheelTemp ]
+late [ RewindButton no Pushable ] [ WheelReverse ] -> [ RewindButton ] [ Wheel ]
+late [ RewindButton no Pushable ] [ WheelTemp ] -> [ RewindButton ] [ Wheel ]
+late [ WheelTemp ] -> [ WheelReverse ]
+
+late [ Pushable RewindButton ] [ Wheel1 ] -> [ Pushable RewindButton ] [ WheelTemp1 ]
+late [ RewindButton no Pushable ] [ WheelReverse1 ] -> [ RewindButton ] [ Wheel1 ]
+late [ RewindButton no Pushable ] [ WheelTemp1 ] -> [ RewindButton ] [ Wheel1 ]
+late [ WheelTemp1 ] -> [ WheelReverse1 ]
+
+late [ Pushable RewindButton ] [ Wheel2 ] -> [ Pushable RewindButton ] [ WheelTemp2 ]
+late [ RewindButton no Pushable ] [ WheelReverse2 ] -> [ RewindButton ] [ Wheel2 ]
+late [ RewindButton no Pushable ] [ WheelTemp2 ] -> [ RewindButton ] [ Wheel2 ]
+late [ WheelTemp2 ] -> [ WheelReverse2 ]
+
+late [ Pushable RewindButton ] [ Wheel3 ] -> [ Pushable RewindButton ] [ WheelTemp3 ]
+late [ RewindButton no Pushable ] [ WheelReverse3 ] -> [ RewindButton ] [ Wheel3 ]
+late [ RewindButton no Pushable ] [ WheelTemp3 ] -> [ RewindButton ] [ Wheel3 ]
+late [ WheelTemp3 ] -> [ WheelReverse3 ]
+
+late [ Pushable RewindButton ] [ Wheel4 ] -> [ Pushable RewindButton ] [ WheelTemp4 ]
+late [ RewindButton no Pushable ] [ WheelReverse4 ] -> [ RewindButton ] [ Wheel4 ]
+late [ RewindButton no Pushable ] [ WheelTemp4 ] -> [ RewindButton ] [ Wheel4 ]
+late [ WheelTemp4 ] -> [ WheelReverse4 ]
+
+late [ Pushable RewindButton ] [ Wheel5 ] -> [ Pushable RewindButton ] [ WheelTemp5 ]
+late [ RewindButton no Pushable ] [ WheelReverse5 ] -> [ RewindButton ] [ Wheel5 ]
+late [ RewindButton no Pushable ] [ WheelTemp5 ] -> [ RewindButton ] [ Wheel5 ]
+late [ WheelTemp5 ] -> [ WheelReverse5 ]
+
+(play button)
+(straight paths)
+late [ Pushable PlayButton ] [ TapePushRightStop ] -> [ Pushable PlayButton ] [ TapePushRightTemp ]
+late [ PlayButton no Pushable ] [ TapePushRight ] -> [ PlayButton ] [ TapePushRightStop ]
+late [ PlayButton no Pushable ] [ TapePushRightTemp ] -> [ PlayButton ] [ TapePushRightStop ]
+late [ TapePushRightTemp ] -> [ TapePushRight ]
+
+late [ Pushable PlayButton ] [ TapePushLeftStop ] -> [ Pushable PlayButton ] [ TapePushLeftTemp ]
+late [ PlayButton no Pushable ] [ TapePushLeft ] -> [ PlayButton ] [ TapePushLeftStop ]
+late [ PlayButton no Pushable ] [ TapePushLeftTemp ] -> [ PlayButton ] [ TapePushLeftStop ]
+late [ TapePushLeftTemp ] -> [ TapePushLeft ]
+
+late [ Pushable PlayButton ] [ TapePushUpStop ] -> [ Pushable PlayButton ] [ TapePushUpTemp ]
+late [ PlayButton no Pushable ] [ TapePushUp ] -> [ PlayButton ] [ TapePushUpStop ]
+late [ PlayButton no Pushable ] [ TapePushUpTemp ] -> [ PlayButton ] [ TapePushUpStop ]
+late [ TapePushUpTemp ] -> [ TapePushUp ]
+
+late [ Pushable PlayButton ] [ TapePushDownStop ] -> [ Pushable PlayButton ] [ TapePushDownTemp ]
+late [ PlayButton no Pushable ] [ TapePushDown ] -> [ PlayButton ] [ TapePushDownStop ]
+late [ PlayButton no Pushable ] [ TapePushDownTemp ] -> [ PlayButton ] [ TapePushDownStop ]
+late [ TapePushDownTemp ] -> [ TapePushDown ]
+
+(cw corners)
+late [ Pushable PlayButton ] [ TapeCornerPushRightDownStop ] -> [ Pushable PlayButton ] [ TapeCornerPushRightDownTemp ]
+late [ PlayButton no Pushable ] [ TapeCornerPushRightDown ] -> [ PlayButton ] [ TapeCornerPushRightDownStop ]
+late [ PlayButton no Pushable ] [ TapeCornerPushRightDownTemp ] -> [ PlayButton ] [ TapeCornerPushRightDownStop ]
+late [ TapeCornerPushRightDownTemp ] -> [ TapeCornerPushRightDown ]
+
+late [ Pushable PlayButton ] [ TapeCornerPushDownLeftStop ] -> [ Pushable PlayButton ] [ TapeCornerPushDownLeftTemp ]
+late [ PlayButton no Pushable ] [ TapeCornerPushDownLeft ] -> [ PlayButton ] [ TapeCornerPushDownLeftStop ]
+late [ PlayButton no Pushable ] [ TapeCornerPushDownLeftTemp ] -> [ PlayButton ] [ TapeCornerPushDownLeftStop ]
+late [ TapeCornerPushDownLeftTemp ] -> [ TapeCornerPushDownLeft ]
+
+late [ Pushable PlayButton ] [ TapeCornerPushLeftUpStop ] -> [ Pushable PlayButton ] [ TapeCornerPushLeftUpTemp ]
+late [ PlayButton no Pushable ] [ TapeCornerPushLeftUp ] -> [ PlayButton ] [ TapeCornerPushLeftUpStop ]
+late [ PlayButton no Pushable ] [ TapeCornerPushLeftUpTemp ] -> [ PlayButton ] [ TapeCornerPushLeftUpStop ]
+late [ TapeCornerPushLeftUpTemp ] -> [ TapeCornerPushLeftUp ]
+
+late [ Pushable PlayButton ] [ TapeCornerPushUpRightStop ] -> [ Pushable PlayButton ] [ TapeCornerPushUpRightTemp ]
+late [ PlayButton no Pushable ] [ TapeCornerPushUpRight ] -> [ PlayButton ] [ TapeCornerPushUpRightStop ]
+late [ PlayButton no Pushable ] [ TapeCornerPushUpRightTemp ] -> [ PlayButton ] [ TapeCornerPushUpRightStop ]
+late [ TapeCornerPushUpRightTemp ] -> [ TapeCornerPushUpRight ]
+
+(ccw corners)
+late [ Pushable PlayButton ] [ TapeCornerPushLeftDownStop ] -> [ Pushable PlayButton ] [ TapeCornerPushLeftDownTemp ]
+late [ PlayButton no Pushable ] [ TapeCornerPushLeftDown ] -> [ PlayButton ] [ TapeCornerPushLeftDownStop ]
+late [ PlayButton no Pushable ] [ TapeCornerPushLeftDownTemp ] -> [ PlayButton ] [ TapeCornerPushLeftDownStop ]
+late [ TapeCornerPushLeftDownTemp ] -> [ TapeCornerPushLeftDown ]
+
+late [ Pushable PlayButton ] [ TapeCornerPushDownRightStop ] -> [ Pushable PlayButton ] [ TapeCornerPushDownRightTemp ]
+late [ PlayButton no Pushable ] [ TapeCornerPushDownRight ] -> [ PlayButton ] [ TapeCornerPushDownRightStop ]
+late [ PlayButton no Pushable ] [ TapeCornerPushDownRightTemp ] -> [ PlayButton ] [ TapeCornerPushDownRightStop ]
+late [ TapeCornerPushDownRightTemp ] -> [ TapeCornerPushDownRight ]
+
+late [ Pushable PlayButton ] [ TapeCornerPushRightUpStop ] -> [ Pushable PlayButton ] [ TapeCornerPushRightUpTemp ]
+late [ PlayButton no Pushable ] [ TapeCornerPushRightUp ] -> [ PlayButton ] [ TapeCornerPushRightUpStop ]
+late [ PlayButton no Pushable ] [ TapeCornerPushRightUpTemp ] -> [ PlayButton ] [ TapeCornerPushRightUpStop ]
+late [ TapeCornerPushRightUpTemp ] -> [ TapeCornerPushRightUp ]
+
+late [ Pushable PlayButton ] [ TapeCornerPushUpLeftStop ] -> [ Pushable PlayButton ] [ TapeCornerPushUpLeftTemp ]
+late [ PlayButton no Pushable ] [ TapeCornerPushUpLeft ] -> [ PlayButton ] [ TapeCornerPushUpLeftStop ]
+late [ PlayButton no Pushable ] [ TapeCornerPushUpLeftTemp ] -> [ PlayButton ] [ TapeCornerPushUpLeftStop ]
+late [ TapeCornerPushUpLeftTemp ] -> [ TapeCornerPushUpLeft ]
 
 (late [ CanPushButton Button ] [ ExitClosed ] -> [ CanPushButton Button ] [ ExitWaiting ]
 late [ Button no CanPushButton ] [ ExitOpened ] -> [ Button ] [ ExitClosed ] sfx2
