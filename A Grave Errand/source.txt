@@ -1,0 +1,1068 @@
+title A Grave Errand
+author flummox3d
+homepage flummox3d.itch.io
+
+realtime_interval 0.10
+
+========
+OBJECTS
+========
+
+Background .
+darkgreen darkblue
+11111
+01111
+11101
+11111
+10111
+
+(Target
+darkblue
+.....
+.000.
+.0.0.
+.000.
+.....)
+
+Fence #
+gray lightgray
+.0.0.
+00000
+.0.0.
+00000
+.0.0.
+
+PlayerStart P
+black orange white blue
+.000.
+.111.
+22222
+.333.
+.3.3.
+
+PlayerEnding Q
+black orange white blue
+.000.
+.111.
+22222
+.333.
+.3.3.
+
+PlayerEnding1
+black orange white blue
+.000.
+.111.
+22222
+.333.
+.3.3.
+
+PlayerEnding2
+black orange white blue green
+.000.
+.141.
+22222
+.333.
+.3.3.
+
+PlayerEnding2Hold1
+black orange white blue green
+.000.
+.141.
+22222
+.333.
+.3.3.
+
+PlayerEnding3
+black orange white blue green
+.000.
+.441.
+22222
+.333.
+.3.3.
+
+PlayerEnding3Hold1
+black orange white blue green
+.000.
+.441.
+22222
+.333.
+.3.3.
+
+PlayerEnding4
+black orange white blue green
+.000.
+.444.
+22222
+.333.
+.3.3.
+
+PlayerEnding4Hold1
+black orange white blue green
+.000.
+.444.
+22222
+.333.
+.3.3.
+
+PlayerEnding5
+black green white blue
+.000.
+.111.
+22222
+.333.
+.3.3.
+
+PlayerEnding6
+black green white blue
+.....
+.000.
+.111.
+22222
+.333.
+
+PlayerEnding7
+black green white blue
+.....
+.....
+.000.
+.111.
+22222
+
+PlayerEnding8
+black green white blue
+.....
+.....
+.....
+.000.
+.111.
+
+PlayerEnding9
+black green white blue
+.....
+.....
+.....
+.....
+.000.
+
+OZombie Z
+black green white blue
+.000.
+.111.
+22222
+.333.
+.3.3.
+
+ZombieRest
+black green white blue
+.000.
+.111.
+22222
+.333.
+.3.3.
+
+ZombieRest1
+black green white blue
+.000.
+.111.
+22222
+.333.
+.3.3.
+
+ZombieRest2
+black green white blue
+.....
+.000.
+.111.
+22222
+.333.
+
+ZombieRest3
+black green white blue
+.....
+.....
+.000.
+.111.
+22222
+
+ZombieRest4
+black green white blue
+.....
+.....
+.....
+.000.
+.111.
+
+ZombieRest5
+black green white blue
+.....
+.....
+.....
+.....
+.000.
+
+ZombieGRest
+black grey white blue
+.000.
+.111.
+22222
+.333.
+.3.3.
+
+ZombieGRest1
+black grey white blue
+.000.
+.111.
+22222
+.333.
+.3.3.
+
+ZombieGRest2
+black grey white blue
+.....
+.000.
+.111.
+22222
+.333.
+
+ZombieGRest3
+black grey white blue
+.....
+.....
+.000.
+.111.
+22222
+
+ZombieGRest4
+black grey white blue
+.....
+.....
+.....
+.000.
+.111.
+
+ZombieGRest5
+black green white blue
+.....
+.....
+.....
+.....
+.000.
+
+OZombieRed o
+black green red blue
+.000.
+.111.
+22222
+.333.
+.3.3.
+
+ZombieRedRest
+black green red blue
+.000.
+.111.
+22222
+.333.
+.3.3.
+
+ZombieRedRest1
+black green red blue
+.000.
+.111.
+22222
+.333.
+.3.3.
+
+ZombieRedRest2
+black green red blue
+.....
+.000.
+.111.
+22222
+.333.
+
+ZombieRedRest3
+black green red blue
+.....
+.....
+.000.
+.111.
+22222
+
+ZombieRedRest4
+black green red blue
+.....
+.....
+.....
+.000.
+.111.
+
+ZombieRedRest5
+black green red blue
+.....
+.....
+.....
+.....
+.000.
+
+ZombieGRedRest
+black grey red blue
+.000.
+.111.
+22222
+.333.
+.3.3.
+
+ZombieGRedRest1
+black grey red blue
+.000.
+.111.
+22222
+.333.
+.3.3.
+
+ZombieGRedRest2
+black grey red blue
+.....
+.000.
+.111.
+22222
+.333.
+
+ZombieGRedRest3
+black grey red blue
+.....
+.....
+.000.
+.111.
+22222
+
+ZombieGRedRest4
+black grey red blue
+.....
+.....
+.....
+.000.
+.111.
+
+ZombieGRedRest5
+black grey red blue
+.....
+.....
+.....
+.....
+.000.
+
+OZombieYellow h
+black green yellow blue
+.000.
+.111.
+22222
+.333.
+.3.3.
+
+ZombieYellowRest
+black green yellow blue
+.000.
+.111.
+22222
+.333.
+.3.3.
+
+ZombieYellowRest1
+black green yellow blue
+.000.
+.111.
+22222
+.333.
+.3.3.
+
+ZombieYellowRest2
+black green yellow blue
+.....
+.000.
+.111.
+22222
+.333.
+
+ZombieYellowRest3
+black green yellow blue
+.....
+.....
+.000.
+.111.
+22222
+
+ZombieYellowRest4
+black green yellow blue
+.....
+.....
+.....
+.000.
+.111.
+
+ZombieYellowRest5
+black green yellow blue
+.....
+.....
+.....
+.....
+.000.
+
+ZombieGYellowRest
+black grey yellow blue
+.000.
+.111.
+22222
+.333.
+.3.3.
+
+ZombieGYellowRest1
+black grey yellow blue
+.000.
+.111.
+22222
+.333.
+.3.3.
+
+ZombieGYellowRest2
+black grey yellow blue
+.....
+.000.
+.111.
+22222
+.333.
+
+ZombieGYellowRest3
+black grey yellow blue
+.....
+.....
+.000.
+.111.
+22222
+
+ZombieGYellowRest4
+black grey yellow blue
+.....
+.....
+.....
+.000.
+.111.
+
+ZombieGYellowRest5
+black green yellow blue
+.....
+.....
+.....
+.....
+.000.
+
+SZombie 1
+black grey white blue
+.000.
+.111.
+22222
+.333.
+.3.3.
+
+SZombieRed ,
+black grey red blue
+.000.
+.111.
+22222
+.333.
+.3.3.
+
+SZombieYellow -
+black grey yellow blue
+.000.
+.111.
+22222
+.333.
+.3.3.
+
+TombstoneRed S
+lightgray red
+.....
+.000.
+00000
+01110
+00000
+
+GraveRed G
+black brown red
+12221
+00111
+11100
+11111
+10011
+
+GraveRedUntagged ó
+black brown red
+12221
+00111
+11100
+11111
+10011
+
+GraveRedTransition
+black brown red
+12221
+00111
+11100
+11111
+10011
+
+GraveRedTarget x
+transparent
+
+Tombstonewhite é
+lightgray white
+.....
+.000.
+00000
+01110
+00000
+
+GraveWhite á
+black brown white
+12221
+00111
+11100
+11111
+10011
+
+GraveWhiteUntagged ű
+black brown white
+12221
+00111
+11100
+11111
+10011
+
+GraveWhiteTransition
+black brown white
+12221
+00111
+11100
+11111
+10011
+
+GraveWhiteTarget y
+transparent
+
+TombstoneYellow ő
+lightgray yellow
+.....
+.000.
+00000
+01110
+00000
+
+GraveYellow ú
+black brown yellow
+12221
+00111
+11100
+11111
+10011
+
+GraveYellowUntagged ü
+black brown yellow
+12221
+00111
+11100
+11111
+10011
+
+GraveYellowTransition
+black brown yellow
+12221
+00111
+11100
+11111
+10011
+
+GraveYellowTarget w
+transparent
+
+DecorGrave ~
+darkgrey
+..00.
+.0000
+..00.
+..00.
+..00.
+
+DecorGraveAlt ˇ
+darkgrey
+.00..
+0000.
+.00..
+.00..
+.00..
+
+DecorStatue °
+darkgrey
+.000.
+.000.
+00000
+.000.
+.0.0.
+
+DecorBone ˛
+darkgrey grey
+.111.
+11111
+00000
+.....
+.....
+
+
+=======
+LEGEND
+=======
+
+Player = PlayerStart or PlayerEnding
+
+Decor = DecorGrave or DecorGraveAlt  or DecorStatue or DecorBone
+
+EndingAnimation = PlayerEnding1 or PlayerEnding2 or PlayerEnding2Hold1 or PlayerEnding3 or PlayerEnding3Hold1 or PlayerEnding4 or PlayerEnding4Hold1 or PlayerEnding5 or PlayerEnding6 or PlayerEnding7 or PlayerEnding8 or PlayerEnding9
+
+AnimationWhite = ZombieRest or ZombieRest1 or ZombieRest2 or ZombieRest3 or ZombieRest4 or ZombieRest5
+
+AnimationRed = ZombieRedRest or ZombieRedRest1 or ZombieRedRest2 or ZombieRedRest3 or ZombieRedRest4 or ZombieRedRest5
+
+AnimationYellow = ZombieYellowRest or ZombieYellowRest1 or ZombieYellowRest2 or ZombieYellowRest3 or ZombieYellowRest4 or ZombieYellowRest5
+
+AnimationGWhite = ZombieGRest or ZombieGRest1 or ZombieGRest2 or ZombieGRest3 or ZombieGRest4 or ZombieGRest5
+
+AnimationGRed = ZombieGRedRest or ZombieGRedRest1 or ZombieGRedRest2 or ZombieGRedRest3 or ZombieGRedRest4 or ZombieGRedRest5
+
+AnimationGYellow = ZombieGYellowRest or ZombieGYellowRest1 or ZombieGYellowRest2 or ZombieGYellowRest3 or ZombieGYellowRest4 or ZombieGYellowRest5
+
+Animations = AnimationWhite or animationred or animationyellow or animationgwhite or animationgred or animationgyellow or endinganimation
+
+ł = TombstoneRed and GraveRedTarget
+% = TombstoneRed and GraveWhiteTarget
+§ = TombstoneRed and GraveYellowTarget
+
+! = Tombstonewhite and GraveRedTarget
+" = Tombstonewhite and GraveWhiteTarget
+' = Tombstonewhite and GraveYellowTarget
+
+€ = TombstoneYellow and GraveRedTarget
++ = TombstoneYellow and GraveWhiteTarget
+Ö = TombstoneYellow and GraveYellowTarget
+
+RZombies = OZombieRed or SZombieRed 
+WZombies = OZombie or SZombie 
+YZombies = OZombieYellow or SZombieYellow
+
+CantCrossGraves = SZombie or SZombieRed or SZombieYellow
+
+Zombies = RZombies or wzombies or yzombies or PlayerEnding
+
+Tombstones = TombstoneRed or Tombstonewhite or TombstoneYellow
+Graves = GraveRed or GraveRedUntagged or GraveRedTransition or Gravewhite or GraveWhiteUntagged or GraveWhiteTransition or GraveYellow or GraveYellowUntagged or GraveYellowTransition
+Targets = GraveRedTarget or GraveWhiteTarget or GraveYellowTarget
+
+=======
+SOUNDS
+=======
+
+Tombstones move 36772507
+Zombies move 57008107
+startgame 44191508
+
+sfx0 7746704 (zombie cancel)
+sfx1  79128102 (  8913902 (zombie back in grave))
+sfx2 91330502 (tombstone matched 44880704 59188102 75262900)
+
+
+================
+COLLISIONLAYERS
+================
+
+Background
+Graves, Targets
+Animations
+Player, Fence, Tombstones, Zombies
+Decor
+
+======
+RULES
+======
+
+(this way the animation plays without interrupting the gameplay)
+[ stationary Fence ] [ ZombieRest5 ] -> [ stationary Fence ] [ ]
+[ stationary Fence ] [ ZombieRest4 ] -> [ stationary Fence ] [ ZombieRest5 ]
+[ stationary Fence ] [ ZombieRest3 ] -> [ stationary Fence ] [ ZombieRest4 ]
+[ stationary Fence ] [ ZombieRest2 ] -> [ stationary Fence ] [ ZombieRest3 ]
+[ stationary Fence ] [ ZombieRest ] -> [ stationary Fence ] [ ZombieRest2 ]
+
+[ stationary Fence ] [ ZombieRedRest5 ] -> [ stationary Fence ] [ ]
+[ stationary Fence ] [ ZombieRedRest4 ] -> [ stationary Fence ] [ ZombieRedRest5 ]
+[ stationary Fence ] [ ZombieRedRest3 ] -> [ stationary Fence ] [ ZombieRedRest4 ]
+[ stationary Fence ] [ ZombieRedRest2 ] -> [ stationary Fence ] [ ZombieRedRest3 ]
+[ stationary Fence ] [ ZombieRedRest ] -> [ stationary Fence ] [ ZombieRedRest2 ]
+
+[ stationary Fence ] [ ZombieYellowRest5 ] -> [ stationary Fence ] [ ]
+[ stationary Fence ] [ ZombieYellowRest4 ] -> [ stationary Fence ] [ ZombieYellowRest5 ]
+[ stationary Fence ] [ ZombieYellowRest3 ] -> [ stationary Fence ] [ ZombieYellowRest4 ]
+[ stationary Fence ] [ ZombieYellowRest2 ] -> [ stationary Fence ] [ ZombieYellowRest3 ]
+[ stationary Fence ] [ ZombieYellowRest ] -> [ stationary Fence ] [ ZombieYellowRest2 ]
+
+[ stationary Fence ] [ ZombieGRest5 ] -> [ stationary Fence ] [ ]
+[ stationary Fence ] [ ZombieGRest4 ] -> [ stationary Fence ] [ ZombieGRest5 ]
+[ stationary Fence ] [ ZombieGRest3 ] -> [ stationary Fence ] [ ZombieGRest4 ]
+[ stationary Fence ] [ ZombieGRest2 ] -> [ stationary Fence ] [ ZombieGRest3 ]
+[ stationary Fence ] [ ZombieGRest ] -> [ stationary Fence ] [ ZombieGRest2 ]
+
+[ stationary Fence ] [ ZombieGRedRest5 ] -> [ stationary Fence ] [ ]
+[ stationary Fence ] [ ZombieGRedRest4 ] -> [ stationary Fence ] [ ZombieGRedRest5 ]
+[ stationary Fence ] [ ZombieGRedRest3 ] -> [ stationary Fence ] [ ZombieGRedRest4 ]
+[ stationary Fence ] [ ZombieGRedRest2 ] -> [ stationary Fence ] [ ZombieGRedRest3 ]
+[ stationary Fence ] [ ZombieGRedRest ] -> [ stationary Fence ] [ ZombieGRedRest2 ]
+
+[ stationary Fence ] [ ZombieGYellowRest5 ] -> [ stationary Fence ] [ ]
+[ stationary Fence ] [ ZombieGYellowRest4 ] -> [ stationary Fence ] [ ZombieGYellowRest5 ]
+[ stationary Fence ] [ ZombieGYellowRest3 ] -> [ stationary Fence ] [ ZombieGYellowRest4 ]
+[ stationary Fence ] [ ZombieGYellowRest2 ] -> [ stationary Fence ] [ ZombieGYellowRest3 ]
+[ stationary Fence ] [ ZombieGYellowRest ] -> [ stationary Fence ] [ ZombieGYellowRest2 ]
+
+[ stationary Fence ] [ PlayerEnding9 ] -> [ stationary Fence ] [ ]
+[ stationary Fence ] [ PlayerEnding8 ] -> [ stationary Fence ] [ PlayerEnding9 ]
+[ stationary Fence ] [ PlayerEnding7 ] -> [ stationary Fence ] [ PlayerEnding8 ]
+[ stationary Fence ] [ PlayerEnding6 ] -> [ stationary Fence ] [ PlayerEnding7 ]
+[ stationary Fence ] [ PlayerEnding5 ] -> [ stationary Fence ] [ PlayerEnding6 ]
+[ stationary Fence ] [ PlayerEnding4Hold1 ] -> [ stationary Fence ] [ PlayerEnding5 ]
+[ stationary Fence ] [ PlayerEnding4 ] -> [ stationary Fence ] [ PlayerEnding4Hold1 ]
+[ stationary Fence ] [ PlayerEnding3Hold1 ] -> [ stationary Fence ] [ PlayerEnding4 ]
+[ stationary Fence ] [ PlayerEnding3 ] -> [ stationary Fence ] [ PlayerEnding3Hold1 ]
+[ stationary Fence ] [ PlayerEnding2Hold1 ] -> [ stationary Fence ] [ PlayerEnding3 ]
+[ stationary Fence ] [ PlayerEnding2 ] -> [ stationary Fence ] [ PlayerEnding2Hold1 ]
+[ stationary Fence ] [ PlayerEnding1 ] -> [ stationary Fence ] [ PlayerEnding2 ]
+
+(when a wrong color is moved away and no player is standing on the spot
+spawn a zombie)
+
+[ > Player | Tombstones ] -> [ > Player | > Tombstones ] 
+
+(obedient - they just wanna rest)
+[ < Player | OZombie ] -> [ < Player | < Ozombie ]
+[ < Player | OZombieRed ] -> [ < Player | < OzombieRed ]
+[ < Player | OZombieYellow ] -> [ < Player | < OZombieYellow ]
+
+(stubborn - they dont wanna go back)
+[ > Player | SZombie ] -> [ > Player | > SZombie ] 
+[ > Player | SZombieRed ] -> [ > Player | > SZombieRed ] 
+[ > Player | SZombieYellow ] -> [ > Player | > SZombieYellow ] 
+
+(tombstones have to be above their respective graves, otherwise zombies dont go to their graves)
+late [ TombstoneWhite GraveWhiteTarget ] [ GraveWhiteUntagged ] -> [ TombstoneWhite GraveWhiteTarget ] [ GraveWhiteTransition ]
+late [ GraveWhiteTarget no TombstoneWhite ] [ GraveWhite ] -> [ GraveWhiteTarget ] [ GraveWhiteUntagged ]
+late [ GraveWhiteTarget no TombstoneWhite ] [ GraveWhiteTransition ] -> [ GraveWhiteTarget ] [ GraveWhiteUntagged ]
+late [ GraveWhiteTransition ] -> [ GraveWhite ] sfx2
+
+late [ TombstoneRed GraveRedTarget ] [ GraveRedUntagged ] -> [ TombstoneRed GraveRedTarget ] [ GraveRedTransition ]
+late [ GraveRedTarget no TombstoneRed ] [ GraveRed ] -> [ GraveRedTarget ] [ GraveRedUntagged ]
+late [ GraveRedTarget no TombstoneRed ] [ GraveRedTransition ] -> [ GraveRedTarget ] [ GraveRedUntagged ]
+late [ GraveRedTransition ] -> [ GraveRed ] sfx2
+
+late [ TombstoneYellow GraveYellowTarget ] [ GraveYellowUntagged ] -> [ TombstoneYellow GraveYellowTarget ] [ GraveYellowTransition ]
+late [ GraveYellowTarget no TombstoneYellow ] [ GraveYellow ] -> [ GraveYellowTarget ] [ GraveYellowUntagged ]
+late [ GraveYellowTarget no TombstoneYellow ] [ GraveYellowTransition ] -> [ GraveYellowTarget ] [ GraveYellowUntagged ]
+late [ GraveYellowTransition ] -> [ GraveYellow ] sfx2
+
+(Stubborn zombies refuse to cross untagged graves) 
+[ > CantCrossGraves | GraveRedUntagged ] -> cancel sfx0
+[ > CantCrossGraves | GraveWhiteUntagged ] -> cancel sfx0
+[ > CantCrossGraves | GraveYellowUntagged ] -> cancel sfx0
+
+(TODO: add animation of zombie going to the grave)
+late [ OZombieRed GraveRed ] -> [ ZombieRedRest GraveRed ] sfx1
+late [ OZombie GraveWhite ] -> [ ZombieRest GraveWhite ] sfx1
+late [ OZombieYellow GraveYellow ] -> [ ZombieYellowRest GraveYellow ] sfx1
+
+late [ SZombieRed GraveRed ] -> [ ZombieGRedRest GraveRed ] sfx1
+late [ SZombie GraveWhite ] -> [ ZombieGRest GraveWhite ] sfx1
+late [ SZombieYellow GraveYellow ] -> [ ZombieGYellowRest GraveYellow ] sfx1
+
+late [ PlayerEnding GraveWhite ] -> [ PlayerEnding1 GraveWhite ] sfx1
+
+==============
+WINCONDITIONS
+==============
+
+All TombstoneRed on GraveRedTarget
+All TombstoneWhite on GraveWhiteTarget
+All TombstoneYellow on GraveYellowTarget
+No Zombies
+No Animations
+
+=======
+LEVELS
+=======
+
+message Someone messed up the graveyard :(
+message Match all tombstones to their respective graves!
+
+message 1 - simple
+
+.#####.
+.#...#~
+ˇ#.y.#.
+.#.ű.#.
+.#.é.#~
+ˇ#...#.
+.##p##.
+
+message 2 - switch
+
+#p#####.
+#.#...##
+#.#%.!.#
+#.#ű.ó.#
+#......#
+#....###
+######..
+~..~.ˇ.ˇ
+
+message 3 - match-3
+
+#########.
+#.....#.##
+#.!ő.y#w.#
+#.ó%.ű.ü.#
+####.....#
+#....x..##
+#p#######.
+
+message Some of your tenants also got out in the mix-up.
+message Don't forget to lead them back to their resting place!
+
+message 4 - obedient
+
+ˇ..####
+.###..#
+##"...#
+#.á...p
+#####.#
+..°.#z#
+~.˛.###
+
+message Green zombies will follow you to the grave, BUT they don't like to be pushed around.
+
+message 5 - clock
+
+#####..
+#...###
+#.....#
+#.##..#
+#hö#..#
+#.ú...#
+#.##..#
+#p#####
+
+message No tombstone = no rest.
+message Green zombies will step over graves, but won't rest in them if it doesn't have a tombstone.
+
+message 6 - stand
+
+.######
+ˇ#....#
+.#.##.#
+ˇ#.#..#
+##..s.#
+#.x.#.#
+#.ó.#.#
+#...#p#
+#####o#
+
+message 7 - shuffle
+
+#########
+#.......#
+#.!..%..#
+#.g..áo.#
+#.z.##..#
+#p#######
+
+message 8 - crammed
+
+#########
+#...##..#
+#..'....#
+#.#ü.h+.#
+#.#...ű.#
+#.#.##..#
+#...###.#
+#######p#
+
+message Grey zombies have been in the ground for longer.
+message They won't follow you, but you can push them around.
+message They are a bit stubborn though, so they won't step on graves unless it has the correct tombstone.
+
+message 9 - stubborn
+
+#########
+#...y...#
+#...á.é.#
+#..###1.#
+##..#...#
+.##.#####
+~.#p#.~.~
+
+message 10 - open
+
+...#####
+####...#
+#....§.#
+#.#.#ú##
+#.#.#.##
+#.-.ő,x#
+#.....g#
+#p######
+
+message 11 - order
+
+°..ˇ..~.####
+˛..######..#
+####.......#
+#..#..###.y#
+#..#.őx#..ű#
+#.é.-.ós.###
+#.....#..w.#
+##.####..ü.#
+.#.#..#....#
+.#p#.ˇ######
+
+
+message 12 - herring
+
+.~.#######
+####y....#
+#...ű...ép
+#...###.##
+#.ő.#z#.##
+#...#.s.x#
+###..w..ó#
+..###ü.###
+ˇ...####.ˇ
+
+(one grave, many matching zombies)
+
+message 13 - same
+
+p...#...
+###.####
+#.x.#..#
+#.ó.s..#
+#o...o.#
+########
+
+message 14 - redshirts
+
+p.....###
+##o##.#.#
+#.......#
+#.x##...#
+#.ós.,..#
+#...o#..#
+######..#
+.~.~.####
+
+message 15 - space
+
+.°.°.#......
+.˛.˛.#.....p
+######s#####
+#......#.oo#
+#..ő.....w##
+#.###x..#ü.#
+#....ó###..#
+#####o....##
+~.ˇ.#######.
+
+message 16 - cycle
+
+°..#####.p
+˛.##...#.#
+###....#.#
+#....§.o.#
+#..€#üh..#
+#..ó#.#..#
+#...#....#
+###......#
+..#..##..#
+ˇ.########
+
+message 17 - hyperfocus
+
+#########p#
+#.........#
+#.#.#####.#
+#.#1w#....#
+#.".ü..#..#
+#.á.ő.....#
+#.h#####..#
+####.°.####
+.....˛.....
+
+message 18 - fit
+
+p...##.ˇ.ˇ.
+##.h.######
+#x.é..s...#
+#ó......,.#
+######.####
+..#.+..z#..
+°.#.ű.w.#~.
+˛.####ü.#.°
+.°...#..#.˛
+.˛.~.####..
+
+message 19 - devious
+
+.°..~.####...
+.˛.####..###.
+.###.......#~
+##...s##.ő.#.
+#.....y#.#.#~
+#.!.1.ű#h#.#.
+#.ó#######.##
+#....o...w..#
+#..#####.ü..p
+####...#..###
+.....ˇ.####..
+
+message 20 - ultimate
+
+°.°.°.ˇ#.....p
+˛.˛.˛###..###.
+######o.§.###.
+#....###ü###..
+#..........#.#
+##.z#......#.#
+##!###.-#1.+.#
+#.ó#....#..ű.#
+#......##...##
+#############.
+
+message Now you can rest too.
+
+...°...
+.°.˛.°.
+.˛###˛.
+.##"##.
+ˇ#.á.#~
+.#...#.
+ˇ#...#~
+.##q##.
+
+message Thank you for playing!
+
+(?tombstone that works for all graves)
+
+(?couple zombies, that can't be separated, but can be pushed around, but the tombstone is one giant one that can only be pulled due to weight)
+
