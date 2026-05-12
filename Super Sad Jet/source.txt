@@ -1,0 +1,632 @@
+(four directions
+on each the player changes to state of being pushed backwards when push X
+part of the inconvenience is that you can't do anything else when beaming just stop it with X, so you have to set up first and then fire the beam
+PlayerState is moving backwards until it hits something
+if hits wooden box, pushes that too, but only one
+if this metal box, stops
+if hits wall, stops
+if hits pit, falls down
+
+
+in the meantime a beam is propagated forwards in a straight line
+then it hits something
+if hits wooden box, pushes that too, but only one
+if hits metal box, stops
+if hits wall, stops
+(if hits mirror change direction) 
+)
+
+title Super Sad Jet
+author flummox3d
+homepage flummox3d.itch.io
+realtime_interval 0.08
+debug
+
+(verbose_logging)
+
+========
+OBJECTS
+========
+
+Background
+lightgreen green
+11111
+01111
+11101
+11111
+10111
+
+Target
+darkblue
+.....
+.000.
+.0.0.
+.000.
+.....
+
+Wall
+brown darkbrown
+00010
+11111
+01000
+11111
+00010
+
+PlayerBeamlessU
+brown orange white blue yellow
+.000.
+.000.
+22222
+.333.
+.3.3.
+
+PlayerBeamlessD P
+brown orange white blue yellow
+.000.
+.414.
+22222
+.333.
+.3.3.
+
+PlayerBeamlessL
+brown orange white blue yellow
+.000.
+.411.
+2222.
+.333.
+.3.3.
+
+PlayerBeamlessR
+brown orange white blue yellow
+.000.
+.114.
+.2222
+.333.
+.3.3.
+
+PlayerBeamPushedU
+brown orange white blue yellow
+.000.
+.000.
+22222
+.333.
+.3.3.
+
+PlayerBeamPushedD
+brown orange white blue yellow
+.000.
+.414.
+22222
+.333.
+.3.3.
+
+PlayerBeamPushedL
+brown orange white blue yellow
+.000.
+.411.
+2222.
+.333.
+.3.3.
+
+PlayerBeamPushedR
+brown orange white blue yellow
+.000.
+.114.
+.2222
+.333.
+.3.3.
+
+PlayerStoppedRecoilU
+brown orange white blue yellow
+.000.
+.000.
+22222
+.333.
+.3.3.
+
+PlayerStoppedRecoilD
+brown orange white blue yellow
+.000.
+.414.
+22222
+.333.
+.3.3.
+
+PlayerStoppedRecoilL
+brown orange white blue yellow
+.000.
+.411.
+2222.
+.333.
+.3.3.
+
+PlayerStoppedRecoilR
+brown orange white blue yellow
+.000.
+.114.
+.2222
+.333.
+.3.3.
+
+PlayerFall1
+brown orange white blue yellow
+.....
+.000.
+.414.
+.323.
+.....
+
+PlayerFall2
+brown orange white blue yellow
+.....
+.....
+.00..
+.32..
+.....
+
+PlayerFall3
+brown orange white blue yellow
+.....
+.....
+..3..
+..2..
+.....
+
+
+Crate
+orange white blue lightblue
+00000
+0...0
+0...0
+0...0
+00000
+
+CrateFloat
+orange white blue lightblue
+00000
+0...0
+0...0
+0...0
+00000
+
+CrateFall1
+orange
+.....
+.000.
+.0.0.
+.000.
+.....
+
+CrateFall2
+orange
+.....
+.....
+.00..
+.00..
+.....
+
+CrateFall3
+orange
+.....
+.....
+..0..
+.....
+.....
+
+BeamStartR
+lightblue #aaffff
+.0000
+01111
+01111
+01111
+.0000
+
+BeamStartD
+lightblue #aaffff
+.000.
+01110
+01110
+01110
+01110
+
+BeamStartL
+lightblue #aaffff
+0000.
+11110
+11110
+11110
+0000.
+
+BeamStartU
+lightblue #aaffff
+01110
+01110
+01110
+01110
+.000.
+
+BeamL
+lightblue #aaffff
+00000
+11111
+11111
+11111
+00000
+
+BeamR
+lightblue #aaffff
+00000
+11111
+11111
+11111
+00000
+
+BeamU
+lightblue #aaffff
+01110
+01110
+01110
+01110
+01110
+
+BeamD
+lightblue #aaffff
+01110
+01110
+01110
+01110
+01110
+
+Pit x
+black
+
+Grate G
+grey
+.0.0.
+00000
+.0.0.
+00000
+.0.0.
+
+
+=======
+LEGEND
+=======
+
+. = Background
+# = Wall
+* = Crate
+@ = Crate and Target
+O = Target
+
+PlayerBeamless = PlayerBeamlessU or PlayerBeamlessD or PlayerBeamlessL or PlayerBeamlessR
+PlayerStoppedRecoil = PlayerStoppedRecoilU or PlayerStoppedRecoilD or PlayerStoppedRecoilL or PlayerStoppedRecoilR
+PlayerBeamPushed = PlayerBeamPushedU or PlayerBeamPushedD or PlayerBeamPushedL or PlayerBeamPushedR
+Player = PlayerBeamless or PlayerStoppedRecoil
+
+BeamH = BeamL or BeamR
+BeamV = BeamU or BeamD
+BeamStart = BeamStartU or BeamStartD or BeamStartL or BeamStartR
+Beams = BeamH or BeamV or BeamStart
+
+ObstacleForLight = Wall or Player or Crate or CrateFloat
+ObstacleForPlayer = Wall or Crate
+
+Crates = Crate or CrateFloat
+
+Animations = PlayerFall1 or PlayerFall2 or PlayerFall3 or CrateFall1 or CrateFall2 or CrateFall3
+
+CantPassGrates = Player or PlayerBeamPushed or Crates
+
+=======
+SOUNDS
+=======
+
+Crate move 36772507
+sfx0 97185908
+sfx1 65526709
+sfx2 13617302
+
+================
+COLLISIONLAYERS
+================
+
+Background
+Target
+Pit
+Grate
+Player, PlayerBeamPushed, Wall, Crates, Beams
+Animations
+
+======
+RULES
+======
+
+(---cardinal controls---)
+up [ > PlayerBeamlessD ] -> [ > PlayerBeamlessU ]
+up [ > PlayerBeamlessL ] -> [ > PlayerBeamlessU ]
+up [ > PlayerBeamlessR ] -> [ > PlayerBeamlessU ]
+
+down [ > PlayerBeamlessU ] -> [ > PlayerBeamlessD ]
+down [ > PlayerBeamlessL ] -> [ > PlayerBeamlessD ]
+down [ > PlayerBeamlessR ] -> [ > PlayerBeamlessD ]
+
+left [ > PlayerBeamlessU ] -> [ > PlayerBeamlessL ]
+left [ > PlayerBeamlessD ] -> [ > PlayerBeamlessL ]
+left [ > PlayerBeamlessR ] -> [ > PlayerBeamlessL ]
+
+right [ > PlayerBeamlessU ] -> [ > PlayerBeamlessR ]
+right [ > PlayerBeamlessD ] -> [ > PlayerBeamlessR ]
+right [ > PlayerBeamlessL ] -> [ > PlayerBeamlessR ]
+
+
+up [ > PlayerBeamlessD | Grate ] -> [ > PlayerBeamlessU | Grate ]
+up [ > PlayerBeamlessL | Grate ] -> [ > PlayerBeamlessU | Grate ]
+up [ > PlayerBeamlessR | Grate ] -> [ > PlayerBeamlessU | Grate ]
+
+down [ > PlayerBeamlessU | Grate ] -> [ > PlayerBeamlessD | Grate ]
+down [ > PlayerBeamlessL | Grate ] -> [ > PlayerBeamlessD | Grate ]
+down [ > PlayerBeamlessR | Grate ] -> [ > PlayerBeamlessD | Grate ]
+
+left [ > PlayerBeamlessU | Grate ] -> [ > PlayerBeamlessL | Grate ]
+left [ > PlayerBeamlessD | Grate ] -> [ > PlayerBeamlessL | Grate ]
+left [ > PlayerBeamlessR | Grate ] -> [ > PlayerBeamlessL | Grate ]
+
+right [ > PlayerBeamlessU | Grate ] -> [ > PlayerBeamlessR | Grate ]
+right [ > PlayerBeamlessD | Grate ] -> [ > PlayerBeamlessR | Grate ]
+right [ > PlayerBeamlessL | Grate ] -> [ > PlayerBeamlessR | Grate ]
+
+([ > PlayerBeamless ] -> [ stationary PlayerBeamless ])
+
+(---player pushes crates---)
+[ > PlayerBeamless | Crate ] -> [ > PlayerBeamless | > Crate ]
+
+(---recoiled player pushes crates---) 
+[ > PlayerBeamPushed | Crate ] -> [ > PlayerBeamPushed | > Crate ] 
+
+up [ BeamStartD | PlayerBeamPushedD | Crate | No obstacleforplayer ] -> [ > BeamStartD | > PlayerBeamPushedD | > Crate | No obstacleforplayer ]
+down [ BeamStartU | PlayerBeamPushedU | Crate | No obstacleforplayer ] -> [ > BeamStartU | > PlayerBeamPushedU | > Crate | No obstacleforplayer ]
+left [ BeamStartR | PlayerBeamPushedR | Crate | No obstacleforplayer ] -> [ > BeamStartR | > PlayerBeamPushedR | > Crate | No obstacleforplayer ]
+right [ BeamStartL | PlayerBeamPushedL | Crate | No obstacleforplayer ] -> [ > BeamStartL | > PlayerBeamPushedL | > Crate | No obstacleforplayer ]
+
+up [ stationary Crate | PlayerBeamPushedD ] -> [ Crate | PlayerStoppedRecoilD ]
+down [ stationary Crate | PlayerBeamPushedU ] -> [ Crate | PlayerStoppedRecoilU ]
+left [ stationary Crate | PlayerBeamPushedR ] -> [ Crate | PlayerStoppedRecoilR ]
+right [ stationary Crate | PlayerBeamPushedL ] -> [ Crate | PlayerStoppedRecoilL ]
+
+(---beampushed player pushes crates---)
+up [ > PlayerBeamPushedD | Crate ] -> [ > PlayerBeamPushedD | > Crate ]
+down [ > PlayerBeamPushedU | Crate ] -> [ > PlayerBeamPushedU | > Crate ]
+left [ > PlayerBeamPushedL | Crate ] -> [ > PlayerBeamPushedL | > Crate ]
+right [ > PlayerBeamPushedR | Crate ] -> [ > PlayerBeamPushedR | > Crate ]
+
+(---beams push crates---)
+up [ BeamU | Crates ] -> [ BeamU | > Crates ]
+down [ BeamD | Crates ] -> [ BeamD | > Crates ]
+left [ BeamL | Crates ] -> [ BeamL | > Crates ]
+right [ BeamR | Crates ] -> [ BeamR | > Crates ]
+
+(---generally firing the beam---)
+up [ action PlayerBeamlessU | No obstacleforlight ] -> [ PlayerBeamPushedU | BeamStartU ] sfx0
+
+down [ action PlayerBeamlessD | No obstacleforlight ] -> [ PlayerBeamPushedD | BeamStartD ] sfx0
+
+left [ action PlayerBeamlessL | No obstacleforlight ] -> [ PlayerBeamPushedL | BeamStartL ] sfx0
+
+right [ action PlayerBeamlessR | No obstacleforlight ] -> [ PlayerBeamPushedR | BeamStartR ] sfx0
+
+(---firing when facing a wall---)
+up [ no obstacleforplayer | action PlayerBeamlessU | Wall ] -> [ > PlayerBeamPushedU | > BeamStartU | Wall ] sfx0
+
+down [ no obstacleforplayer |  action PlayerBeamlessD | Wall ] -> [ > PlayerBeamPushedD | > BeamStartD | Wall ] sfx0
+
+left [ no obstacleforplayer |  action PlayerBeamlessL | Wall ] -> [ > PlayerBeamPushedL | > BeamStartL | Wall ] sfx0
+
+right [ no obstacleforplayer |  action PlayerBeamlessR | Wall ] -> [ > PlayerBeamPushedR | > BeamStartR | Wall ] sfx0
+
+(---firing when facing a crate---)
+up [ no obstacleforplayer | action PlayerBeamlessU | Crate ] -> [ > PlayerBeamPushedU | > BeamStartU | CrateFloat ] sfx0 
+up [ BeamStartU | CrateFloat | no obstacleforplayer ] -> [ BeamStartU | BeamU | CrateFloat ]
+
+down [ no obstacleforplayer | action PlayerBeamlessD | Crate ] -> [ > PlayerBeamPushedD | > BeamStartD | CrateFloat ] sfx0
+down [ BeamStartD | CrateFloat | no obstacleforplayer ] -> [ BeamStartD | BeamD | CrateFloat ]
+
+left [ no obstacleforplayer | action PlayerBeamlessL | Crate ] -> [ > PlayerBeamPushedL | > BeamStartL | CrateFloat ] sfx0
+left [ BeamStartL | CrateFloat | no obstacleforplayer ] -> [ BeamStartL | BeamL | CrateFloat ]
+
+right [ no obstacleforplayer | action PlayerBeamlessR | Crate ] -> [ > PlayerBeamPushedR | > BeamStartR | CrateFloat ] sfx0
+right [ BeamStartR | CrateFloat | no obstacleforplayer ] -> [ BeamStartR | BeamR | CrateFloat ]
+
+(---firing when between a crate and a wall---)
+up [ no obstacleforplayer  | Crate | action PlayerBeamlessU | Wall ] -> [ CrateFloat | > PlayerBeamPushedU | > BeamStartU | Wall ] sfx0
+down [ no obstacleforplayer  | Crate |  action PlayerBeamlessD | Wall ] -> [ CrateFloat | > PlayerBeamPushedD | > BeamStartD | Wall ] sfx0
+left [ no obstacleforplayer  | Crate |  action PlayerBeamlessL | Wall ] -> [ CrateFloat | > PlayerBeamPushedL | > BeamStartL | Wall ] sfx0
+right [ no obstacleforplayer  | Crate |  action PlayerBeamlessR | Wall ] -> [ CrateFloat | > PlayerBeamPushedR | > BeamStartR | Wall ] sfx0
+
+late [ CrateFloat ] -> [ Crate ]
+
+(---no beams when stopped firing or player started to fall---)
+[ PlayerBeamless ] [ Beams ] -> [ PlayerBeamless ] [ ]
+[ PlayerFall1 ] [ Beams ] -> [ PlayerFall1 ] [ ]
+
+(---beam is blocked by obstacles---)
+late up [ BeamStartU | No ObstacleForLight ] -> [ BeamStartU | BeamU ]
+late up [ BeamU | No ObstacleForLight ] -> [ BeamU | BeamU ] again
+
+late down [ BeamStartD | No ObstacleForLight ] -> [ BeamStartD | BeamD ]
+late down [ BeamD | No ObstacleForLight ] -> [ BeamD | BeamD ] again
+
+late left [ BeamStartL | No ObstacleForLight ] -> [ BeamStartL | BeamL ]
+late left [ BeamL | No ObstacleForLight ] -> [ BeamL | BeamL ] again
+
+late right [ BeamStartR | No ObstacleForLight ] -> [ BeamStartR | BeamR ]
+late right [ BeamR | No ObstacleForLight ] -> [ BeamR | BeamR ] again
+
+(---recoiling player---)
+up [ BeamStartD | PlayerBeamPushedD | No ObstacleForPlayer ] -> [ > BeamStartD | > PlayerBeamPushedD | ] again
+down [ BeamStartU | PlayerBeamPushedU | No ObstacleForPlayer ] -> [ > BeamStartU | > PlayerBeamPushedU | ] again
+left [ BeamStartR | PlayerBeamPushedR | No ObstacleForPlayer ] -> [ > BeamStartR | > PlayerBeamPushedR | ] again
+right [ BeamStartL | PlayerBeamPushedL | No ObstacleForPlayer ] -> [ > BeamStartL | > PlayerBeamPushedL | ] again
+
+(---beampushed player gets temp status when hitting something and stopping---)
+[ stationary PlayerBeamPushedU ] -> [ PlayerStoppedRecoilU ]
+[ stationary PlayerBeamPushedD ] -> [ PlayerStoppedRecoilD ]
+[ stationary PlayerBeamPushedL ] -> [ PlayerStoppedRecoilL ]
+[ stationary PlayerBeamPushedR ] -> [ PlayerStoppedRecoilR ]
+
+[ > PlayerBeamPushedU | Grate ] -> [ PlayerStoppedRecoilU | Grate ]
+[ > PlayerBeamPushedD | Grate ] -> [ PlayerStoppedRecoilD | Grate ]
+[ > PlayerBeamPushedL | Grate ] -> [ PlayerStoppedRecoilL | Grate ]
+[ > PlayerBeamPushedR | Grate ] -> [ PlayerStoppedRecoilR | Grate ]
+
+(---recoiled player shouldn't move---)
+[ > PlayerStoppedRecoilU ] -> [ stationary PlayerStoppedRecoilU ]
+[ > PlayerStoppedRecoilD ] -> [ stationary PlayerStoppedRecoilD ]
+[ > PlayerStoppedRecoilL ] -> [ stationary PlayerStoppedRecoilL ]
+[ > PlayerStoppedRecoilR ] -> [ stationary PlayerStoppedRecoilR ]
+
+(---recoiled player changes to normal on action button---)
+[ action PlayerStoppedRecoilU ] -> [ PlayerBeamlessU ]
+[ action PlayerStoppedRecoilD ] -> [ PlayerBeamlessD ]
+[ action PlayerStoppedRecoilL ] -> [ PlayerBeamlessL ]
+[ action PlayerStoppedRecoilR ] -> [ PlayerBeamlessR ]
+
+(---grate lets cry through but not player or crater---)
+[ Grate | CantPassGrates ] -> [ Grate | CantPassGrates ]
+
+(---falling into pits---)
+[ PlayerFall3 Pit ] -> [ Pit ] sfx2 again
+[ PlayerFall2 Pit ] -> [ PlayerFall3 Pit ] again
+[ PlayerFall1 Pit ] -> [ PlayerFall2 Pit ] again
+[ Player Pit ] -> [ PlayerFall1 Pit ] sfx1 again
+
+[ CrateFall3 Pit ] -> [ Pit ] sfx2 again
+[ CrateFall2 Pit ] -> [ CrateFall3 Pit ] again
+[ CrateFall1 Pit ] -> [ CrateFall2 Pit ] again
+[ stationary Crate Pit ] -> [ CrateFall1 Pit ] sfx1 again
+
+==============
+WINCONDITIONS
+==============
+
+all Target on Crate
+
+=======
+LEVELS
+=======
+
+message Level 1 - S.A.D.
+
+###########
+#o.########
+#..########
+#..*x...###
+#...x...###
+#.p.x...###
+###########
+###########
+
+message Level 2 - Not all
+
+###########
+#o.########
+#..########
+#..*x...###
+#...x*..###
+#.p.x...###
+###########
+
+message Level 3 - Pit
+
+###########
+#o.########
+#..########
+#..xx..*.##
+#..xx.#..##
+#.pxx....##
+###########
+
+message Level 4 - 
+
+############
+###.o#######
+###..#######
+###..xx....#
+#....xx*...#
+#...pxx....#
+############
+
+message Level  - 
+
+###########
+###########
+#...xxxo###
+#.*.xxx.o##
+#xxxxxx####
+#xx*xxxxx##
+#xxxxxxxx##
+#.x......p#
+###########
+
+message Level  - 
+
+###########
+###o...####
+#xxxxxx####
+#xxxxxx####
+#xxxx.x..##
+#..xx*x..##
+#.pxx.....#
+###########
+
+message Level  - 
+
+###########
+#.......###
+#.xxx**..##
+#oxxxx...##
+#oxxxxx..##
+#.xxxxx..##
+#........p#
+###########
+
+message Level - Careful
+
+#########
+#o......#
+#.xxxxx.#
+#.x*.*x.#
+#.x.p.x.#
+#.x*..x.#
+#.xxxxx.#
+#o......#
+#########
+
+message Level  - 
+
+#############
+#...........#
+#.##x#####..#
+#..xxx......#
+#*.xxx......#
+#..xxxx.###.#
+#.p...x.###.#
+#.##o.xxx...#
+#######xx...#
+#######*x..##
+####.......##
+#############
+
+message Level  - 
+
+############
+#..#########
+#.o#########
+#..........#
+##xxxx.##..#
+##.**x.#...#
+###xxx.##..#
+####xx....p#
+############
+
+
