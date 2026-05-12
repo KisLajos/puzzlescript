@@ -8,12 +8,12 @@ OBJECTS
 ========
 
 Background .
-lightgreen green
+darkgrey grey
 11111
-01111
-11101
 11111
-10111
+11111
+11111
+11111
 
 Target o
 darkblue
@@ -23,13 +23,131 @@ darkblue
 .000.
 .....
 
-Wall #
-brown darkbrown
+WallVRR #
+(brown darkbrown
 00010
 11111
 01000
 11111
+00010)
+blue red
+.0.1.
+.0.1.
+.0.1.
+.0.1.
+.0.1.
+
+WallVRL -
+(brown darkbrown
 00010
+11111
+01000
+11111
+00010)
+red blue
+.0.1.
+.0.1.
+.0.1.
+.0.1.
+.0.1.
+
+WallHBU H
+(brown darkbrown
+00010
+11111
+01000
+11111
+00010)
+blue red
+.....
+00000
+.....
+11111
+.....
+
+WallHBD G
+(brown darkbrown
+00010
+11111
+01000
+11111
+00010)
+red blue
+.....
+00000
+.....
+11111
+.....
+
+WallCorner C
+(brown darkbrown
+00010
+11111
+01000
+11111
+00010)
+black darkgrey
+.0.0.
+00000
+.010.
+00000
+.0.0.
+
+WallCornerUR 1
+(brown darkbrown
+00010
+11111
+01000
+11111
+00010)
+black darkgrey
+.0.0.
+.0000
+.010.
+.0000
+.....
+
+WallCornerUL 2
+(brown darkbrown
+00010
+11111
+01000
+11111
+00010)
+black darkgrey
+.0.0.
+0000.
+.010.
+0000.
+.....
+
+WallCornerDR 3
+(brown darkbrown
+00010
+11111
+01000
+11111
+00010)
+black darkgrey
+.....
+.0000
+.010.
+.0000
+.0.0.
+
+WallCornerDL 4
+(brown darkbrown
+00010
+11111
+01000
+11111
+00010)
+black darkgrey
+.....
+0000.
+.010.
+0000.
+.0.0.
 
 PlayerNormal P
 black orange white red
@@ -38,6 +156,14 @@ black orange white red
 23232
 .333.
 .3.3.
+
+PlayerOnTheRopes X
+black orange white red blue
+.000.
+.111.
+43234
+34443
+.333.
 
 PlayerMidPutDown
 black orange white red
@@ -78,10 +204,15 @@ transparent
 LEGEND
 =======
 
+Corners = WallCorner or WallCornerUR or WallCornerUL or WallCornerDR or WallCornerDL
+WallH = WallHBU or WallHBD
+WallV = WallVRR or WallVRL
+Wall = WallV or WallH or Corners
 @ = Crate and Target
-í = Wall and AboveHead
+í = WallHBU and AboveHead
+ű = WallCorner and AboveHead
 
-Player = PlayerNormal or PlayerLift or PlayerMidPutDown
+Player = PlayerNormal or PlayerLift or PlayerMidPutDown or PlayerOnTheRopes
 Crates = Crate or AboveHeadCrate
 OverlapCheck = Wall or Crate
 
@@ -105,7 +236,7 @@ COLLISIONLAYERS
 Background
 AboveHead
 Target
-Player, Wall, Crate, AboveHeadCrate
+Player, Wall, Crate, AboveHeadCrate, Corners
 
 ======
 RULES
@@ -174,48 +305,81 @@ message ...or to SMASH another crate with it.
 
 message Level 1/17 - Lift
 
-####..
+(####..
 #####.
 #.î.##
 #*p*.#
 #...##
 ######
-####..
+####..)
+
+......
+chhhc.
+#.î.-.
+#*p*-.
+#...-.
+cgggc.
+......
 
 message Level 2/17 - Smash
 
-######
+(######
 #..î.#
 #.#p.#
 #.*..#
 #..*.#
 #....#
-######
+######)
+
+3hhhh4
+#..î.-
+#.cp.-
+#.*..-
+#..*.-
+#....-
+1gggg2
 
 message Level 3/17 - Try
 
-######
+(######
 #....#
 #.#.î#
 #.**p#
 #.####
 #....#
-######
+######)
+
+3hhhh4
+#....-
+#.c.î-
+#.**p-
+#.cgc-
+#....-
+1gggg2
 
 message Level 4/17 - Oldschool
 
-######
+(######
 #.#..#
 #...î#
 #.*.p#
 #.####
 #...o#
 #.####
-######
+######)
+
+3hhhh4
+#.c..-
+#...î-
+#.*.p-
+#.cgc-
+#...o-
+#.cgc-
+1gggg2
 
 message Level 5/17 - Break stuff
 
-######
+(######
 #....#
 #.*..#
 #.#.î#
@@ -223,31 +387,57 @@ message Level 5/17 - Break stuff
 #.####
 #...o#
 #.####
-######
+######)
+
+3hhhh4
+#....-
+#.*..-
+#.c.î-
+#.**p-
+#.cgc-
+#...o-
+#.cgc-
+1gggg2
 
 message Level 6/17 - Ceiling
 
-..###..
+(..###..
 .##.###
 ##..*##
 ##....#
 #oî..##
 ##p####
-.######
+.######)
+
+..3h4..
+.32.1h4
+32..*c-
+#c....-
+#oî..c-
+1cpcgc-
+.1gggg2
 
 message Level 7/17 - Hold
 
-..###..
+(..###..
 .##o###
 ##...##
 #.....#
 #.î...#
 ##p*.##
-.######
+.######)
+
+..3h4..
+.32o14.
+32...14
+#.....-
+#.î...-
+#cp*.c-
+1ggggg2
 
 message Level 8/17 - Pairs
 
-#######
+(#######
 #.....#
 #..**.#
 #.#####
@@ -256,11 +446,22 @@ message Level 8/17 - Pairs
 #.....#
 #.î*..#
 #.p*..#
-#######
+#######)
+
+3hhhhh4
+#.....-
+#..**.-
+#.chhc-
+#..oo.-
+#.cgc.-
+#.....-
+#.î*..-
+#.p*..-
+1ggggg2
 
 message Level 9/17 - Both
 
-#####í#
+(#####í#
 #...#p#
 #.#...#
 #.#####
@@ -269,11 +470,22 @@ message Level 9/17 - Both
 #..o..#
 #.....#
 #.#o#.#
-#######
+#######)
 
-message Level 10/17 - Snug
+3hhhhí4
+#...cp-
+#.c...-
+#.1ggc-
+#...*.-
+#*.cc.-
+#..o..-
+#.....-
+#.coc.-
+1ggggg2
 
-#######
+message Level 10/17 - Snug (x)
+
+(#######
 #..o..#
 #.....#
 ##.#í##
@@ -282,11 +494,22 @@ message Level 10/17 - Snug
 #.....#
 #######
 #.....#
-#######
+#######)
+
+3hhhhh4
+#..o..-
+#.....-
+#c.3íc-
+#.@#p.-
+#.@c*.-
+#.....-
+#cgggc-
+#.....-
+1ggggg2
 
 message Level 11/17 - Too much
 
-#######
+(#######
 #..o..#
 #..*#.#
 #.#*î.#
@@ -295,11 +518,22 @@ message Level 11/17 - Too much
 #..*..#
 #..*..#
 #.....#
-#######
+#######)
 
-message Level 12/17 - Access
+3hhhhh4
+#..o..-
+#..*c.-
+#.c*î.-
+#..*p.-
+#.chc.-
+#..*..-
+#..*..-
+#.....-
+1ggggg2
 
-#######
+message Level 12/17 - Access (?)
+
+(#######
 #.....#
 #***..#
 #***î.#
@@ -308,11 +542,22 @@ message Level 12/17 - Access
 #..##o#
 #..#..#
 #.....#
-#######
+#######)
 
-message Level 13/17 - Sneaky
+3hhhhh4
+#.....-
+#***..-
+#***î.-
+#***p.-
+#.chhc-
+#..cco-
+#..c..-
+#.....-
+1ggggg2
 
-#í#####.
+message Level 13/17 - Sneaky (x)
+
+(#í#####.
 #p...o#.
 #*..**#.
 #..####.
@@ -321,11 +566,22 @@ message Level 13/17 - Sneaky
 #..##.##
 #.*#*..#
 #.....##
-########
+########)
 
-message Level 14/17 - Maze
+3íhhhh4.
+#p...o-.
+#*..**-.
+#..3gg2.
+#..-....
+#..1hhh4
+#..cc.c-
+#.*c*..-
+#.....c-
+1gggggg2
 
-.#########
+message Level 14/17 - Maze (x)
+
+(.#########
 .##í..###.
 .##p...o#.
 .###..###.
@@ -335,19 +591,37 @@ message Level 14/17 - Maze
 #..#.#.#.#
 ##.*.#...#
 .#.#.#*..#
-.#########
+.#########)
 
-message Level 15/17 - Compact
+.3hhhhhh4.
+.#3ű..cc-.
+.##p...o-.
+.#14..cc14
+.#.c.3ggc-
+32.*.c.c.-
+#*.c.*...-
+#..c.c.c.-
+14.*.-...-
+.#.c.c*..-
+.1ggggggg2
 
-....###...
+message Level 15/17 - Compact (x)
+
+(....###...
 ..#í#o###.
 .##p..*o#.
 .#@..***#.
-.########.
+.########.)
 
-message Level 16/17 - Curveball
+....3h4...
+..3í2o1h4.
+.32p..*o-.
+.#@..***-.
+.1gggggg2.
 
-##########....
+message Level 16/17 - Curveball (?)
+
+(##########....
 #...o##ö##....
 #.#.###l##....
 #.*.*##.##....
@@ -355,11 +629,21 @@ message Level 16/17 - Curveball
 #.#.#o.*.o#...
 #.#.##.####...
 #...*....#....
-##########....
+##########....)
 
-message Level 17/17 - Smash all the things
+3hhhhhhhh4....
+#...occöc-....
+#.c.c4#l--....
+#.*.*-c.c-....
+#.c.32...14...
+#.#.-o.*.o-...
+#.c.1c.cc32...
+#...*....-....
+1gggggggg2....
 
-############
+message Level 17/17 - Smash all the things (-)
+
+(############
 #o.........#
 #.********.#
 #.*......*.#
@@ -370,6 +654,19 @@ message Level 17/17 - Smash all the things
 #.*......*.#
 #.********.#
 #..........#
-############
+############)
+
+3hhhhhhhhhh4
+#o.........-
+#.********.-
+#.*......*.-
+#.*.****.*.-
+#.*.*î.*.*.-
+#.*.*p**.*.-
+#.*.****.*.-
+#.*......*.-
+#.********.-
+#..........-
+1gggggggggg2
 
 message Thank you for playing! :)
